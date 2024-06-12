@@ -39,4 +39,5 @@ jobs:
           git add .
           git commit -am "bdixtv247.m3u8 updated"
           git push
-  
+        with: 
+          token: ${{ secrets.GH_TOKEN }}
