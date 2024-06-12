@@ -24,12 +24,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-
+        with: 
+          token: ${{ secrets.GH_TOKEN }}
       # Runs a single command using the runners shell
       - name: Run bash script
         run: bash bdixtv247.sh
 
-      # Runs a set of commands using the runners shell
+      # Runs a set of commands using the runner's shell
       - name: checkout channels
         run: cat bdixtv247.m3u8
       - name: push changes
@@ -39,5 +40,4 @@ jobs:
           git add .
           git commit -am "bdixtv247.m3u8 updated"
           git push
-        with: 
-          token: ${{ secrets.GH_TOKEN }}
+
