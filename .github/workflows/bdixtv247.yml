@@ -40,6 +40,6 @@ jobs:
           git config --global user.name 'Mobarak Hosen Shakil'
           git config --global user.email 'imShakil@users.noreply.github.com'
           git add .
-          git commit -am "bdixtv247.m3u8 updated"
+          git commit -am "bdixtv247.m3u8 updated" || exit 0
           git push
 
