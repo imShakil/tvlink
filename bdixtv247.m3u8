@@ -184,7 +184,7 @@ https://livess.ncare.live/live-orgin/madina.stream/chunks.m3u8
 http://103.107.79.87:8080/CH8106SD01/tracks-v1a1/mono.m3u8
 
 #EXTINF:-1 tvg-logo="https://i.ibb.co/dbBkXhn/IMG-20240126-083614.png"group-title="LIVE EVENT CHANNELS", T Sports  
-https://emdftinya.tinyuri.org/embed/english.php
+https://live-cdn.tsports.com/live-02/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://i.ibb.co/h2d6ww5/IMG-20240320-112946.png"group-title="LIVE EVENT CHANNELS", T Sports HD 
 http://103.77.218.14:8082/Tsports-2/index.m3u8
