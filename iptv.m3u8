@@ -1,26 +1,6 @@
 #EXTM3U
-#EXTINF:-1 group-title="ICC Champions Trophy" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnB8TDo84j8DhnC7pBQgBFAsvD3C7b0MWnpu-h3-gbVAr_h1YDNE-MF6g&s=10",ICC Champions Trophy Bangla
-https://ml-pull-hwc.myco.io/stream1/hls/stream1.m3u8
 #EXTINF:-1 group-title="ICC Champions Trophy" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnB8TDo84j8DhnC7pBQgBFAsvD3C7b0MWnpu-h3-gbVAr_h1YDNE-MF6g&s=10",ICC Champions Trophy
 http://125.209.88.166:45793/BRN/ArySports.stream/chunklist.m3u8
-#EXTINF:-1 group-title="ICC Champions Trophy" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnB8TDo84j8DhnC7pBQgBFAsvD3C7b0MWnpu-h3-gbVAr_h1YDNE-MF6g&s=10",ICC Champions Trophy Star sports 1 HD
-https://hocdn.news/live/star1in.m3u8
-#EXTINF:-1 group-title="ICC Champions Trophy" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnB8TDo84j8DhnC7pBQgBFAsvD3C7b0MWnpu-h3-gbVAr_h1YDNE-MF6g&s=10",ICC Champions Trophy Star Sports 1 Hindi
-https://hocdn.news/live/starhindi.m3u8
-#EXTINF:-1 group-title="ICC Champions Trophy" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnB8TDo84j8DhnC7pBQgBFAsvD3C7b0MWnpu-h3-gbVAr_h1YDNE-MF6g&s=10",ICC Champions Trophy Sky Sports  Cricket
-https://hocdn.news/live/skyscric.m3u8
-#EXTINF:-1 group-title="ICC Champions Trophy" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnB8TDo84j8DhnC7pBQgBFAsvD3C7b0MWnpu-h3-gbVAr_h1YDNE-MF6g&s=10",ICC Champions Trophy PTV Sports
-https://hocdn.news/live/ptvpk.m3u8
-#EXTINF:-1 group-title="ICC Champions Trophy" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnB8TDo84j8DhnC7pBQgBFAsvD3C7b0MWnpu-h3-gbVAr_h1YDNE-MF6g&s=10",ICC Champions Trophy Willow Cricket HD
-https://hocdn.news/live/willowusa.m3u8
-#EXTINF:-1 group-title="ICC Champions Trophy" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnB8TDo84j8DhnC7pBQgBFAsvD3C7b0MWnpu-h3-gbVAr_h1YDNE-MF6g&s=10",ICC Champions Trophy SuperSport Cricket HD
-https://hocdn.news/live/supercricket.m3u8
-#EXTINF:-1 group-title="ICC Champions Trophy" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnB8TDo84j8DhnC7pBQgBFAsvD3C7b0MWnpu-h3-gbVAr_h1YDNE-MF6g&s=10",ICC Champions Trophy Willow Cricket Extra
-https://hocdn.news/live/willowextra.m3u8
-#EXTINF:-1 group-title="ICC Champions Trophy" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnB8TDo84j8DhnC7pBQgBFAsvD3C7b0MWnpu-h3-gbVAr_h1YDNE-MF6g&s=10",ICC Champions Trophy A Sports HD
-https://hocdn.news/live/asportshd.m3u8
-
-
 #EXTINF:-1 group-title="Sports" tvg-logo="https://sunplex.net/iptv/logo/t-sports-hd-fifa-2022.jpg",T SPORTS HD (Source 2)
 http://103.101.197.10:8989/M_Movies/tracks-v1a1/mono.ts.m3u8
 #EXTINF:-1 group-title="BD News🇧🇩" tvg-logo="https://images.toffeelive.com/images/program/52/logo/240x240/mobile_logo_262737001655890931.png",Channel 24
@@ -66,8 +46,6 @@ https://jadoo.iptvbd.xyz/jadoo.php?id=bangla_vision&e=.m3u8
 https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/biswabanglatv.stream/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTAvMTQvMjAyNCAxOjM3OjEyIFBNJmhhc2hfdmFsdWU9aTFRKzhISmFKaWppQTEzZnAyRDM2dz09JnZhbGlkbWludXRlcz00MA==
 #EXTINF:-1 group-title="LIVE TV" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAxonfSS_MlKMUxI_3xw3oDPnl2UabckSQgvKckAH29f5tl2MhGXZaOwM&s=10",Boishakhi Tv
 https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/boishakhitv-org.stream/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTAvMTQvMjAyNCAxOjM3OjQ2IFBNJmhhc2hfdmFsdWU9QTIzOTgvRHlBTzExYzNhL1VEc2FMUT09JnZhbGlkbWludXRlcz00MA==
-#EXTINF:-1 group-title="LIVE TV" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPlClWrsXnqhk5d12YgXqLRCwPTFmVFy0hqj2XScnh7M1OSHEJVms7h_E&s=10",CB 24 TV
-https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/cb24.stream/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTAvMTQvMjAyNCAxOjM5OjAxIFBNJmhhc2hfdmFsdWU9ZEJtK3o5WFo2MHIyNTNLczRLTlJ3Zz09JnZhbGlkbWludXRlcz00MA==
 #EXTINF:-1 group-title="LIVE TV" tvg-logo="https://s.id/VabNy",CHannel 24
 https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/channel24-sg-e8e.stream/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTAvMTQvMjAyNCAxOjQxOjI0IFBNJmhhc2hfdmFsdWU9a1BhK1I3R3hiaHErT2oyVUdsMHN4Zz09JnZhbGlkbWludXRlcz00MA==
 https://jadoo.iptvbd.xyz/jadoo.php?id=channel_24&e=.m3u8
@@ -178,8 +156,6 @@ https://abplivetv.akamaized.net/hls/live/2043012/ananda/master.m3u8
 http://rhsbjv7k.tvclub.xyz/iptv/MXUV9GU7KLRNNN/6641/index.m3u8
 #EXTINF:-1  tvg-logo="https://i.ibb.co/zRKxWnm/image-search-1713980037798.jpg",Entar 10 Bangla
 https://amg01448-samsungin-enterr10bangla-samsungin-ad-gg.amagi.tv/playlist/amg01448-samsungin-enterr10bangla-samsungin/playlist.m3u8
-#EXTINF:-1 ,STARJALSHA
-http://atg100.xyz:80/live/UL33K17/SYC4T9D/76204.ts
 #EXTINF:-1 ,RDCMOVIES
 https://janya-rdcmovies.akamaized.net/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/230a723f-867d-4fa3-b2d2-a622ba994cd2/main.m3u8
 #EXTINF:-1 ,Enterr10 Bangla
@@ -200,10 +176,6 @@ http://mydsat85.cbilant.com/iptv/E2DFKS2LWK569Q/6586/index.m3u8
 http://125.209.88.166:45793/BRN/GeoKahani.stream/chunklist_w484598437.m3u8
 #EXTINF:-1 group-title="India Bangla" tvg-logo="https://sunplex.net/iptv/logo/dw.jpg",Colors Rishtey
 http://45.143.220.6:3333/live/premium-aostv-free/download-fdrm-aostv.asia/2773.ts
-#EXTINF:-1 group-title="India Bangla" tvg-logo="https://sunplex.net/iptv/logo/dw.jpg",Disney Chahnle HD
-http://45.143.220.6:3333/live/premium-aostv-free/download-fdrm-aostv.asia/2776.ts
-#EXTINF:-1 group-title="Sports" tvg-logo="https://sunplex.net/iptv/logo/sports-18-hd1-fifa-2022.jpg",SPORTS 18 HD
-https://jiotvbpklive.cdn.jio.com/bpk-tv/IDCDemo_IPL23_Sports18_MOB/Fallback/IDCDemo_IPL23_Sports18_MOB-audio_98838_eng=98800-video=2293600-433371119.m3u8
 #EXTINF:-1 group-title="Sports" tvg-logo="https://sunplex.net/iptv/logo/sony-ten-3-hd.jpg",SONY TEN 3 SD
 http://45.143.220.6:3333/live/premium-aostv-free/download-fdrm-aostv.asia/2837.ts
 #EXTINF:-1 group-title="News" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/8/8e/DW_%28TV%29_Logo_2012.png",39.DW NEWS
