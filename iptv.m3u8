@@ -1,5 +1,27 @@
 #EXTM3U
 
+
+#EXTINF:-1 group-title="Bangla" tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Deepto%20TV.jpeg",Deepto TV
+https://byphdgllyk.gpcdn.net/hls/deeptotv/index.m3u8
+#EXTINF:-1 group-title="Bangladeshi" tvg-logo="https://yt3.googleusercontent.com/SN5R2c_9uZrppnfXYz5NCXtsSMgYCHhV5hmUkoX8HR7aTY2zHPnzBY8mDJsG27Ip_O9d7tqRCw=s176-c-k-c0x00ffffff-no-rj",Rtv News
+https://raw.githubusercontent.com/FunctionError/Logos/main/PiratesTv/master.m3u8
+#EXTINF:-1 group-title="Bangladeshi 🇧🇩",Deptto TV
+https://byphdgllyk.gpcdn.net/hls/DeeptoTV/index.m3u8?v=1
+
+
+#EXTINF:-1 tvg-logo="http://62.210.222.188/MOVIE/darklogo/DarkTVLogo/Logolar/banglades_bayrak.gif" group-title="BA : BAANGLAADESH",(BA) Banglavision
+http://m.devtv.biz:80/play/live.php?mac=00:1A:79:1E:7F:94&stream=46560&extension=ts
+
+
+#EXTINF:-1 tvg-logo="http://62.210.222.188/MOVIE/darklogo/DarkTVLogo/Logolar/banglades_bayrak.gif" group-title="BA : BAANGLAADESH",(BA) Channel 9
+http://m.devtv.biz:80/play/live.php?mac=00:1A:79:1E:7F:94&stream=46562&extension=ts
+
+#EXTINF:-1 tvg-logo="http://62.210.222.188/MOVIE/darklogo/DarkTVLogo/Logolar/banglades_bayrak.gif" group-title="BA : BAANGLAADESH",(BA) Deepto
+http://m.devtv.biz:80/play/live.php?mac=00:1A:79:1E:7F:94&stream=46563&extension=ts
+
+#EXTINF:-1 tvg-logo="http://62.210.222.188/MOVIE/darklogo/DarkTVLogo/Logolar/banglades_bayrak.gif" group-title="BA : BAANGLAADESH",(BA) Independent TV
+http://m.devtv.biz:80/play/live.php?mac=00:1A:79:1E:7F:94&stream=46564&extension=ts
+
 #EXTINF:-1 group-title="BANGLA" tvg-logo="https://ssl.com.bd/sites/default/files/BTV%20Logo%20Gallery.png",BTV
 http://103.230.105.252:1935/live/btv/manifest.m3u8
 
@@ -75,16 +97,9 @@ http://live.matribhumitv.com/matribhumi-sports/tracks-v1a1/mono.ts.m3u8
 
 #EXTINF:-1 group-title="BANGLA",Deshi tv
 http://208.86.19.13:81/514.stream/index.m3u8
-
+#EXTINF:-1 group-title="Bangladeshi 🇧🇩",Boome Rang
+https://edge2a.v2h-cdn.com/boomerang/boomerang.stream/playlist.m3u8
 #EXTINF:-1 ,#https://live-stream.utkalbongo.com/utkalbongo/stream2/hls/amarbanglatwolivestream.m3u8
-https://live-stream.utkalbongo.com/utkalbongo/stream10/hls/amarbangla.m3u8
-
-#EXTINF:-1 group-title="BANGLA" tvg-logo="https://i.ibb.co/CPmLfGs/Amar-Bangla.png",Amar Digital
-https://live-stream.utkalbongo.com/utkalbongo/stream2/hls/amarbanglatwolivestream.m3u8
-
-#EXTINF:-1 ,CHANNEL 24
-https://ch24cdn.ncare.live/live/ch24live.3bdf2cd7/playlist.m3u8?t=1f748cb53d154126aca189962fe8f3a5
-
 
 #EXTINF:-1 group-title="KOLKATA" tvg-logo="https://i.postimg.cc/bvV1BmyL/Enterr10-Bangla.jpg",Enter 10 Bangla
 https://live-bangla.akamaized.net/liveabr/playlist.m3u8
@@ -418,3 +433,6 @@ http://119.152.240.15:8001/play/a01x/index.m3u8
 http://119.152.240.15:8001/play/a02i/index.m3u8
 #EXTINF:-1 ,kay-2
 http://119.152.240.15:8001/play/a00g/index.m3u8
+https://live-stream.utkalbongo.com/utkalbongo/stream10/hls/amarbangla.m3u8
+#EXTINF:-1 group-title="Bangla" tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/T%20Sports.png",T Sports
+https://live.tsports.com/mobile_hls/tsports_live_2/playlist.m3u8
