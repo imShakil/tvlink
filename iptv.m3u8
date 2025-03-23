@@ -1,4 +1,8 @@
 #EXTM3U
+#EXTINF:-1 ,ipl
+https://hostplayer.click/STARSPORTS1/tracks-v1a1/mono.ts.m3u8?DVR&autoplay=true&token=9e342a5d82a51295a37594e5c9cc1fb92b012035-a1a7ec33d7980469c8333fec13c2ffea-1742650564-1742649664
+
+
 #EXTINF:-1 group-title="Bangla" tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Deepto%20TV.jpeg",Deepto TV
 https://byphdgllyk.gpcdn.net/hls/deeptotv/index.m3u8
 #EXTINF:-1 group-title="Bangladeshi 🇧🇩",Deptto TV
