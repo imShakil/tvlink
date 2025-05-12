@@ -1,0 +1,31 @@
+# Automated workflow to update iptv channels
+
+name: update iptv channels
+on:
+  schedule: 
+    - cron: '0 0 * * *'
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  update-channels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with: 
+          token: ${{ secrets.GH_TOKEN }}
+      - name: Run Script
+        run: bash bdiptv.sh
+      - name: Show Channels
+        run: cat iptv.m3u8
+      - name: Push Changes
+        run: |
+          git config user.name 'Mobarak Hosen Shakil'
+          git config user.email 'imShakil@users.noreply.github.com'
+          git add .
+          git commit -am "iptv.m3u8 updated" || exit 0
+          git push
