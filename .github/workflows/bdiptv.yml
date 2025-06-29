@@ -19,13 +19,15 @@ jobs:
         with: 
           token: ${{ secrets.GH_TOKEN }}
       - name: Run Script
-        run: bash bdiptv.sh
+        run: |
+          wget https://raw.githubusercontent.com/aniketda/iptvtest/refs/heads/main/iptvtest -O iptv.m3u8
       - name: Show Channels
         run: cat iptv.m3u8
       - name: Push Changes
         run: |
-          git config user.name 'Mobarak Hosen Shakil'
-          git config user.email 'imShakil@users.noreply.github.com'
+          git config user.name ${{ vars.name }}
+          git config user.email ${{ vars.email }}
           git add .
+          git status
           git commit -am "iptv.m3u8 updated" || exit 0
           git push
