@@ -25,10 +25,10 @@ jobs:
         run: cat iptv.m3u8
       - name: Push Changes
         run: |
+          set -x
           git config user.name ${{ vars.name }}
           git config user.email ${{ vars.email }}
           git add .
-          git status
           if ! git diff --cached --quiet; then
             git commit -m "iptv.m3u8 updated"
             git push
