@@ -29,5 +29,10 @@ jobs:
           git config user.email ${{ vars.email }}
           git add .
           git status
-          git commit -am "iptv.m3u8 updated" || exit 1
-          git push
+          if ! git diff --cached --quiet; then
+            git commit -a "iptv.m3u8 updated"
+            git push
+            echo "Channels updated successfully"
+          else
+            echo "No changes to commit"
+          fi
