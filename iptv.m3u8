@@ -1,9 +1,6 @@
 #EXTM3U
-
-
 #EXTINF:-1 group-title="BANGLA" tvg-logo="https://ssl.com.bd/sites/default/files/BTV%20Logo%20Gallery.png",BTV
 https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8
-
 #EXTINF:-1 group-title="BANGLA" tvg-logo="https://dl.dropbox.com/s/leielj83em5kg7h/somoy_news.png",SOMOY TV
 https://tvsen6.aynaott.com/somoytv/tracks-v1a1/mono.ts.m3u8
 #EXTINF:-1 group-title="BANGLA" tvg-logo="https://dl.dropbox.com/s/leielj83em5kg7h/somoy_news.png",SOMOY TV-[2]
@@ -22,7 +19,6 @@ https://tvsen6.aynaott.com/independenttv/tracks-v1a1/mono.ts.m3u8
 https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/index.m3u8
 #EXTINF:-1 group-title="BANGLA" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/9/9f/DBC_News_logo.png",DBC News
 https://tvsen6.aynaott.com/dbcnews/tracks-v1a1/mono.ts.m3u8
-
 #EXTINF:-1 group-title="BANGLA" tvg-logo="https://s6.gifyu.com/images/image27cfa7002786c232.png",ATN Bangla
 https://owrcovcrpy.gpcdn.net/bpk-tv/1722/output/index.m3u8
 #EXTINF:-1 group-title="BANGLA" tvg-logo="https://www.ntvbd.com/sites/default/files/aggregator/2020/02/17/ntv-channel_0.jpg",NTV
@@ -59,7 +55,6 @@ https://tvsen6.aynaott.com/deshtv/index.m3u8
 https://mytvbangla.com/0.m3u8
 #EXTINF:-1 group-title="BANGLA" tvg-logo="https://dl.dropbox.com/s/k7z1dsec1jfjbkn/jamuna_tv_bd.png",JAMUNA TV
 https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/1701-audio_113312_eng=113200-video=1692000.m3u8
-
 #EXTINF:-1 group-title="BANGLA" tvg-logo="https://i.postimg.cc/C15wr1RW/Ekushey-Television-Logo-svg.png",Ekushey TV
 https://ekusheyserver.com/hls-live/livepkgr/_definst_/liveevent/livestream3.m3u8
 #EXTINF:-1 group-title="BANGLA" tvg-logo="https://www.deshitv.com/images//bangla_logo/DeshTV24-BanglaLogo.png",Deshi Tv
@@ -70,80 +65,28 @@ http://alvetv.com/moviebanglatv/8080/index.m3u8
 https://byphdgllyk.gpcdn.net/hls/deeptotv/index.m3u8
 #EXTINF:-1 ,Deptto TV
 https://byphdgllyk.gpcdn.net/hls/DeeptoTV/index.m3u8?v=1
-#EXTINF:-1 ,DesheBideshe
-https://dbcanada.sonarbanglatv.com/deshebideshe/dbtv/index.m3u8
-#EXTINF:-1 ,Star Jalsha
-https://yupptvcatchupire.yuppcdn.net/preview/starjalsha/1800.m3u8
 #EXTINF:-1 ,Zee-Bangla-Cinema
 http://smart.bengaldigital.live/Zee-Bangla-Cinema/index.m3u8
 #EXTINF:-1 ,Zee-Bangla
 http://smart.bengaldigital.live/Zee-Bangla/index.m3u8
 #EXTINF:-1 ,ZeeCinema
 http://smart.bengaldigital.live/ZeeCinema/index.m3u8
-#EXTINF:-1  tvg-logo="https://i.ibb.co.com/2S13Rks/images-4.jpg",Sony Aath
-https://cloudfrontnet.vercel.app/tplay/playout/209593/master.m3u8
-#EXTINF:-1  tvg-logo="https://i.ibb.co.com/88Xwqpx/Star-Jalsha-logo-2023.png",Star Jalsha
-https://raw.githubusercontent.com/Miraz6755/My-tv/refs/heads/main/Star_Jalsha.m3u8
 #EXTINF:-1  tvg-logo="https://i.ibb.co.com/88Xwqpx/Star-Jalsha-logo-2023.png",Star Jalsha
 https://tvsen5.aynaott.com/gUX8BJmNc2yF/tracks-v1a1/mono.ts.m3u8
 #EXTINF:-1  tvg-logo="https://i.ibb.co.com/CzLncgL/images-1.jpg",Zee Bangla HD
 https://tvsen5.aynaott.com/PNEb3v2q6GBk/index.m3u8
 #EXTINF:-1  tvg-logo="https://i.ibb.co.com/CzLncgL/images-1.jpg",Zee Bangla HD
 https://smart.bengaldigital.live/Zee-Bangla/index.m3u8
-#EXTINF:-1  tvg-logo="https://i.ibb.co.com/CzLncgL/images-1.jpg",Zee Bangla HD
-https://raw.githubusercontent.com/Miraz6755/My-tv/refs/heads/main/Zee_Bangla.m3u8
 #EXTINF:-1  tvg-logo="https://i.ibb.co.com/PCq6jWp/Enterr10-Bangla.jpg",Enterr 10 Bangla
 https://live-bangla.akamaized.net/liveabr/pub-iobanglakp3sff/live_720p/chunks.m3u8
 #EXTINF:-1  tvg-logo="https://i.ibb.co.com/mcWKh1G/images.png",Discovery Bangla
 https://tvsen6.aynaott.com/discovery_hd_bangla/index.m3u8
 #EXTINF:-1  tvg-logo="https://i.ibb.co.com/FnzYG8W/images-2.png",Colors Bangla
-https://raw.githubusercontent.com/Miraz6755/My-tv/refs/heads/main/Colorsbn.m3u8
-#EXTINF:-1  tvg-logo="https://i.ibb.co.com/FnzYG8W/images-2.png",Colors Bangla
 https://live.dinesh29.com.np/stream/jiotv/colorsbanglacinema/master.m3u8
 #EXTINF:-1  tvg-logo="https://i.ibb.co.com/FnzYG8W/images-2.png",Colors Bangla
 https://tvsen5.aynaott.com/u3LkNQ7UHhFX/tracks-v1a1/mono.ts.m3u8
 #EXTINF:-1  tvg-logo="https://i.ibb.co.com/QHhmPkQ/download.jpg",Zee Bangla Cinema
-https://raw.githubusercontent.com/Miraz6755/My-tv/refs/heads/main/Zee_Bangla_Cinema.m3u8
-#EXTINF:-1  tvg-logo="https://i.ibb.co.com/QHhmPkQ/download.jpg",Zee Bangla Cinema
 https://smart.bengaldigital.live/Zee-Bangla-Cinema/index.m3u8
-#EXTINF:-1 group-title="LIVE TV" tvg-logo="https://upload.wikimedia.org/wikipedia/en/b/b3/Sun_Bangla.png",SUN BANGLA HD
-https://raw.githubusercontent.com/Miraz6755/My-tv/refs/heads/main/Sun_Bangla.m3u8
-#EXTINF:-1 ,SET HD
-https://tataplay.slivcdn.com/hls/live/2011671/SETHD/master.m3u8
-#EXTINF:-1 ,Sony SAB HD
-https://tataplay.slivcdn.com/hls/live/2011749/SABHD/master.m3u8
-#EXTINF:-1 ,Sony Marathii
-https://tataplay.slivcdn.com/hls/live/2011740/SonyMarathi/master.m3u8
-#EXTINF:-1 ,Sony Pal
-https://tataplay.slivcdn.com/hls/live/2011741/SonyPalSD/master.m3u8
-#EXTINF:-1 ,Sony Aath
-https://tataplay.slivcdn.com/hls/live/2011641/SonyAathSD/master.m3u8
-#EXTINF:-1 ,Sony Yay
-https://tataplay.slivcdn.com/hls/live/2011746/SonyYaySD/master.m3u8
-#EXTINF:-1 ,Sony MAX HD
-https://tataplay.slivcdn.com/hls/live/2011670/SonyMaxhd/master.m3u8
-#EXTINF:-1 ,Sony MAX
-https://tataplay.slivcdn.com/hls/live/2011745/SonyMaxSD/master.m3u8
-#EXTINF:-1 ,Sony MAX 2
-https://tataplay.slivcdn.com/hls/live/2011908/MAX2/master.m3u8
-#EXTINF:-1 ,Sony WAH
-https://tataplay.slivcdn.com/hls/live/2011906/SonyWah/master.m3u8
-#EXTINF:-1 ,Sony PIX HD
-https://tataplay.slivcdn.com/hls/live/2011748/PIXHD/master.m3u8
-#EXTINF:-1 ,Sony BBC Earth HD
-https://tataplay.slivcdn.com/hls/live/2011907/SonyBBCEarthHD/master.m3u8
-#EXTINF:-1 ,Sony Sports Ten 1 HD
-https://tataplay.slivcdn.com//hls/live/2011747/TEN1HD/master.m3u8
-#EXTINF:-1 ,Sony Sports Ten 2 HD
-https://tataplay.slivcdn.com/hls/live/2020434/TEN2HD/master.m3u8
-#EXTINF:-1 ,Sony Sports Ten 3 HD
-https://tataplay.slivcdn.com/hls/live/2020591/TEN3HD/master.m3u8
-#EXTINF:-1 ,Sony Sports Ten 4 HD
-https://tataplay.slivcdn.com/hls/live/2020589/ten4hd/master.m3u8
-#EXTINF:-1 ,Sony Sports Ten 5 HD
-https://tataplay.slivcdn.com/hls/live/2020593/SONYSIXHD/master.m3u8
-#EXTINF:-1 ,Sony KAL
-https://spt-sonykal-1-us.lg.wurl.tv/playlist.m3u8
 #EXTINF:-1 ,Spacetoon
 https://streams.spacetoon.com/live/stchannel/smil:livesmil.smil/playlist.m3u8
 #EXTINF:-1 ,𝙋𝘽𝙎 𝙆𝙄𝘿𝙎
@@ -168,8 +111,6 @@ https://fl5.moveonjoy.com/DISNEY_XD/index.m3u8
 https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/shemaroo-filmigaane/master.m3u8
 #EXTINF:-1 ,Sonic
 http://extraott-iptv.com:88/live/0229477349/8104258135/400159784.m3u8
-#EXTINF:-1 ,Nick
-http://extraott-iptv.com:88/live/0229477349/8104258135/400159786.m3u8
 #EXTINF:-1 ,Sony YAY!
 http://main.light-ott.net:80/play/live.php?mac=00:1A:79:00:12:f4&stream=908587&extension=ts&play_token=413IAp959Y
 #EXTINF:-1 group-title="Bangla TV" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/e/ef/Star_Jalsha_logo_2023.png",STARJALSHA
@@ -236,12 +177,8 @@ https://abr.de1se01.v2beat.live/live/live6/chunks.m3u8
 https://dpp-qmusicnl-live.akamaized.net/streamx/QmusicNL_720p.m3u8
 #EXTINF:-1 ,California Music Channel
 https://cmc-ono.amagi.tv/hls/amagi_hls_data_cmcAAAAAA-cmc-ono/CDN/640x360_1205600/index.m3u8
-#EXTINF:-1 ,Zee One
-https://ef56ef401101403a8b06f1dec29ef1eb.mediatailor.us-east-1.amazonaws.com/v1/manifest/44f73ba4d03e9607dcd9bebdcb8494d86964f1d8/Samsung-de_ZeeOne/1c1ecdc6-be34-4ea2-bde9-8e30209e896b/2.m3u8
 #EXTINF:-1 ,9xm
 https://d35j504z0x2vu2.cloudfront.net/v1/manifest/0bc8e8376bd8417a1b6761138aa41c26c7309312/9xm/c8939874-787e-41ae-8d35-f5ea6e15720d/0.m3u8
-#EXTINF:-1 ,Star Sports 1 HD
-http://supersonictv.live:8080/live/Bobby1/Bobby1/85564.ts
 #EXTINF:-1 ,Star Sports 2 HD
 http://link.luckonline.eu/live/Ali130225/Cpyej2JL56Xy/1370.m3u8
 #EXTINF:-1 ,Star Sports 1 Tamil HD
@@ -346,8 +283,6 @@ https://brat-samsung-us.amagi.tv/playlist.m3u8
 https://uni01rtmp.tulix.tv/firstlight/firstlight.smil/playlist.m3u8
 #EXTINF:-1 ,ION Mystery
 https://scripps-ionmystery-1-us.xumo.wurl.tv/playlist.m3u8
-#EXTINF:-1 ,ZEE ONE
-https://ef56ef401101403a8b06f1dec29ef1eb.mediatailor.us-east-1.amazonaws.com/v1/master/44f73ba4d03e9607dcd9bebdcb8494d86964f1d8/Samsung-de_ZeeOne/playlist.m3u8
 #EXTINF:-1 group-title="HINDI MOVIES" tvg-logo="https://sunplex.net/iptv/logo/dw.jpg",Zing
 http://45.143.220.6:3333/live/premium-aostv-free/download-fdrm-aostv.asia/2973.ts
 #EXTINF:-1 group-title="HINDI MUSIC" tvg-logo="https://d3jnkp3lrs2hd5.cloudfront.net/images/320x180/880c1e6e-62cd-4632-b5f9-c5b34e14da61.jpg",7X PANJAB MUSIC
