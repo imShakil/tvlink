@@ -27,8 +27,8 @@ jobs:
       - name: Push Changes
         run: |
           set -x
-          git config user.name "${{ vars.name }}"
-          git config user.email "${{ vars.email }}"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git add .
           
           if ! git diff --cached --quiet; then
