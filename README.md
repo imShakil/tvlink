@@ -10,5 +10,8 @@ You can [download .m3u8](https://raw.githubusercontent.com/imShakil/tvlink/refs/
 https://raw.githubusercontent.com/imShakil/tvlink/refs/heads/main/iptv.m3u8
 ```
 
+## IPTV App
+
+Download IPTV pro mod apk: [Download Link](https://linkly.link/2WBdU)
 
 > **Disclaimer:** ***I don't own any links. All are collected from public sources and distributed for common use purposes. Kindly, use it on your own risk.***
