@@ -20,7 +20,7 @@ https://raw.githubusercontent.com/imShakil/tvlink/refs/heads/main/iptv.m3u8
   ```
 ## Watch on Chrome
 
-- Install this [extension](https://chromewebstore.google.com/detail/fast-iptv-player-hlsm3u8e/dbdgibnjfnomhihldbjcdbgddamjmboi)
+- Install this [extension](https://linkly.link/2ZXGx)
 - Add the iptv m3u8 playlist URL and watch:
 
   ```m3u8
