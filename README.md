@@ -10,6 +10,10 @@ You can [download .m3u8](https://raw.githubusercontent.com/imShakil/tvlink/refs/
 https://raw.githubusercontent.com/imShakil/tvlink/refs/heads/main/iptv.m3u8
 ```
 
+## Watch Online
+
+Browse this website URL: [https://bdixtv.mhosen.com](https://bdixtv.mhosen.com)
+
 ## IPTV App on Mobile or Android TV
 
 - Download IPTV pro mod apk: [Download Link](https://linkly.link/2WBdU)
