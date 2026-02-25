@@ -16,3 +16,19 @@ Decode source labels from `iptv.m3u8` later:
 ```bash
 SOURCE_PASSPHRASE='your-plain-text' python3 generate_playlist.py --decode-file iptv.m3u8
 ```
+
+## Run Locally With `.env`
+
+1. Copy `.env.example` to `.env`
+2. Update `.env` values
+3. Install dependencies:
+
+    ```bash
+    make install
+    ```
+
+4. Build playlist:
+
+    ```bash
+    make run
+    ```

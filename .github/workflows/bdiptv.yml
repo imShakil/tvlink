@@ -23,7 +23,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install Dependencies
-        run: pip install requests cryptography
+        run: pip install -r requirements.txt
 
       - name: Build IPTV Playlist
         run: |
@@ -31,6 +31,8 @@ jobs:
         env:
           PLAYLIST_SOURCES: ${{ secrets.PLAYLIST_SOURCES }}
           VALIDATE_STREAMS: "true"
+          LIVENESS_WORKERS: "40"
+          LIVENESS_TIMEOUT_SECONDS: "4"
           SOURCE_PASSPHRASE: ${{ secrets.SOURCE_PASSPHRASE }}
           OUTPUT_FILE: "iptv.m3u8"
       

@@ -6,8 +6,10 @@ import os
 import argparse
 import base64
 import hashlib
+from concurrent.futures import ThreadPoolExecutor
 import requests
 from cryptography.fernet import Fernet, InvalidToken
+from dotenv import load_dotenv
 
 
 def normalize_source(source):
@@ -44,9 +46,28 @@ def parse_sources(raw_sources):
     return sources
 
 
-def is_url_live(session, url):
+def parse_legacy_dotenv_sources(dotenv_path=".env"):
     try:
-        response = session.get(url, stream=True, timeout=6)
+        with open(dotenv_path, "r", encoding="utf-8") as f:
+            raw_lines = f.readlines()
+    except OSError:
+        return []
+
+    lines = []
+    for line in raw_lines:
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        if "=" in stripped:
+            continue
+        lines.append(stripped)
+
+    return lines
+
+
+def is_url_live(session, url, timeout_seconds=6):
+    try:
+        response = session.get(url, stream=True, timeout=timeout_seconds)
         if response.status_code != 200:
             return False
         try:
@@ -58,6 +79,27 @@ def is_url_live(session, url):
             response.close()
     except requests.RequestException:
         return False
+
+
+def validate_candidates(candidates, max_workers, timeout_seconds):
+    if not candidates:
+        return []
+
+    def check(candidate):
+        session = requests.Session()
+        try:
+            return is_url_live(session, candidate["url"], timeout_seconds=timeout_seconds)
+        finally:
+            session.close()
+
+    accepted = []
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        results = executor.map(check, candidates)
+        for candidate, is_live in zip(candidates, results):
+            if is_live:
+                accepted.append(candidate)
+
+    return accepted
 
 
 def load_source_content(session, source):
@@ -81,13 +123,15 @@ def load_source_content(session, source):
 def parse_m3u(
     content,
     source_name,
-    session,
     validate_streams=True,
     source_cipher_key="",
+    liveness_workers=24,
+    liveness_timeout_seconds=6,
 ):
-    playlist = []
+    candidates = []
     lines = [line.strip() for line in content.splitlines()]
     current_extinf = None
+    source_label = encrypted_label(source_name, source_cipher_key)
 
     for line in lines:
         if not line:
@@ -111,27 +155,30 @@ def parse_m3u(
             logo = current_extinf.split('tvg-logo="', 1)[1].split('"', 1)[0]
 
         if channel_url.startswith("http"):
-            label = encrypted_label(source_name, source_cipher_key)
-            if (not validate_streams) or is_url_live(session, channel_url):
-                playlist.append(
-                    {
-                        "logo": logo,
-                        "group": group,
-                        "channel_name": channel_name,
-                        "url": channel_url,
-                        "source": source_name,
-                        "source_label": label,
-                    }
-                )
+            candidates.append(
+                {
+                    "logo": logo,
+                    "group": group,
+                    "channel_name": channel_name,
+                    "url": channel_url,
+                    "source": source_name,
+                    "source_label": source_label,
+                }
+            )
         current_extinf = None
 
-    return playlist
+    if not validate_streams:
+        return candidates
+
+    return validate_candidates(candidates, liveness_workers, liveness_timeout_seconds)
 
 
 def combine_playlists(
     sources,
     validate_streams=True,
     source_cipher_key="",
+    liveness_workers=24,
+    liveness_timeout_seconds=6,
 ):
     combined = []
     seen = set()
@@ -146,9 +193,10 @@ def combine_playlists(
             entries = parse_m3u(
                 content,
                 source,
-                session,
                 validate_streams=validate_streams,
                 source_cipher_key=source_cipher_key,
+                liveness_workers=liveness_workers,
+                liveness_timeout_seconds=liveness_timeout_seconds,
             )
             log_label = entries[0]["source_label"] if entries else "EMPTY"
             print(f"{log_label}: accepted {len(entries)} channels")
@@ -171,6 +219,8 @@ def write_to_file(playlist, output_file):
         current_source = None
         for item in playlist:
             if item["source_label"] != current_source:
+                if current_source is not None:
+                    f.write("\n")
                 current_source = item["source_label"]
                 f.write(f'# Source: {current_source}\n')
             f.write(
@@ -216,6 +266,8 @@ def resolve_cipher_key():
 
 
 if __name__ == "__main__":
+    load_dotenv()
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--decode-file", help="Decode encrypted source labels from this playlist file.")
     args = parser.parse_args()
@@ -228,8 +280,12 @@ if __name__ == "__main__":
         raise SystemExit(0)
 
     raw_sources = os.getenv("PLAYLIST_SOURCES", "")
+    if not raw_sources:
+        raw_sources = "\n".join(parse_legacy_dotenv_sources(".env"))
     validate_streams = os.getenv("VALIDATE_STREAMS", "true").lower() == "true"
     output_file = os.getenv("OUTPUT_FILE", "iptv.m3u8")
+    liveness_workers = int(os.getenv("LIVENESS_WORKERS", "24"))
+    liveness_timeout_seconds = int(os.getenv("LIVENESS_TIMEOUT_SECONDS", "6"))
 
     sources = parse_sources(raw_sources)
     if not sources:
@@ -241,6 +297,8 @@ if __name__ == "__main__":
         sources,
         validate_streams=validate_streams,
         source_cipher_key=source_cipher_key,
+        liveness_workers=liveness_workers,
+        liveness_timeout_seconds=liveness_timeout_seconds,
     )
     write_to_file(combined_playlist, output_file)
 
