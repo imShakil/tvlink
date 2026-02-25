@@ -1,6 +1,6 @@
 # BD IPTV Links
 
-This repo is a collections of bangldeshi tv channels for playing on TV with Internet (IPTV) using  .m3u8 player. 
+This repo is a collections of bangldeshi tv channels for playing on TV with Internet (IPTV) using  .m3u8 player.
 
 ## How To Use it?
 
@@ -22,6 +22,7 @@ Browse this website URL: [https://bdixtv.mhosen.com](https://bdixtv.mhosen.com)
   ```m3u8
   https://raw.githubusercontent.com/imShakil/tvlink/refs/heads/main/iptv.m3u8
   ```
+
 ## Watch on Chrome
 
 - Install this [extension](https://linkly.link/2ZXGx)
@@ -31,7 +32,7 @@ Browse this website URL: [https://bdixtv.mhosen.com](https://bdixtv.mhosen.com)
   https://raw.githubusercontent.com/imShakil/tvlink/refs/heads/main/iptv.m3u8
   ```
 
-  <img width="1510" height="782" alt="Screenshot 2025-12-29 at 19 26 10" src="https://github.com/user-attachments/assets/46add0b1-f9a9-41e9-a58b-9566e974befe" />
+  ![chrome view](https://github.com/user-attachments/assets/46add0b1-f9a9-41e9-a58b-9566e974befe)
 
 ---
 

@@ -17,9 +17,22 @@ jobs:
         with: 
           token: ${{ secrets.GH_TOKEN }}
       
-      - name: Run Script
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: pip install requests cryptography
+
+      - name: Build IPTV Playlist
         run: |
-          wget https://raw.githubusercontent.com/aniketda/iptvtest/refs/heads/main/iptvtest -O iptv.m3u8
+          python generate_playlist.py
+        env:
+          PLAYLIST_SOURCES: ${{ secrets.PLAYLIST_SOURCES }}
+          VALIDATE_STREAMS: "true"
+          SOURCE_PASSPHRASE: ${{ secrets.SOURCE_PASSPHRASE }}
+          OUTPUT_FILE: "iptv.m3u8"
       
       - name: Show Channels
         run: cat iptv.m3u8
@@ -29,7 +42,7 @@ jobs:
           set -x
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add .
+          git add iptv.m3u8
           
           if ! git diff --cached --quiet; then
             git commit -m "iptv.m3u8 updated"
