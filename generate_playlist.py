@@ -6,6 +6,7 @@ import os
 import argparse
 import base64
 import hashlib
+import hmac
 from concurrent.futures import ThreadPoolExecutor
 import requests
 from cryptography.fernet import Fernet, InvalidToken
@@ -19,8 +20,13 @@ def normalize_source(source):
 
 def encrypted_label(source, cipher_key):
     full_source_url = normalize_source(source)
-    token = Fernet(cipher_key.encode("utf-8")).encrypt(full_source_url.encode("utf-8")).decode("utf-8")
-    return f"SRC-ENC:{token}"
+    # Deterministic source ID to keep output stable across runs with same input.
+    digest = hmac.new(
+        cipher_key.encode("utf-8"),
+        full_source_url.encode("utf-8"),
+        hashlib.sha256,
+    ).hexdigest()
+    return f"SRC-ID:{digest[:24]}"
 
 
 def decode_encrypted_label(label, cipher_key):
@@ -32,6 +38,18 @@ def decode_encrypted_label(label, cipher_key):
         return value.decode("utf-8")
     except (InvalidToken, ValueError):
         return None
+
+
+def resolve_source_id_label(label, cipher_key, sources):
+    if not label.startswith("SRC-ID:"):
+        return None
+    target = label.split("SRC-ID:", 1)[1].strip()
+    for source in sources:
+        candidate = encrypted_label(source, cipher_key)
+        candidate_id = candidate.split("SRC-ID:", 1)[1]
+        if hmac.compare_digest(candidate_id, target):
+            return source
+    return None
 
 
 def parse_sources(raw_sources):
@@ -235,7 +253,7 @@ def decode_labels_from_file(input_file, cipher_key):
 
     found = []
     for line in lines:
-        if line.startswith("# Source: SRC-ENC:"):
+        if line.startswith("# Source: SRC-"):
             label = line.replace("# Source: ", "", 1)
             found.append(label)
 
@@ -244,16 +262,27 @@ def decode_labels_from_file(input_file, cipher_key):
         return
 
     print("Decoded source labels:")
+    raw_sources = os.getenv("PLAYLIST_SOURCES", "")
+    if not raw_sources:
+        raw_sources = "\n".join(parse_legacy_dotenv_sources(".env"))
+    known_sources = parse_sources(raw_sources)
+
     seen = set()
     for label in found:
         if label in seen:
             continue
         seen.add(label)
         decoded = decode_encrypted_label(label, cipher_key)
-        if decoded is None:
-            print(f"{label} => [decode failed]")
-        else:
+        if decoded is not None:
             print(f"{label} => {decoded}")
+            continue
+
+        resolved = resolve_source_id_label(label, cipher_key, known_sources)
+        if resolved is not None:
+            print(f"{label} => {resolved}")
+            continue
+
+        print(f"{label} => [unresolved]")
 
 
 def resolve_cipher_key():

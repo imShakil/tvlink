@@ -26,7 +26,7 @@ jobs:
           python generate_playlist.py
         env:
           PLAYLIST_SOURCES: ${{ secrets.PLAYLIST_SOURCES }}
-          VALIDATE_STREAMS: "true"
+          VALIDATE_STREAMS: "false"
           LIVENESS_WORKERS: "40"
           LIVENESS_TIMEOUT_SECONDS: "4"
           SOURCE_PASSPHRASE: ${{ secrets.SOURCE_PASSPHRASE }}
