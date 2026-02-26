@@ -10,18 +10,23 @@ on:
         options:
           - add
           - delete
+      delete_channel_ids:
+        description: "Required for delete. Comma-separated channel IDs."
+        required: false
+        type: string
       channel_name:
-        description: "Required for add. Channel name."
+        description: "Optional for add. Default: feature channel -N."
         required: false
         type: string
       channel_logo:
-        description: "Required for add. Channel logo URL."
+        description: "Optional for add. Default: dummyimage URL."
         required: false
         type: string
       channel_type:
-        description: "Required for add. Channel type (e.g. m3u8, iframe)."
+        description: "Required for add. Channel type."
         required: false
         type: choice
+        default: m3u8
         options:
           - m3u8
           - iframe
@@ -30,8 +35,8 @@ on:
         description: "Required for add. Channel source URL."
         required: false
         type: string
-      delete_channel_ids:
-        description: "Required for delete. Comma-separated channel IDs."
+      channel_category:
+        description: "Optional for add. Default: featured."
         required: false
         type: string
 
@@ -58,6 +63,7 @@ jobs:
             --channel-logo "${{ github.event.inputs.channel_logo }}" \
             --channel-type "${{ github.event.inputs.channel_type }}" \
             --channel-source "${{ github.event.inputs.channel_source }}" \
+            --channel-category "${{ github.event.inputs.channel_category }}" \
             --delete-channel-ids "${{ github.event.inputs.delete_channel_ids }}" \
             --validate-only
 
@@ -69,6 +75,7 @@ jobs:
             --channel-logo "${{ github.event.inputs.channel_logo }}" \
             --channel-type "${{ github.event.inputs.channel_type }}" \
             --channel-source "${{ github.event.inputs.channel_source }}" \
+            --channel-category "${{ github.event.inputs.channel_category }}" \
             --delete-channel-ids "${{ github.event.inputs.delete_channel_ids }}"
 
       - name: Commit and push if changed
@@ -85,4 +92,3 @@ jobs:
 
           git commit -m "Update IPTV channels in features.json"
           git push
-      

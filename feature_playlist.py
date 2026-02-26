@@ -4,6 +4,7 @@ import json
 import re
 import sys
 from pathlib import Path
+from urllib.parse import quote_plus
 
 
 def slugify(value: str) -> str:
@@ -15,11 +16,26 @@ def parse_delete_ids(raw: str) -> list[str]:
     return [item.strip() for item in (raw or "").split(",") if item.strip()]
 
 
+def next_default_name(channels: list[dict]) -> str:
+    pattern = re.compile(r"^feature channel -(\d+)$", re.IGNORECASE)
+    max_index = 0
+    for channel in channels:
+        if not isinstance(channel, dict):
+            continue
+        name = str(channel.get("name") or "").strip()
+        match = pattern.match(name)
+        if match:
+            max_index = max(max_index, int(match.group(1)))
+    return f"feature channel -{max_index + 1}"
+
+
+def default_logo(name: str) -> str:
+    return f"https://dummyimage.com/256x256/1f5f7a/ffffff.png&text={quote_plus(name)}"
+
+
 def validate_args(args: argparse.Namespace) -> None:
     if args.action == "add":
         required = {
-            "channel-name": args.channel_name,
-            "channel-logo": args.channel_logo,
             "channel-type": args.channel_type,
             "channel-source": args.channel_source,
         }
@@ -55,10 +71,11 @@ def run(args: argparse.Namespace) -> None:
     channels = data["channels"]
 
     if args.action == "add":
-        name = args.channel_name.strip()
-        logo = args.channel_logo.strip()
+        name = args.channel_name.strip() or next_default_name(channels)
+        logo = args.channel_logo.strip() or default_logo(name)
         ctype = args.channel_type.strip()
         source = args.channel_source.strip()
+        category = args.channel_category.strip() or "featured"
 
         base_id = slugify(name)
         existing_ids = {c.get("id") for c in channels if isinstance(c, dict)}
@@ -75,7 +92,7 @@ def run(args: argparse.Namespace) -> None:
                 "logo": logo,
                 "type": ctype,
                 "source": source,
-                "category": "Custom",
+                "category": category,
                 "language": "en",
             }
         )
@@ -104,6 +121,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--channel-logo", default="")
     parser.add_argument("--channel-type", default="")
     parser.add_argument("--channel-source", default="")
+    parser.add_argument("--channel-category", default="")
     parser.add_argument("--delete-channel-ids", default="")
     parser.add_argument("--validate-only", action="store_true")
     return parser
