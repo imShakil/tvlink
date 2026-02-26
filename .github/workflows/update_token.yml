@@ -1,0 +1,49 @@
+name: Update Stream Tokens
+
+on:
+  schedule:
+    - cron: '0 */2 * * *'   # Every 2 hours
+  workflow_dispatch:          # Allow manual trigger
+
+jobs:
+  update-tokens:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      - name: Install dependencies
+        run: sudo apt-get install -y curl jq
+
+      - name: Run update script
+        env:
+          PLAY_URL: ${{ secrets.PLAY_URL }}
+          REFERER: ${{ secrets.REFERER }}
+          SPOOF_IP: ${{ secrets.SPOOF_IP }}
+        run: |
+          chmod +x autorun.sh
+          ./autorun.sh features.json
+
+      - name: Commit updated tokens
+        run: |
+          set -x
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add channels.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: refresh stream tokens [$(date -u '+%Y-%m-%d %H:%M UTC')]"
+            git push
+          fi
+
+      - name: Job summary
+        run: |
+          echo "## Token Refresh Summary" >> $GITHUB_STEP_SUMMARY
+          echo "| Status | Count |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| ✅ Updated | $COUNT |" >> $GITHUB_STEP_SUMMARY
+          echo "| ❌ Failed  | $FAILED |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Last run: $(date -u '+%Y-%m-%d %H:%M UTC')" >> $GITHUB_STEP_SUMMARY
