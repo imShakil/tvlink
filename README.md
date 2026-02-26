@@ -14,6 +14,9 @@ https://raw.githubusercontent.com/imShakil/tvlink/refs/heads/main/iptv.m3u8
 
 Browse this website URL: [https://bdixtv.mhosen.com](https://bdixtv.mhosen.com)
 
+![bdixtv.mhosen.com](https://github.com/user-attachments/assets/364a409e-4e87-4779-867d-49be5ba9584b)
+
+
 ## IPTV App on Mobile or Android TV
 
 - Download IPTV pro mod apk: [Download Link](https://linkly.link/2WBdU)
