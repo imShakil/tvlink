@@ -8,6 +8,8 @@ on:
 jobs:
   update-tokens:
     runs-on: ubuntu-latest
+    env:
+      JSON_FILE: "features.json"
 
     steps:
       - name: Checkout repo
@@ -23,14 +25,14 @@ jobs:
           SPOOF_IP: ${{ secrets.SPOOF_IP }}
         run: |
           chmod +x autorun.sh
-          ./autorun.sh features.json
+          ./autorun.sh $JSON_FILE
 
       - name: Commit updated tokens
         run: |
           set -x
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add channels.json
+          git add $JSON_FILE
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
