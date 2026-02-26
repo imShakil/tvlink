@@ -17,16 +17,16 @@ while IFS= read -r channel; do
   ID=$(echo "$channel" | jq -r '.id')
   NAME=$(echo "$channel" | jq -r '.name')
   SOURCE=$(echo "$channel" | jq -r '.source')
-  TYPE=$(echo "$channel" | jq -r '.type')
 
   # Skip non-token channels
-  if [[ "$TYPE" != "m3u8" ]] || [[ "$SOURCE" != *"103.89.248"* && "$SOURCE" != *"bdiptv"* ]]; then
+  if [[ "$SOURCE" != *"103.89.248"* && "$SOURCE" != *"bdiptv"* ]]; then
     echo "SKIP: $NAME"
     continue
   fi
 
-  # Extract stream name (macOS/BSD compatible)
-  STREAM=$(echo "$SOURCE" | sed 's|.*:8082/||' | sed 's|/index.*||')
+  # Extract stream name from first path segment after host/port.
+  # Works for both valid m3u8 URLs and previously malformed embed URLs.
+  STREAM=$(echo "$SOURCE" | sed -E 's|https?://[^/]+/([^/?]+).*|\1|')
   if [ -z "$STREAM" ]; then
     echo "FAIL: $NAME (no stream name)"
     ((FAILED++))
@@ -40,9 +40,9 @@ while IFS= read -r channel; do
     -H "X-Forwarded-For: $SPOOF_IP" \
     "$PLAY_URL?stream=$STREAM")
 
-  # Extract embed URL, host, token (macOS/BSD compatible)
+  # Extract embed URL, host, token.
   EMBED_URL=$(echo "$RESPONSE" | sed -n 's/.*src="\([^"]*\)".*/\1/p')
-  HOST=$(echo "$EMBED_URL" | sed 's|\(https\?://[^/]*\).*|\1|')
+  HOST=$(echo "$EMBED_URL" | sed -E 's|^(https?)://([^/]+).*$|\1://\2|')
   TOKEN=$(echo "$EMBED_URL" | sed 's/.*token=\([^&]*\).*/\1/')
 
   if [ -z "$TOKEN" ] || [ -z "$HOST" ]; then
