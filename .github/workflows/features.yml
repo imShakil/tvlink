@@ -1,0 +1,88 @@
+name: Manage Custom IPTV Channels
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "Choose add or delete"
+        required: true
+        type: choice
+        options:
+          - add
+          - delete
+      channel_name:
+        description: "Required for add. Channel name."
+        required: false
+        type: string
+      channel_logo:
+        description: "Required for add. Channel logo URL."
+        required: false
+        type: string
+      channel_type:
+        description: "Required for add. Channel type (e.g. m3u8, iframe)."
+        required: false
+        type: choice
+        options:
+          - m3u8
+          - iframe
+          - custom
+      channel_source:
+        description: "Required for add. Channel source URL."
+        required: false
+        type: string
+      delete_channel_ids:
+        description: "Required for delete. Comma-separated channel IDs."
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  manage-channels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate inputs (fail first)
+        run: |
+          python feature_playlist.py \
+            --action "${{ github.event.inputs.action }}" \
+            --channel-name "${{ github.event.inputs.channel_name }}" \
+            --channel-logo "${{ github.event.inputs.channel_logo }}" \
+            --channel-type "${{ github.event.inputs.channel_type }}" \
+            --channel-source "${{ github.event.inputs.channel_source }}" \
+            --delete-channel-ids "${{ github.event.inputs.delete_channel_ids }}" \
+            --validate-only
+
+      - name: Update features.json
+        run: |
+          python feature_playlist.py \
+            --action "${{ github.event.inputs.action }}" \
+            --channel-name "${{ github.event.inputs.channel_name }}" \
+            --channel-logo "${{ github.event.inputs.channel_logo }}" \
+            --channel-type "${{ github.event.inputs.channel_type }}" \
+            --channel-source "${{ github.event.inputs.channel_source }}" \
+            --delete-channel-ids "${{ github.event.inputs.delete_channel_ids }}"
+
+      - name: Commit and push if changed
+        run: |
+          set -x
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add features.json
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Update IPTV channels in features.json"
+          git push
+      
