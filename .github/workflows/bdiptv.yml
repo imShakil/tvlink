@@ -62,7 +62,7 @@ jobs:
           git add iptv.m3u8
           
           if ! git diff --cached --quiet; then
-            git commit -m "iptv.m3u8 updated"
+            git commit -m "chore: iptv.m3u8 channels updated at [$(date -u '+%Y-%m-%d %H:%M UTC')]"
             git push
             echo "Channels updated successfully"
           else

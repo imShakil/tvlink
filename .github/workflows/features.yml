@@ -90,5 +90,5 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Update IPTV channels in features.json"
+          git commit -m "chore: Updated channels in features.json [$(date -u '+%Y-%m-%d %H:%M UTC')]"
           git push
