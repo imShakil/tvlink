@@ -32,6 +32,7 @@ jobs:
           set -x
           git config --local user.name  "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local commit.gpgsign false
           git add $JSON_FILE
           if git diff --cached --quiet; then
             echo "No changes to commit."
