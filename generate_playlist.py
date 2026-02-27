@@ -7,6 +7,7 @@ import argparse
 import base64
 import hashlib
 import hmac
+import time
 from concurrent.futures import ThreadPoolExecutor
 import requests
 from cryptography.fernet import Fernet, InvalidToken
@@ -83,20 +84,40 @@ def parse_legacy_dotenv_sources(dotenv_path=".env"):
     return lines
 
 
-def is_url_live(session, url, timeout_seconds=6):
-    try:
-        response = session.get(url, stream=True, timeout=timeout_seconds)
-        if response.status_code != 200:
-            return False
+def is_url_live(session, url, timeout_seconds=6, retries=2):
+    headers = {
+        "User-Agent": "Mozilla/5.0 (compatible; tvlink-liveness/1.0)",
+        "Accept": "*/*",
+    }
+    for attempt in range(retries + 1):
+        response = None
         try:
-            next(response.iter_content(1024))
-            return True
-        except StopIteration:
+            response = session.get(
+                url,
+                stream=True,
+                timeout=(5, timeout_seconds),
+                headers=headers,
+            )
+            if response.status_code not in (200, 206):
+                if attempt < retries:
+                    time.sleep(0.4 * (attempt + 1))
+                    continue
+                return False
+            try:
+                next(response.iter_content(1024))
+                return True
+            except StopIteration:
+                return False
+        except requests.RequestException:
+            if attempt < retries:
+                time.sleep(0.4 * (attempt + 1))
+                continue
             return False
         finally:
-            response.close()
-    except requests.RequestException:
-        return False
+            if response is not None:
+                response.close()
+
+    return False
 
 
 def validate_candidates(candidates, max_workers, timeout_seconds):
