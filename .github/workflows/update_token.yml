@@ -5,6 +5,9 @@ on:
     - cron: '0 */2 * * *'   # Every 2 hours
   workflow_dispatch:          # Allow manual trigger
 
+permissions:
+  contents: write
+
 jobs:
   update-tokens:
     runs-on: self-hosted
@@ -38,7 +41,7 @@ jobs:
             echo "No changes to commit."
           else
             git commit -m "chore: refresh stream tokens [$(date -u '+%Y-%m-%d %H:%M UTC')]"
-            git push
+            git push origin HEAD:${GITHUB_REF_NAME}
           fi
 
       - name: Job summary
