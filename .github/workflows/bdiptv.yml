@@ -26,9 +26,9 @@ jobs:
           python generate_playlist.py
         env:
           PLAYLIST_SOURCES: ${{ secrets.PLAYLIST_SOURCES }}
-          VALIDATE_STREAMS: "false"
-          LIVENESS_WORKERS: "40"
-          LIVENESS_TIMEOUT_SECONDS: "4"
+          VALIDATE_STREAMS: ${{ vars.VALIDATE_STREAMS || 'true' }}
+          LIVENESS_WORKERS: ${{ vars.LIVENESS_WORKERS || '40' }}
+          LIVENESS_TIMEOUT_SECONDS: ${{ vars.LIVENESS_TIMEOUT_SECONDS || '6' }}
           SOURCE_PASSPHRASE: ${{ secrets.SOURCE_PASSPHRASE }}
           OUTPUT_FILE: "iptv.m3u8"
       
