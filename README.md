@@ -12,7 +12,7 @@ https://raw.githubusercontent.com/imShakil/tvlink/refs/heads/main/iptv.m3u8
 
 ## Watch Online
 
-Browse this website URL: [https://bdixtv.mhosen.com](https://bdixtv.mhosen.com)
+Browse this website URL: [http://livetv.imshakil.online](http://livetv.imshakil.online)
 
 ![bdixtv.mhosen.com](https://github.com/user-attachments/assets/364a409e-4e87-4779-867d-49be5ba9584b)
 
