@@ -8,6 +8,7 @@ import base64
 import hashlib
 import hmac
 import time
+from urllib.parse import urlsplit, urlunsplit
 from concurrent.futures import ThreadPoolExecutor
 import requests
 from cryptography.fernet import Fernet, InvalidToken
@@ -17,6 +18,32 @@ from dotenv import load_dotenv
 def normalize_source(source):
     source = source.strip()
     return source
+
+
+def clean_channel_url(raw_url):
+    """
+    Extract a usable URL from malformed lines like:
+    http://...m3u8#EXTINF:-1 ...
+    """
+    value = raw_url.strip()
+    inline_extinf_pos = value.find("#EXTINF:")
+    if inline_extinf_pos > 0:
+        value = value[:inline_extinf_pos].strip()
+    return value
+
+
+def dedupe_url_key(raw_url):
+    """
+    Build a stable dedupe key for stream URLs.
+    - trims spaces
+    - strips query string and fragment (often used for cache-busting like ?v=1)
+    """
+    cleaned = clean_channel_url(raw_url)
+    try:
+        parts = urlsplit(cleaned)
+    except ValueError:
+        return cleaned
+    return urlunsplit((parts.scheme, parts.netloc, parts.path, "", ""))
 
 
 def encrypted_label(source, cipher_key):
@@ -228,7 +255,7 @@ def parse_m3u(
         if current_extinf is None:
             continue
 
-        channel_url = line
+        channel_url = clean_channel_url(line)
         channel_name = current_extinf.split(",", 1)[-1].strip() if "," in current_extinf else "Unknown"
         group = ""
         logo = ""
@@ -297,7 +324,7 @@ def combine_playlists(
             print(f"{log_label}: accepted {len(entries)} channels")
 
             for channel in entries:
-                key = channel["url"].strip()
+                key = dedupe_url_key(channel["url"])
                 if key in seen:
                     continue
                 seen.add(key)
