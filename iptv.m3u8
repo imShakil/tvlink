@@ -124,12 +124,8 @@ https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/index.m3u8?v=1
 https://rt-glb.rttv.com/live/rtnews/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://i.ibb.co/M7W5zRy/images.png" group-title="NEWS INTERNASIONAL",RTNEWS GLOBAL
 https://rt-rtd.rttv.com/dvr/rtdoc/playlist.m3u8?v=1
-#EXTINF:-1 tvg-logo="https://i.ibb.co/M7W5zRy/images.png" group-title="NEWS INTERNASIONAL",RT NEWS USA
-https://rt-glb.rttv.com/live/rtnews/playlist.m3u8?v=1
 #EXTINF:-1 tvg-logo="https://i.ibb.co/CzCnTHV/aljazeera-home-tv.png" group-title="NEWS INTERNASIONAL",Aljazeera HD Backup 🛜v
 https://d1cy85syyhvqz5.cloudfront.net/v1/master/7b67fbda7ab859400a821e9aa0deda20ab7ca3d2/aljazeeraLive/AJE/index.m3u8
-#EXTINF:-1 tvg-logo="https://i.ibb.co/7kNhrmW/dw-english-home-tv.png" group-title="NEWS INTERNASIONAL",DW English 📶_📺
-https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/index.m3u8
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/ZnD8CtvQ/BBC.jpg" group-title="NEWS INTERNASIONAL",Breaking News
 https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg02703-leadstory-leadstory-samsungau/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://i.postimg.cc/vH3MKVPY/CNN.jpg" group-title="NEWS INTERNASIONAL",CNA News
@@ -154,8 +150,6 @@ http://103.182.170.32:8888/play/a02m
 http://103.182.170.32:8888/play/a04e
 #EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPCvTmUhiKDs4ehoVpFLh7xwdCNK2-N_gNFqnaOM4YRQ&s=10" group-title="Live Sports",Live Sports
 http://103.229.254.25:7001/play/a087/index.m3u8
-#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPCvTmUhiKDs4ehoVpFLh7xwdCNK2-N_gNFqnaOM4YRQ&s=10" group-title="Live Sports",Live Sports
-http://103.229.254.25:7001/play/a087/index.m3u8#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPCvTmUhiKDs4ehoVpFLh7xwdCNK2-N_gNFqnaOM4YRQ&s=10"group-title="Live Sports",Live Sports
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/BTV%20National.png" group-title="Bangla",BTV National
 https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/1709.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/BTV%20National.png" group-title="Bangla",BTV Sangsad
@@ -438,3 +432,23 @@ http://160.187.56.254:8096/emby/videos/1013660/original.mkv?DeviceId=495ef711-20
 http://103.225.94.27/Infobase/hdd-3/Hindi%20Dub/Test%20(2025)%201080p%20WEBDL.mp4
 #EXTINF:-1 tvg-logo="" group-title="Movies",Game Changer
 http://103.225.94.27/Infobase/hdd-3/Hindi%20Dub/Game%20Changer%20(2025)%201080p%20WEBDL.mp4
+
+# Source: SRC-ID:cdbba9d4fb1851ace6c4177b
+#EXTINF:-1 tvg-logo="" group-title="",HUM TV
+https://owrcovcrpy.gpcdn.net/bpk-tv/1721/output/index.m3u8
+#EXTINF:-1 tvg-logo="" group-title="Sports",BEIN SPORTS EXTRA
+https://siloh.pluto.tv/lilo/production/BEIN/ES/master_2.m3u8
+#EXTINF:-1 tvg-logo="" group-title="",CAFE 24
+https://srvx1.selftv.video/cafe/live/playlist.m3u8
+#EXTINF:-1 tvg-logo="" group-title="",TRAVEL XP ENGLISH
+https://travelxp-travelxp-1-eu.rakuten.wurl.tv/3000.m3u8
+#EXTINF:-1 tvg-logo="" group-title="",BLOOMBERG EUROPE
+https://liveprodeuwest.akamaized.net/eu1/Channel-EUTVqvs-AWS-ireland-1/Source-EUTVqvs-1000-1_live.m3u8
+#EXTINF:-1 tvg-logo="" group-title="",CGTN
+https://dai.google.com/linear/hls/event/r4sa-f6GSN2XIvzKv5jVng/master.m3u8
+#EXTINF:-1 tvg-logo="" group-title="",MBC ACTION FHD
+https://shls-mbcaction-prod-dub.shahid.net/out/v1/68dd761538e5460096c42422199d050b/index_1.m3u8
+#EXTINF:-1 tvg-logo="" group-title="",CINEMAX 2 HD
+https://list.iptvcat.com/my_list/s/9574eb8e4c92547915459b4232176994.m3u8
+#EXTINF:-1 tvg-logo="" group-title="",TRT CORUK TURKEY
+http://tv-trtcocuk.live.trt.com.tr/master_720.m3u8
