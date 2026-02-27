@@ -102,25 +102,55 @@ def is_url_live(session, url, timeout_seconds=6, retries=2):
                 if attempt < retries:
                     time.sleep(0.4 * (attempt + 1))
                     continue
-                return False
+                return {
+                    "is_live": False,
+                    "status_code": response.status_code,
+                    "reason": "http_status",
+                    "attempts": attempt + 1,
+                    "error": "",
+                }
             try:
                 next(response.iter_content(1024))
-                return True
+                return {
+                    "is_live": True,
+                    "status_code": response.status_code,
+                    "reason": "ok",
+                    "attempts": attempt + 1,
+                    "error": "",
+                }
             except StopIteration:
-                return False
-        except requests.RequestException:
+                return {
+                    "is_live": False,
+                    "status_code": response.status_code,
+                    "reason": "empty_body",
+                    "attempts": attempt + 1,
+                    "error": "",
+                }
+        except requests.RequestException as err:
             if attempt < retries:
                 time.sleep(0.4 * (attempt + 1))
                 continue
-            return False
+            return {
+                "is_live": False,
+                "status_code": None,
+                "reason": "request_exception",
+                "attempts": attempt + 1,
+                "error": err.__class__.__name__,
+            }
         finally:
             if response is not None:
                 response.close()
 
-    return False
+    return {
+        "is_live": False,
+        "status_code": None,
+        "reason": "unknown",
+        "attempts": retries + 1,
+        "error": "unknown",
+    }
 
 
-def validate_candidates(candidates, max_workers, timeout_seconds):
+def validate_candidates(candidates, max_workers, timeout_seconds, log_file=""):
     if not candidates:
         return []
 
@@ -132,11 +162,25 @@ def validate_candidates(candidates, max_workers, timeout_seconds):
             session.close()
 
     accepted = []
+    logs = []
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         results = executor.map(check, candidates)
-        for candidate, is_live in zip(candidates, results):
-            if is_live:
+        for candidate, result in zip(candidates, results):
+            if result["is_live"]:
                 accepted.append(candidate)
+            if log_file:
+                status_code = result["status_code"] if result["status_code"] is not None else "-"
+                logs.append(
+                    (
+                        f'{candidate["source_label"]}\t{candidate["channel_name"]}\t{candidate["url"]}\t'
+                        f'{"LIVE" if result["is_live"] else "DEAD"}\t{status_code}\t{result["reason"]}\t'
+                        f'{result["attempts"]}\t{result["error"]}\n'
+                    )
+                )
+
+    if log_file and logs:
+        with open(log_file, "a", encoding="utf-8") as f:
+            f.writelines(logs)
 
     return accepted
 
@@ -166,6 +210,7 @@ def parse_m3u(
     source_cipher_key="",
     liveness_workers=24,
     liveness_timeout_seconds=6,
+    liveness_log_file="",
 ):
     candidates = []
     lines = [line.strip() for line in content.splitlines()]
@@ -209,7 +254,12 @@ def parse_m3u(
     if not validate_streams:
         return candidates
 
-    return validate_candidates(candidates, liveness_workers, liveness_timeout_seconds)
+    return validate_candidates(
+        candidates,
+        liveness_workers,
+        liveness_timeout_seconds,
+        log_file=liveness_log_file,
+    )
 
 
 def combine_playlists(
@@ -218,12 +268,17 @@ def combine_playlists(
     source_cipher_key="",
     liveness_workers=24,
     liveness_timeout_seconds=6,
+    liveness_log_file="",
 ):
     combined = []
     seen = set()
     session = requests.Session()
 
     try:
+        if liveness_log_file:
+            with open(liveness_log_file, "w", encoding="utf-8") as f:
+                f.write("source_id\tchannel_name\turl\tresult\tstatus_code\treason\tattempts\terror\n")
+
         for source in sources:
             content = load_source_content(session, source)
             if content is None:
@@ -236,6 +291,7 @@ def combine_playlists(
                 source_cipher_key=source_cipher_key,
                 liveness_workers=liveness_workers,
                 liveness_timeout_seconds=liveness_timeout_seconds,
+                liveness_log_file=liveness_log_file,
             )
             log_label = entries[0]["source_label"] if entries else "EMPTY"
             print(f"{log_label}: accepted {len(entries)} channels")
@@ -336,6 +392,7 @@ if __name__ == "__main__":
     output_file = os.getenv("OUTPUT_FILE", "iptv.m3u8")
     liveness_workers = int(os.getenv("LIVENESS_WORKERS", "24"))
     liveness_timeout_seconds = int(os.getenv("LIVENESS_TIMEOUT_SECONDS", "6"))
+    liveness_log_file = os.getenv("LIVENESS_LOG_FILE", "liveness.log").strip()
 
     sources = parse_sources(raw_sources)
     if not sources:
@@ -349,6 +406,7 @@ if __name__ == "__main__":
         source_cipher_key=source_cipher_key,
         liveness_workers=liveness_workers,
         liveness_timeout_seconds=liveness_timeout_seconds,
+        liveness_log_file=liveness_log_file,
     )
     write_to_file(combined_playlist, output_file)
 

@@ -32,11 +32,30 @@ jobs:
           VALIDATE_STREAMS: ${{ vars.VALIDATE_STREAMS || 'true' }}
           LIVENESS_WORKERS: ${{ vars.LIVENESS_WORKERS || '40' }}
           LIVENESS_TIMEOUT_SECONDS: ${{ vars.LIVENESS_TIMEOUT_SECONDS || '6' }}
+          LIVENESS_LOG_FILE: "logs.txt"
           SOURCE_PASSPHRASE: ${{ secrets.SOURCE_PASSPHRASE }}
           OUTPUT_FILE: "iptv.m3u8"
       
       - name: Show Channels
         run: cat iptv.m3u8
+
+      - name: Show Liveness Logs
+        if: always()
+        run: |
+          if [ -f logs.txt ]; then
+            echo "Liveness log entries: $(($(wc -l < logs.txt) - 1))"
+            tail -n 200 logs.txt
+          else
+            echo "No logs.txt produced."
+          fi
+
+      - name: Upload Liveness Logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: liveness-logs
+          path: logs.txt
+          if-no-files-found: warn
       
       - name: Push Changes
         run: |
