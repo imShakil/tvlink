@@ -98,7 +98,7 @@ def is_url_live(session, url, timeout_seconds=6, retries=2):
                 timeout=(5, timeout_seconds),
                 headers=headers,
             )
-            if response.status_code not in (200, 206):
+            if response.status_code not in (200, 206, 403):
                 if attempt < retries:
                     time.sleep(0.4 * (attempt + 1))
                     continue
