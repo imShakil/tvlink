@@ -179,6 +179,15 @@
             "source": "http://103.89.248.14:8082/TNT-Sports-3/index.fmp4.m3u8?token=bd805f451ad9c30e90cdbb8f3fcaf38f47244b36-58d5dedeeeaf67bac8059bbfab7d4549-1772269716-1772258916",
             "category": "Sports",
             "language": "en"
+        },
+        {
+            "id": "tnt-sports-2",
+            "name": "TNT Sports 2",
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/TNT_Sports_%282023%29.svg/250px-TNT_Sports_%282023%29.svg.png",
+            "type": "m3u8",
+            "source": "http://103.89.248.14:8082/TNT-Sports-2/index.fmp4.m3u8?token=43fc0b002dd96feed1d94cbd8950bb6bbbd56b65-a7ad3ed31b1402f8ed3b1b13e65daeb2-1772269787-1772258987",
+            "category": "Sports",
+            "language": "en"
         }
     ]
 }
