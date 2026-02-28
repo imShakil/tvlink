@@ -136,8 +136,8 @@
       "language": "en"
     },
     {
-      "id": "suport-sports-cricket",
-      "name": "SuportSports Cricket",
+      "id": "super-sport-cricket",
+      "name": "SuperSport Cricket",
       "logo": "https://r2.thesportsdb.com/images/media/channel/logo/srtijz1643382350.png",
       "type": "m3u8",
       "source": "http://103.89.248.22:8082/SUPERSPORTS-CRICKET/index.fmp4.m3u8?token=4989b178fa820e3f979c7c4c0d3849533b646fe9-c57675349ee59cbc9273ce073381421f-1772269453-1772258653",
@@ -145,8 +145,8 @@
       "language": "en"
     },
     {
-      "id": "super-ports-laliga",
-      "name": "SuperSports LaLiga",
+      "id": "super-sport-laliga",
+      "name": "SuperSport LaLiga",
       "logo": "https://r2.thesportsdb.com/images/media/channel/logo/dv7v9w1719404547.png",
       "type": "m3u8",
       "source": "http://103.89.248.14:8082/SUPERSPORTS-LALIGA/index.fmp4.m3u8?token=f7831c552abcf16630f04122123965cffc6c3dae-4f2071ffa30581da3068e9482c6e60ae-1772270319-1772259519",
@@ -154,8 +154,8 @@
       "language": "en"
     },
     {
-      "id": "super-sports-premier-league",
-      "name": "SuperSports Premier League",
+      "id": "super-sport-premier-league",
+      "name": "SuperSport Premier League",
       "logo": "https://www.dstv.com/media/puxctgsq/ss_premier-league.png",
       "type": "m3u8",
       "source": "http://103.89.248.10:8082/SUPERSPORTS-PREMIER-LEAGUE/index.fmp4.m3u8?token=b0eb942d93eba8c6a3f55ee01a5bbd2ab4163742-d6c8dbe9d436b1c2f0db8d06621a33a4-1772270903-1772260103",
