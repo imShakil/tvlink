@@ -152,6 +152,15 @@
             "source": "http://103.89.248.10:8082/SUPERSPORTS-LALIGA/index.fmp4.m3u8?token=e7e818df4f41aa0556e4f9fa2ea6a9a2d3637c14-0609affb87ab8b51e4a85ae781d86cb8-1772269803-1772259003",
             "category": "Sports",
             "language": "en"
+        },
+        {
+            "id": "suport-sports-premier-league",
+            "name": "Suport Sports Premier League",
+            "logo": "https://www.dstv.com/media/puxctgsq/ss_premier-league.png",
+            "type": "m3u8",
+            "source": "http://103.89.248.14:8082/SUPERSPORTS-PREMIER-LEAGUE/index.fmp4.m3u8?token=da6571bb0063ebf48956c7455704935c8b1d6a0f-646811e512863781d516d01890eaf555-1772269317-1772258517",
+            "category": "Sports",
+            "language": "en"
         }
     ]
 }
