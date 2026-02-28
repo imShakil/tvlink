@@ -89,6 +89,15 @@
             "source": "http://103.89.248.10:8082/Sky-Sports-Main-Event/index.fmp4.m3u8?token=760f58145b6fae013824bfdc25dcbc22c917b2ea-24cf85a5f18da0836cdb05d5a26449e2-1772268141-1772257341",
             "category": "Sports",
             "language": "en"
+        },
+        {
+            "id": "ten-cricket-hd",
+            "name": "Ten Cricket HD",
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Ten_Cricket.png",
+            "type": "m3u8",
+            "source": "http://103.89.248.14:8082/Ten-Cricket-HD/index.fmp4.m3u8?token=7ed976073a70e337ec656fdc150f374deccc4014-bb80d554c11592adcfa77e8ff6b5559c-1772267776-1772256976",
+            "category": "Sports",
+            "language": "en"
         }
     ]
 }
