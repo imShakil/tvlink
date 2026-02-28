@@ -1,76 +1,85 @@
 {
-  "channels": [
-    {
-      "id": "tsports-1",
-      "name": "T Sports HD",
-      "logo": "https://www.tsports.com/assets/images/Logo%20tsports.svg",
-      "type": "m3u8",
-      "source": "http://103.89.248.10:8082/1LIVE/index.fmp4.m3u8?token=d02432518473264b4229fc01d012b53331006939-bed2da761df1554762892aa283ccf178-1772265114-1772254314",
-      "category": "Sports",
-      "language": "bn"
-    },
-    {
-      "id": "star-sports-1",
-      "name": "Star Sports-1",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Star_Sports_1_HD.png/330px-Star_Sports_1_HD.png",
-      "type": "m3u8",
-      "source": "http://103.89.248.22:8082/STAR-SPORTS-1/index.fmp4.m3u8?token=b183230e96ac0c727aaaa43ef3a5c6471082955e-e1a37b1bfa94c5426808e4a76cff2147-1772263664-1772252864",
-      "category": "Sports",
-      "language": "en"
-    },
-    {
-      "id": "live-cricket-1",
-      "name": "Live Cricket-1",
-      "logo": "https://dummyimage.com/256x256/1f5f7a/ffffff.png&text=Live-Cricket-1",
-      "type": "m3u8",
-      "source": "http://103.89.248.14:8082/LIVE-CRICKET-1/index.fmp4.m3u8?token=44073960364b2bda0355f066d80e5e2e4553e9f6-afc32a08ed6e29ecae3dd773c14a39cd-1772264530-1772253730",
-      "category": "Sports",
-      "language": "en"
-    },
-    {
-      "id": "live-football-2",
-      "name": "Live Football-2",
-      "logo": "https://dummyimage.com/256x256/1f7a54/ffffff.png&text=Live-Footbal-2",
-      "type": "m3u8",
-      "source": "http://103.89.248.10:8082/LIVE-FOOTBALL-2/index.fmp4.m3u8?token=a50b730e715becf0110d1e6b349b11b4ffe69724-66caff6c1aa4bd5f302a59bc3335bf14-1772265114-1772254314",
-      "category": "Sports",
-      "language": "en"
-    },
-    {
-      "id": "gazi-tv",
-      "name": "Gazi TV",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/Logo_of_GTV_%28Bangladesh%29.svg/500px-Logo_of_GTV_%28Bangladesh%29.svg.png",
-      "type": "m3u8",
-      "source": "http://103.89.248.22:8082/GAZI-TV/index.fmp4.m3u8?token=2f6a8dad5a6b5ba6ad26ac67f058913b98a8c7d6-a0d6d9b95e70da2f4d47a70a1876595f-1772263664-1772252864",
-      "category": "Sports",
-      "language": "bn"
-    },
-    {
-      "id": "ptv-sports",
-      "name": "Ptv Sports",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/e/e4/PTV_Sports.png",
-      "type": "m3u8",
-      "source": "http://103.89.248.14:8082/PTV/index.fmp4.m3u8?token=87dd7f1ede970a7d079e4a19eca440b4638138b8-8aece7476e655cf9aa6b786c29f6a232-1772264531-1772253731",
-      "category": "Sports",
-      "language": "en"
-    },
-    {
-      "id": "custom-channel-1",
-      "name": "Sample Sports HD",
-      "logo": "https://dummyimage.com/256x256/1f5f7a/ffffff.png&text=Sports",
-      "type": "m3u8",
-      "source": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
-      "category": "Sports",
-      "language": "en"
-    },
-    {
-      "id": "custom-channel-2",
-      "name": "Sample News Embed",
-      "logo": "https://dummyimage.com/256x256/1f7a54/ffffff.png&text=News",
-      "type": "iframe",
-      "source": "https://www.youtube.com/embed/21X5lGlDOfg",
-      "category": "News",
-      "language": "en"
-    }
-  ]
+    "channels": [
+        {
+            "id": "tsports-1",
+            "name": "T Sports HD",
+            "logo": "https://www.tsports.com/assets/images/Logo%20tsports.svg",
+            "type": "m3u8",
+            "source": "http://103.89.248.10:8082/1LIVE/index.fmp4.m3u8?token=d02432518473264b4229fc01d012b53331006939-bed2da761df1554762892aa283ccf178-1772265114-1772254314",
+            "category": "Sports",
+            "language": "bn"
+        },
+        {
+            "id": "star-sports-1",
+            "name": "Star Sports-1",
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Star_Sports_1_HD.png/330px-Star_Sports_1_HD.png",
+            "type": "m3u8",
+            "source": "http://103.89.248.22:8082/STAR-SPORTS-1/index.fmp4.m3u8?token=b183230e96ac0c727aaaa43ef3a5c6471082955e-e1a37b1bfa94c5426808e4a76cff2147-1772263664-1772252864",
+            "category": "Sports",
+            "language": "en"
+        },
+        {
+            "id": "live-cricket-1",
+            "name": "Live Cricket-1",
+            "logo": "https://dummyimage.com/256x256/1f5f7a/ffffff.png&text=Live-Cricket-1",
+            "type": "m3u8",
+            "source": "http://103.89.248.14:8082/LIVE-CRICKET-1/index.fmp4.m3u8?token=44073960364b2bda0355f066d80e5e2e4553e9f6-afc32a08ed6e29ecae3dd773c14a39cd-1772264530-1772253730",
+            "category": "Sports",
+            "language": "en"
+        },
+        {
+            "id": "live-football-2",
+            "name": "Live Football-2",
+            "logo": "https://dummyimage.com/256x256/1f7a54/ffffff.png&text=Live-Footbal-2",
+            "type": "m3u8",
+            "source": "http://103.89.248.10:8082/LIVE-FOOTBALL-2/index.fmp4.m3u8?token=a50b730e715becf0110d1e6b349b11b4ffe69724-66caff6c1aa4bd5f302a59bc3335bf14-1772265114-1772254314",
+            "category": "Sports",
+            "language": "en"
+        },
+        {
+            "id": "gazi-tv",
+            "name": "Gazi TV",
+            "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/Logo_of_GTV_%28Bangladesh%29.svg/500px-Logo_of_GTV_%28Bangladesh%29.svg.png",
+            "type": "m3u8",
+            "source": "http://103.89.248.22:8082/GAZI-TV/index.fmp4.m3u8?token=2f6a8dad5a6b5ba6ad26ac67f058913b98a8c7d6-a0d6d9b95e70da2f4d47a70a1876595f-1772263664-1772252864",
+            "category": "Sports",
+            "language": "bn"
+        },
+        {
+            "id": "ptv-sports",
+            "name": "Ptv Sports",
+            "logo": "https://upload.wikimedia.org/wikipedia/en/e/e4/PTV_Sports.png",
+            "type": "m3u8",
+            "source": "http://103.89.248.14:8082/PTV/index.fmp4.m3u8?token=87dd7f1ede970a7d079e4a19eca440b4638138b8-8aece7476e655cf9aa6b786c29f6a232-1772264531-1772253731",
+            "category": "Sports",
+            "language": "en"
+        },
+        {
+            "id": "custom-channel-1",
+            "name": "Sample Sports HD",
+            "logo": "https://dummyimage.com/256x256/1f5f7a/ffffff.png&text=Sports",
+            "type": "m3u8",
+            "source": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "category": "Sports",
+            "language": "en"
+        },
+        {
+            "id": "custom-channel-2",
+            "name": "Sample News Embed",
+            "logo": "https://dummyimage.com/256x256/1f7a54/ffffff.png&text=News",
+            "type": "iframe",
+            "source": "https://www.youtube.com/embed/21X5lGlDOfg",
+            "category": "News",
+            "language": "en"
+        },
+        {
+            "id": "willow-hd",
+            "name": "Willow HD",
+            "logo": "https://mgpindia.com/wp-content/uploads/2021/10/willow-logo.jpg",
+            "type": "m3u8",
+            "source": "http://103.89.248.22:8082/willow/tracks-a1/index.fmp4.m3u8?token=2898f39e33bd9328ad28ed6d8d7ce92b6bc43976-d0b2ed6609385c806ea81adfd0a47b27-1772266357-1772255557",
+            "category": "Sports",
+            "language": "en"
+        }
+    ]
 }
