@@ -116,6 +116,15 @@
             "source": "http://103.89.248.14:8082/sony-TEN-2/index.fmp4.m3u8?token=e485a3a8c86c40f8322a1b34630f88510124a2b7-b3daaf4f97158f7b5946b22861d35076-1772268664-1772257864",
             "category": "Sports",
             "language": "en"
+        },
+        {
+            "id": "sony-sports-2",
+            "name": "Sony Sports 2",
+            "logo": "https://dummyimage.com/256x256/1f5f7a/ffffff.png&text=Sony+Sports+2",
+            "type": "m3u8",
+            "source": "http://103.89.248.14:8082/Sony-TEN-1/index.fmp4.m3u8?token=bd3cd0db4cd7a176b45b5722fb0af76f261cbf12-f21b1681343a8d543b55963ba8d8153a-1772268719-1772257919",
+            "category": "Sports",
+            "language": "en"
         }
     ]
 }
