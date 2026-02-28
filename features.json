@@ -134,6 +134,15 @@
             "source": "http://103.89.248.14:8082/sony-ten3/index.fmp4.m3u8?token=55f130e7080fab57d54422f8e8cfb5e5cfcf4da1-3cb69342d4afeab991eacd463462121f-1772268773-1772257973",
             "category": "Sports",
             "language": "en"
+        },
+        {
+            "id": "suport-sports-cricket",
+            "name": "Suport Sports Cricket",
+            "logo": "https://r2.thesportsdb.com/images/media/channel/logo/srtijz1643382350.png",
+            "type": "m3u8",
+            "source": "http://103.89.248.22:8082/SUPERSPORTS-CRICKET/index.fmp4.m3u8?token=ee3f74c45e421f710aaa6526dfd1c5fd70135244-b5741424414eee814f9841c461f396cd-1772268272-1772257472",
+            "category": "Sports",
+            "language": "en"
         }
     ]
 }
