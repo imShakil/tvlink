@@ -107,6 +107,15 @@
             "source": "http://103.89.248.14:8082/Bein-hd/index.fmp4.m3u8?token=cf15d1662b8b37403a9504cd18962cf4aae00f33-183c2b9e60fa866dceec38de29993303-1772268054-1772257254",
             "category": "Sports",
             "language": "en"
+        },
+        {
+            "id": "sony-sports-1",
+            "name": "Sony Sports 1",
+            "logo": "https://dummyimage.com/256x256/1f5f7a/ffffff.png&text=Sony+Sports+1",
+            "type": "m3u8",
+            "source": "http://103.89.248.14:8082/sony-TEN-2/index.fmp4.m3u8?token=e485a3a8c86c40f8322a1b34630f88510124a2b7-b3daaf4f97158f7b5946b22861d35076-1772268664-1772257864",
+            "category": "Sports",
+            "language": "en"
         }
     ]
 }
