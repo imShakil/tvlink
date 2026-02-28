@@ -89,6 +89,15 @@
             "source": "http://103.89.248.14:8082/Ten-Cricket-HD/index.fmp4.m3u8?token=7ed976073a70e337ec656fdc150f374deccc4014-bb80d554c11592adcfa77e8ff6b5559c-1772267776-1772256976",
             "category": "Sports",
             "language": "en"
+        },
+        {
+            "id": "willow-hd",
+            "name": "Willow HD",
+            "logo": "https://mgpindia.com/wp-content/uploads/2021/10/willow-logo.jpg",
+            "type": "m3u8",
+            "source": "http://103.89.248.22:8082/willow/index.fmp4.m3u8?token=2898f39e33bd9328ad28ed6d8d7ce92b6bc43976-d0b2ed6609385c806ea81adfd0a47b27-1772266357-1772255557",
+            "category": "Sports",
+            "language": "en"
         }
     ]
 }
