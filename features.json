@@ -161,6 +161,15 @@
             "source": "http://103.89.248.14:8082/SUPERSPORTS-PREMIER-LEAGUE/index.fmp4.m3u8?token=da6571bb0063ebf48956c7455704935c8b1d6a0f-646811e512863781d516d01890eaf555-1772269317-1772258517",
             "category": "Sports",
             "language": "en"
+        },
+        {
+            "id": "tnt-sports-4",
+            "name": "TNT Sports 4",
+            "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6b/TNT_Sports_4_logo.png/250px-TNT_Sports_4_logo.png",
+            "type": "m3u8",
+            "source": "http://103.89.248.10:8082/Uk-TNT-4/index.fmp4.m3u8?token=f201134cd01efb9de2ce4ebbc75765157a36980f-a88a2ade42f02027ea8a8a2761513c8a-1772270089-1772259289",
+            "category": "Sports",
+            "language": "en"
         }
     ]
 }
