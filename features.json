@@ -80,6 +80,15 @@
             "source": "http://103.89.248.22:8082/willow/tracks-a1/index.fmp4.m3u8?token=2898f39e33bd9328ad28ed6d8d7ce92b6bc43976-d0b2ed6609385c806ea81adfd0a47b27-1772266357-1772255557",
             "category": "Sports",
             "language": "en"
+        },
+        {
+            "id": "sky-sports-main",
+            "name": "Sky Sports Main",
+            "logo": "https://tv.assets.pressassociation.io/601ae452-4dbd-50f9-a686-8aa550b7dffc.png",
+            "type": "m3u8",
+            "source": "http://103.89.248.10:8082/Sky-Sports-Main-Event/index.fmp4.m3u8?token=760f58145b6fae013824bfdc25dcbc22c917b2ea-24cf85a5f18da0836cdb05d5a26449e2-1772268141-1772257341",
+            "category": "Sports",
+            "language": "en"
         }
     ]
 }
