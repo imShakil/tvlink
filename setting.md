@@ -32,3 +32,23 @@ SOURCE_PASSPHRASE='your-plain-text' python3 generate_playlist.py --decode-file i
     ```bash
     make run
     ```
+
+## Group Normalization (Config-Driven)
+
+Final `iptv.m3u8` group names are normalized using `group_normalization.json`.
+No code edit is needed for group cleanup.
+
+- `GROUP_NORMALIZATION_FILE`: Path to normalization JSON (default: `group_normalization.json`)
+
+JSON format:
+
+```json
+{
+  "exact": {
+    "bangla news": "Bangla News"
+  },
+  "contains": [
+    { "tokens": ["hindi", "movie"], "group": "Hindi Movies" }
+  ]
+}
+```

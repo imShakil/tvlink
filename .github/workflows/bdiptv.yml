@@ -60,6 +60,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add iptv.m3u8
+          git add all.m3u
           
           if ! git diff --cached --quiet; then
             git commit -m "chore: iptv.m3u8 channels updated at [$(date -u '+%Y-%m-%d %H:%M UTC')]"

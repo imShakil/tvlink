@@ -8,6 +8,8 @@ import base64
 import hashlib
 import hmac
 import time
+import re
+import json
 from urllib.parse import urlsplit, urlunsplit
 from concurrent.futures import ThreadPoolExecutor
 import requests
@@ -44,6 +46,76 @@ def dedupe_url_key(raw_url):
     except ValueError:
         return cleaned
     return urlunsplit((parts.scheme, parts.netloc, parts.path, "", ""))
+
+
+def _clean_group_text(value):
+    lowered = value.strip().lower()
+    lowered = lowered.replace("&", " and ")
+    lowered = lowered.replace("/", " ")
+    lowered = lowered.replace("-", " ")
+    lowered = re.sub(r"[^a-z0-9 ]+", " ", lowered)
+    lowered = re.sub(r"\s+", " ", lowered).strip()
+    return lowered
+
+
+def load_group_normalization_rules(rules_file):
+    if not rules_file:
+        return {"exact": {}, "contains": []}
+
+    if not os.path.exists(rules_file):
+        print(f"Group normalization file not found: {rules_file} (using fallback normalization)")
+        return {"exact": {}, "contains": []}
+
+    try:
+        with open(rules_file, "r", encoding="utf-8") as f:
+            raw = json.load(f)
+    except (OSError, json.JSONDecodeError) as err:
+        print(f"Failed to load group normalization file: {rules_file} ({err})")
+        return {"exact": {}, "contains": []}
+
+    exact_map = {}
+    for raw_key, raw_value in (raw.get("exact") or {}).items():
+        key = _clean_group_text(str(raw_key))
+        value = str(raw_value).strip()
+        if key and value:
+            exact_map[key] = value
+
+    contains_rules = []
+    for item in (raw.get("contains") or []):
+        if not isinstance(item, dict):
+            continue
+        group = str(item.get("group", "")).strip()
+        raw_tokens = item.get("tokens", [])
+        if not group or not isinstance(raw_tokens, list):
+            continue
+        tokens = []
+        for token in raw_tokens:
+            cleaned_token = _clean_group_text(str(token))
+            if cleaned_token:
+                tokens.append(cleaned_token)
+        if tokens:
+            contains_rules.append({"tokens": tuple(tokens), "group": group})
+
+    return {"exact": exact_map, "contains": contains_rules}
+
+
+def normalize_group_name(raw_group, rules):
+    cleaned = _clean_group_text(raw_group or "")
+    if not cleaned:
+        return "Uncategorized"
+
+    exact_map = (rules or {}).get("exact", {})
+    contains_rules = (rules or {}).get("contains", [])
+
+    if cleaned in exact_map:
+        return exact_map[cleaned]
+
+    for rule in contains_rules:
+        tokens = rule["tokens"]
+        if all(token in cleaned for token in tokens):
+            return rule["group"]
+
+    return " ".join(part.capitalize() for part in cleaned.split())
 
 
 def encrypted_label(source, cipher_key):
@@ -233,11 +305,7 @@ def load_source_content(session, source):
 def parse_m3u(
     content,
     source_name,
-    validate_streams=True,
     source_cipher_key="",
-    liveness_workers=24,
-    liveness_timeout_seconds=6,
-    liveness_log_file="",
 ):
     candidates = []
     lines = [line.strip() for line in content.splitlines()]
@@ -278,15 +346,7 @@ def parse_m3u(
             )
         current_extinf = None
 
-    if not validate_streams:
-        return candidates
-
-    return validate_candidates(
-        candidates,
-        liveness_workers,
-        liveness_timeout_seconds,
-        log_file=liveness_log_file,
-    )
+    return candidates
 
 
 def combine_playlists(
@@ -296,16 +356,13 @@ def combine_playlists(
     liveness_workers=24,
     liveness_timeout_seconds=6,
     liveness_log_file="",
+    prevalidation_output_file="all.m3u",
 ):
     combined = []
     seen = set()
     session = requests.Session()
 
     try:
-        if liveness_log_file:
-            with open(liveness_log_file, "w", encoding="utf-8") as f:
-                f.write("source_id\tchannel_name\turl\tresult\tstatus_code\treason\tattempts\terror\n")
-
         for source in sources:
             content = load_source_content(session, source)
             if content is None:
@@ -314,14 +371,10 @@ def combine_playlists(
             entries = parse_m3u(
                 content,
                 source,
-                validate_streams=validate_streams,
                 source_cipher_key=source_cipher_key,
-                liveness_workers=liveness_workers,
-                liveness_timeout_seconds=liveness_timeout_seconds,
-                liveness_log_file=liveness_log_file,
             )
             log_label = entries[0]["source_label"] if entries else "EMPTY"
-            print(f"{log_label}: accepted {len(entries)} channels")
+            print(f"{log_label}: parsed {len(entries)} channels")
 
             for channel in entries:
                 key = dedupe_url_key(channel["url"])
@@ -332,10 +385,28 @@ def combine_playlists(
     finally:
         session.close()
 
-    return combined
+    if prevalidation_output_file:
+        write_to_file(combined, prevalidation_output_file)
+        print(f"Pre-validation playlist written to {prevalidation_output_file} with {len(combined)} channels.")
+
+    if not validate_streams:
+        return combined
+
+    if liveness_log_file:
+        with open(liveness_log_file, "w", encoding="utf-8") as f:
+            f.write("source_id\tchannel_name\turl\tresult\tstatus_code\treason\tattempts\terror\n")
+
+    validated = validate_candidates(
+        combined,
+        liveness_workers,
+        liveness_timeout_seconds,
+        log_file=liveness_log_file,
+    )
+    print(f"Validation accepted {len(validated)} / {len(combined)} channels.")
+    return validated
 
 
-def write_to_file(playlist, output_file):
+def write_to_file(playlist, output_file, normalize_groups=False, group_rules=None):
     with open(output_file, "w", encoding="utf-8") as f:
         f.write("#EXTM3U\n")
         current_source = None
@@ -345,8 +416,11 @@ def write_to_file(playlist, output_file):
                     f.write("\n")
                 current_source = item["source_label"]
                 f.write(f'# Source: {current_source}\n')
+            group_name = item["group"]
+            if normalize_groups:
+                group_name = normalize_group_name(group_name, group_rules)
             f.write(
-                f'#EXTINF:-1 tvg-logo="{item["logo"]}" group-title="{item["group"]}",{item["channel_name"]}\n'
+                f'#EXTINF:-1 tvg-logo="{item["logo"]}" group-title="{group_name}",{item["channel_name"]}\n'
             )
             f.write(f'{item["url"]}\n')
 
@@ -420,6 +494,9 @@ if __name__ == "__main__":
     liveness_workers = int(os.getenv("LIVENESS_WORKERS", "24"))
     liveness_timeout_seconds = int(os.getenv("LIVENESS_TIMEOUT_SECONDS", "6"))
     liveness_log_file = os.getenv("LIVENESS_LOG_FILE", "liveness.log").strip()
+    prevalidation_output_file = os.getenv("ALL_OUTPUT_FILE", "all.m3u").strip()
+    group_normalization_file = os.getenv("GROUP_NORMALIZATION_FILE", "group_normalization.json").strip()
+    group_rules = load_group_normalization_rules(group_normalization_file)
 
     sources = parse_sources(raw_sources)
     if not sources:
@@ -434,7 +511,8 @@ if __name__ == "__main__":
         liveness_workers=liveness_workers,
         liveness_timeout_seconds=liveness_timeout_seconds,
         liveness_log_file=liveness_log_file,
+        prevalidation_output_file=prevalidation_output_file,
     )
-    write_to_file(combined_playlist, output_file)
+    write_to_file(combined_playlist, output_file, normalize_groups=True, group_rules=group_rules)
 
     print(f"Combined playlist written to {output_file} with {len(combined_playlist)} channels.")
