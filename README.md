@@ -4,37 +4,19 @@ This repo is a collections of bangldeshi tv channels for playing on TV with Inte
 
 ## How To Use it?
 
-You can [download .m3u8](https://raw.githubusercontent.com/imShakil/tvlink/refs/heads/main/iptv.m3u8) or use this link directly:
+### Watch on Android
 
-```m3u8
-https://raw.githubusercontent.com/imShakil/tvlink/refs/heads/main/iptv.m3u8
-```
+Just download and install [Dekho Prime](https://linkly.link/2cdzv) android app from [apkPure.com](https://linkly.link/2cdzv) to watch easily on your mobile.
 
-## Watch Online
+![WhatsApp Image 2026-03-01 at 20 30 49 (3)](https://github.com/user-attachments/assets/b2ba148a-64ac-46dd-95cd-13d33d6e9142)
+![WhatsApp Image 2026-03-01 at 20 30 49 (4)](https://github.com/user-attachments/assets/d10524c0-90aa-4404-91d9-734ac7c9abf4)
+![WhatsApp Image 2026-03-01 at 20 30 49 (5)](https://github.com/user-attachments/assets/28fba32e-6244-4c6c-9e21-f45c1121d7db)
+
+### Watch Online
 
 Browse this website URL: [http://livetv.imshakil.online](http://livetv.imshakil.online)
 
 ![bdixtv.mhosen.com](https://github.com/user-attachments/assets/364a409e-4e87-4779-867d-49be5ba9584b)
-
-## IPTV App on Mobile or Android TV
-
-- Download IPTV pro mod apk: [Download Link](https://linkly.link/2WBdU)
-- Add the m3u8 playlist URL:
-
-  ```m3u8
-  https://raw.githubusercontent.com/imShakil/tvlink/refs/heads/main/iptv.m3u8
-  ```
-
-## Watch on Chrome
-
-- Install this [extension](https://linkly.link/2ZXGx)
-- Add the iptv m3u8 playlist URL and watch:
-
-  ```m3u8
-  https://raw.githubusercontent.com/imShakil/tvlink/refs/heads/main/iptv.m3u8
-  ```
-
-  ![chrome view](https://github.com/user-attachments/assets/46add0b1-f9a9-41e9-a58b-9566e974befe)
 
 ---
 
