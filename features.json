@@ -5,7 +5,7 @@
       "name": "T Sports HD",
       "logo": "https://www.tsports.com/assets/images/Logo%20tsports.svg",
       "type": "m3u8",
-      "source": "http://103.89.248.10:8082/1LIVE/index.fmp4.m3u8?token=34ee8f746ce0533102124348f152104fe1811432-61db1e151c277dac2e58a384da63543a-1772537641-1772526841",
+      "source": "http://103.89.248.10:8082/1LIVE/index.fmp4.m3u8?token=10234f174b8fa561daec31c73d7e35c3eea7eef9-595eb2b92586b93d14c7e7ada9b02887-1772552389-1772541589",
       "category": "Sports",
       "language": "bn"
     },
@@ -14,7 +14,7 @@
       "name": "Star Sports 1",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Star_Sports_1_HD.png/330px-Star_Sports_1_HD.png",
       "type": "m3u8",
-      "source": "http://103.89.248.22:8082/STAR-SPORTS-1/index.fmp4.m3u8?token=0b249b48fbe61de74e6a38abe958c269e8433c7b-bf4632f107f01dbf80ebbcb58f74b927-1772536182-1772525382",
+      "source": "http://103.89.248.22:8082/STAR-SPORTS-1/index.fmp4.m3u8?token=73ee1ee6b865ab782a3abea653ee83851168ccf8-a364067da3c6c43fc0208a5c683de5c1-1772550929-1772540129",
       "category": "Sports",
       "language": "en"
     },
@@ -23,7 +23,7 @@
       "name": "Live Cricket 1",
       "logo": "https://dummyimage.com/256x256/1f5f7a/ffffff.png&text=Live-Cricket-1",
       "type": "m3u8",
-      "source": "http://103.89.248.10:8082/LIVE-CRICKET-1/index.fmp4.m3u8?token=0d97f53fdc377427faa6e0eb9ffc4a7df841dfc0-1457e9642b3ba3fd51ee333a72cc51f2-1772537642-1772526842",
+      "source": "http://103.89.248.14:8082/LIVE-CRICKET-1/index.fmp4.m3u8?token=581ea862ed171af855b624ab327061071e29c5f2-8eff51c5b908ed0297045b818d72c178-1772551798-1772540998",
       "category": "Sports",
       "language": "en"
     },
@@ -32,7 +32,7 @@
       "name": "Live Football 2",
       "logo": "https://dummyimage.com/256x256/1f7a54/ffffff.png&text=Live-Footbal-2",
       "type": "m3u8",
-      "source": "http://103.89.248.22:8082/LIVE-FOOTBALL-2/index.fmp4.m3u8?token=bd93f780d6c2d5ecd5949b4e1e2d33520a0e9e79-5234ffe385e787ac2f63a3df7b8bab8e-1772536183-1772525383",
+      "source": "http://103.89.248.10:8082/LIVE-FOOTBALL-2/index.fmp4.m3u8?token=865799b94050e470a64037992d8333718896c31f-d9e0af8e8ba32904469cc9f3b5bce092-1772552389-1772541589",
       "category": "Sports",
       "language": "en"
     },
@@ -41,7 +41,7 @@
       "name": "Gazi TV",
       "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/Logo_of_GTV_%28Bangladesh%29.svg/500px-Logo_of_GTV_%28Bangladesh%29.svg.png",
       "type": "m3u8",
-      "source": "http://103.89.248.14:8082/GAZI-TV/index.fmp4.m3u8?token=ce997cfc78a5d3dce58c666272786d9d102851c5-1dbb0bd437e7ffd4147e0a740a3a5f8f-1772537051-1772526251",
+      "source": "http://103.89.248.22:8082/GAZI-TV/index.fmp4.m3u8?token=060f97cfb18204a3d6350d820a84fb0fecce6665-be9514d794cee11a15da31edd35a9a45-1772550930-1772540130",
       "category": "Sports",
       "language": "bn"
     },
@@ -50,7 +50,7 @@
       "name": "Ptv Sports",
       "logo": "https://upload.wikimedia.org/wikipedia/en/e/e4/PTV_Sports.png",
       "type": "m3u8",
-      "source": "http://103.89.248.10:8082/PTV/index.fmp4.m3u8?token=5afb4042f33ba3b3b947898f0842d0a92c402153-c1c47f4afa28d6df7c16299b0338dae8-1772537642-1772526842",
+      "source": "http://103.89.248.14:8082/PTV/index.fmp4.m3u8?token=8e08d8418698214c23336a68bba3c80930fdf1d3-ab68ebbea1a054e87d204d45db393224-1772551798-1772540998",
       "category": "Sports",
       "language": "en"
     },
@@ -77,7 +77,7 @@
       "name": "Sky Sports Main",
       "logo": "https://tv.assets.pressassociation.io/601ae452-4dbd-50f9-a686-8aa550b7dffc.png",
       "type": "m3u8",
-      "source": "http://103.89.248.22:8082/Sky-Sports-Main-Event/index.fmp4.m3u8?token=5143a0de1bd9493aa94de9c482ab4dc574ba2576-d027e40c4e4a5d28f367b77c115bdcdf-1772536183-1772525383",
+      "source": "http://103.89.248.10:8082/Sky-Sports-Main-Event/index.fmp4.m3u8?token=be97323d93223eb126673dd18c53c3c4158a1c36-4937b0153d908053f21052018389b13e-1772552390-1772541590",
       "category": "Sports",
       "language": "en"
     },
@@ -86,7 +86,7 @@
       "name": "Ten Cricket",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Ten_Cricket.png",
       "type": "m3u8",
-      "source": "http://103.89.248.14:8082/Ten-Cricket-HD/index.fmp4.m3u8?token=8f685b190a7600eda02bc2e32d4ae414e92e3244-e2edbbdf70bb9c101b35ac2d854412f9-1772537051-1772526251",
+      "source": "http://103.89.248.22:8082/Ten-Cricket-HD/index.fmp4.m3u8?token=62b0cd8c2d8c8f6dbc4ac7392adca32e09999b9e-4c004a5abb4f6f8b031cca2243f37296-1772550930-1772540130",
       "category": "Sports",
       "language": "en"
     },
@@ -95,7 +95,7 @@
       "name": "Willow Cricket",
       "logo": "https://mgpindia.com/wp-content/uploads/2021/10/willow-logo.jpg",
       "type": "m3u8",
-      "source": "http://103.89.248.10:8082/willow/index.fmp4.m3u8?token=72a3b529bd7685a0c588218e6ba42fcfef989d69-173baee02c09143eaea6c6a7ee63b0b9-1772537642-1772526842",
+      "source": "http://103.89.248.14:8082/willow/index.fmp4.m3u8?token=b8a4e898141a5765ef943d1be9691690907e8431-f9c20cbf8b67544f229a2f194102debf-1772551799-1772540999",
       "category": "Sports",
       "language": "en"
     },
@@ -104,7 +104,7 @@
       "name": "Bein Sports 1",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/1/14/BeIN_Sports_1.png",
       "type": "m3u8",
-      "source": "http://103.89.248.22:8082/Bein-hd/index.fmp4.m3u8?token=81d4bc1210fe80f405088548187256d28a917493-3ec937cfe3c377b20f0911d9bda2d037-1772536183-1772525383",
+      "source": "http://103.89.248.22:8082/Bein-hd/index.fmp4.m3u8?token=4c818588e879bb2dab455e22706905c73215bedc-b15ab33d86d479c79accefb268054696-1772550931-1772540131",
       "category": "Sports",
       "language": "en"
     },
@@ -113,7 +113,7 @@
       "name": "Sony Sports 1",
       "logo": "https://dummyimage.com/256x256/1f5f7a/ffffff.png&text=Sony+Sports+1",
       "type": "m3u8",
-      "source": "http://103.89.248.14:8082/sony-TEN-2/index.fmp4.m3u8?token=354c3a7cf969d02c4be7aa05ff33679713371d23-03905fac96a70ffdd7ec13cf8662338c-1772537051-1772526251",
+      "source": "http://103.89.248.14:8082/sony-TEN-2/index.fmp4.m3u8?token=5c154090d843b725d7a79594547e03cc900f12eb-b1d19647d97025581b05ea18d971ac62-1772551799-1772540999",
       "category": "Sports",
       "language": "en"
     },
@@ -122,7 +122,7 @@
       "name": "Sony Sports 2",
       "logo": "https://dummyimage.com/256x256/1f5f7a/ffffff.png&text=Sony+Sports+2",
       "type": "m3u8",
-      "source": "http://103.89.248.10:8082/Sony-TEN-1/index.fmp4.m3u8?token=2cfeea02027d5c357a5bf660cbe594e4bc3dbbb0-07e4cef45fefc6139b7446e46b9b83ab-1772537643-1772526843",
+      "source": "http://103.89.248.10:8082/Sony-TEN-1/index.fmp4.m3u8?token=28ed368b135751f1ee18e246938a887c6f0bdd8a-91e421c9b37c4f41972525d1198b577b-1772552390-1772541590",
       "category": "Sports",
       "language": "en"
     },
@@ -131,7 +131,7 @@
       "name": "Sony Sports 3",
       "logo": "https://dummyimage.com/256x256/1f5f7a/ffffff.png&text=Sony+Sports+3",
       "type": "m3u8",
-      "source": "http://103.89.248.22:8082/sony-ten3/index.fmp4.m3u8?token=3f3a5fbc17322a0fec39f2fe5e3995e050cb4d5d-15e6ad365b93dad98921a846d158577c-1772536184-1772525384",
+      "source": "http://103.89.248.22:8082/sony-ten3/index.fmp4.m3u8?token=0017facee3f6ce15128e93c3eff501b94f0f5722-cf8457d77c20bc3b65206559ac6c16a1-1772550931-1772540131",
       "category": "Sports",
       "language": "en"
     },
@@ -140,7 +140,7 @@
       "name": "SuperSport Cricket",
       "logo": "https://r2.thesportsdb.com/images/media/channel/logo/srtijz1643382350.png",
       "type": "m3u8",
-      "source": "http://103.89.248.10:8082/SUPERSPORTS-CRICKET/index.fmp4.m3u8?token=3a65bb3080dabf879d53d67f4ae1dfd014dc6bb5-03b6818b807a7175df8f091196ea4205-1772537643-1772526843",
+      "source": "http://103.89.248.14:8082/SUPERSPORTS-CRICKET/index.fmp4.m3u8?token=96a9135df79dcb6fe3c9b468c40c7108befcdf6f-43a7ba174803ba3a20e43b2d24fed9e0-1772551799-1772540999",
       "category": "Sports",
       "language": "en"
     },
@@ -149,7 +149,7 @@
       "name": "SuperSport LaLiga",
       "logo": "https://r2.thesportsdb.com/images/media/channel/logo/dv7v9w1719404547.png",
       "type": "m3u8",
-      "source": "http://103.89.248.22:8082/SUPERSPORTS-LALIGA/index.fmp4.m3u8?token=9ff5d7efabd25f004899a90501f876a6222913ff-9b612d73d2d5d9e4a54b04ac303c2255-1772536184-1772525384",
+      "source": "http://103.89.248.10:8082/SUPERSPORTS-LALIGA/index.fmp4.m3u8?token=95cde079544d570534a378372ecd897af68ef04c-33707706f40b8a9048410400aba66b8e-1772552391-1772541591",
       "category": "Sports",
       "language": "en"
     },
@@ -158,7 +158,7 @@
       "name": "SuperSport Premier League",
       "logo": "https://www.dstv.com/media/puxctgsq/ss_premier-league.png",
       "type": "m3u8",
-      "source": "http://103.89.248.14:8082/SUPERSPORTS-PREMIER-LEAGUE/index.fmp4.m3u8?token=3dc14363fa122d95f8abdbf79c6481ba759a3ee3-838ad95861a8039ac4e92345d04002fb-1772537052-1772526252",
+      "source": "http://103.89.248.22:8082/SUPERSPORTS-PREMIER-LEAGUE/index.fmp4.m3u8?token=991af57cec15518bd32ec8e8e4817572c905da2e-7b0d2c5640f7901eb16ce46019c2d521-1772550932-1772540132",
       "category": "Sports",
       "language": "en"
     },
@@ -167,7 +167,7 @@
       "name": "TNT Sports 4",
       "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6b/TNT_Sports_4_logo.png/250px-TNT_Sports_4_logo.png",
       "type": "m3u8",
-      "source": "http://103.89.248.10:8082/Uk-TNT-4/index.fmp4.m3u8?token=ece80cb4b5c38c95e68dc40fb303f6253d365900-7c5de7ec51ed817afab65b7c370f805f-1772537643-1772526843",
+      "source": "http://103.89.248.14:8082/Uk-TNT-4/index.fmp4.m3u8?token=11c31756496b092ed66a3ea471b6353895e6d755-60310f79f38cc48502912ab7f8a10b51-1772551800-1772541000",
       "category": "Sports",
       "language": "en"
     },
@@ -176,7 +176,7 @@
       "name": "TNT Sports 3",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/TNT_Sports_%282023%29.svg/250px-TNT_Sports_%282023%29.svg.png",
       "type": "m3u8",
-      "source": "http://103.89.248.22:8082/TNT-Sports-3/index.fmp4.m3u8?token=045d35023f6ae5af219aa1b8e92794a9ce00e4e8-2220e5846a24c6165f0f16bf77be2ea0-1772536184-1772525384",
+      "source": "http://103.89.248.10:8082/TNT-Sports-3/index.fmp4.m3u8?token=4ce87ecaa1d674edc1103dcb3d0455b7f4f52276-bf7350f90c62aee528df0c7f84035285-1772552392-1772541592",
       "category": "Sports",
       "language": "en"
     },
@@ -185,7 +185,7 @@
       "name": "TNT Sports 2",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/TNT_Sports_%282023%29.svg/250px-TNT_Sports_%282023%29.svg.png",
       "type": "m3u8",
-      "source": "http://103.89.248.14:8082/TNT-Sports-2/index.fmp4.m3u8?token=420ea6faa055845da0ab8a388c4bb29c91662af5-81ca39c82354e58927a993bb3d0f9881-1772537052-1772526252",
+      "source": "http://103.89.248.22:8082/TNT-Sports-2/index.fmp4.m3u8?token=65641edb8c858f0b11c3b9d3bfbce30e5b74369e-c648008d047629c6cff33277008e5a41-1772550932-1772540132",
       "category": "Sports",
       "language": "en"
     }
