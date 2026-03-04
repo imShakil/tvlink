@@ -102,7 +102,7 @@ def load_group_normalization_rules(rules_file):
 def normalize_group_name(raw_group, rules):
     cleaned = _clean_group_text(raw_group or "")
     if not cleaned:
-        return "Uncategorized"
+        return "Live"
 
     exact_map = (rules or {}).get("exact", {})
     contains_rules = (rules or {}).get("contains", [])
@@ -115,7 +115,7 @@ def normalize_group_name(raw_group, rules):
         if all(token in cleaned for token in tokens):
             return rule["group"]
 
-    return " ".join(part.capitalize() for part in cleaned.split())
+    return "Live"
 
 
 def encrypted_label(source, cipher_key):
