@@ -14,7 +14,7 @@ Just download and install [Dekho Prime](https://linkly.link/2cdzv) android app f
 
 ### Watch Online
 
-Browse this website URL: [http://livetv.imshakil.online](http://livetv.imshakil.online)
+Browse this website URL: [http://dekhoprime.live](http://dekhoprime.live)
 
 ![bdixtv.mhosen.com](https://github.com/user-attachments/assets/364a409e-4e87-4779-867d-49be5ba9584b)
 
