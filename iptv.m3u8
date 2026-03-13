@@ -110,6 +110,8 @@ https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/stream02/strea
 https://amg01448-samsungin-cnnnow-samsungin-4npqg.amagi.tv/playlist/amg01448-samsungin-cnnnow-samsungin/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://is.gd/ih6x8j" group-title="News",NDTV NEWS
 https://ndtv24x7elemarchana.akamaized.net/hls/live/2003678-b/ndtv24x7/master.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/wgIUsFu.png" group-title="News",BBC News
+https://ythls.armelin.one/channel/UCelk6aHijZq-GJBBB9YpReA.m3u8?v=1
 #EXTINF:-1 tvg-logo="https://i.imgur.com/A1xzjOI.png" group-title="News",DW English
 https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/index.m3u8?v=1
 #EXTINF:-1 tvg-logo="https://i.ibb.co/M7W5zRy/images.png" group-title="News",RT News (EN) 🛜
@@ -138,6 +140,8 @@ https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/1709.m3u8
 https://www.btvlive.gov.bd/live/37f2df30-3edf-42f3-a2ee-6185002c841c/BD/9ee3b4f9-fd0a-47c5-a135-2575c5691613/index.m3u8
 #EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4GdTIOJgWg5_BCr3ZDvEzBOMt6gt0QoybcQ&usqp=CAU" group-title="Bangla",BTV News
 https://www.btvlive.gov.bd/live/37f2df30-3edf-42f3-a2ee-6185002c841c/BD/d96eb7f4-83c2-4472-9597-3568390a8ebf/index.m3u8
+#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Gazi%20TV.jpg" group-title="Bangla",Gazi TV
+http://tvn1.chowdhury-shaheb.com/gazitv/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/ATN%20Bangla.png" group-title="Bangla",ATN Bangla
 https://owrcovcrpy.gpcdn.net/bpk-tv/1722/output/1722.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Maasranga%20TV.png" group-title="Bangla",Maasranga TV
@@ -146,6 +150,8 @@ http://103.229.254.25:7001/play/a05q/index.m3u8
 https://owrcovcrpy.gpcdn.net/bpk-tv/1716/output/1716.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/NTV.png" group-title="Bangla",NTV UK
 https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/ntvuk00332211.stream/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/RTV.png" group-title="Bangla",RTV
+http://tvn3.chowdhury-shaheb.com/rtv/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Asian%20Tv.png" group-title="Bangla",Asian TV
 http://103.229.254.25:7001/play/a063/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Bangla%20TV.png" group-title="Bangla",Bangla TV Europe
@@ -178,6 +184,8 @@ https://dzkyvlfyge.erbvr.com/PeaceTvEnglish/index.m3u8
 https://dzkyvlfyge.erbvr.com/PeaceTvUrdu/index.m3u8
 #EXTINF:-1 tvg-logo="https://s3.aynaott.com/storage/f71f649abc51984f09076ef6ee5c0d0c" group-title="Live",RTV Islam
 https://tvsen6.aynascope.net/rtvislam/index.m3u8?e=1762417832&u=5448cf91-5746-4e78-a357-d45dca5c1ab9&token=9aeaf35d6650b5eab457a136bd251921
+#EXTINF:-1 tvg-logo="https://i.ibb.co/7jrjkW1/20240813-112630.png" group-title="Religious",Madani TV
+https://streaming.madanichannel.tv/static/streaming-playlists/hls/d3e49b76-ac06-4689-a641-9200445b647f/1.m3u8
 #EXTINF:-1 tvg-logo="https://i.ibb.co/TtHtGkW/20240803-172601.png" group-title="Religious",Makkah TV
 https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/makkahtv.stream/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://i.ibb.co/rtkWYHV/20240827-092043.png" group-title="Religious",AL Sunnah TV
@@ -198,12 +206,8 @@ https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxI
 https://cloudfrontnet.vercel.app/tplay/playout/209611/master.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/mAathStar%20Jalsha.png" group-title="Bangla",Star Jalsha
 http://103.182.170.32:8888/play/a046
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Star%20Jalsha.png" group-title="Bangla",Star Jalsha HD
-http://103.229.254.25:7001/play/a0c0/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/zee%20Bangla.png" group-title="Bangla",Zee Bangla
 http://103.182.170.32:8888/play/a048
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Colors%20Bangla.png" group-title="Bangla",Colors Bangla HD
-http://103.229.254.25:7001/play/a0ds/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Sun%20Bangla.png" group-title="Bangla",Sun Bangla
 http://103.182.170.32:8888/play/a01v
 #EXTINF:-1 tvg-logo="http://tv.digitalview.live:8080/images/COkEO-FWL6Un57bQno1oDDZsiBeWCSjxPVZv0hLJ3dQmW5aAA-8mIeuB88P0SUdrjBBSFEHQ2ZXiddKtVfnJCQ.png" group-title="Bangla",AAKASH AATH
@@ -232,12 +236,8 @@ https://amg01218-republictvfast-amg01218c1-samsung-in-1918.playouts.now.amagi.tv
 https://nktv.smartstream.video/smartstream-us/nkbangla/nkbangla/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/56e54462053b1b278b80b532c89c01f17e360fd5/Sony%20TV.png" group-title="Indian",Sony TV
 http://103.182.170.32:8888/play/a03t
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/56e54462053b1b278b80b532c89c01f17e360fd5/Sony%20Sab.jpeg" group-title="Indian",Sony Sab
-http://103.229.254.25:7001/play/a09s/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/56e54462053b1b278b80b532c89c01f17e360fd5/Sony%20Sab.jpeg" group-title="Indian",Sony Sab HD
 http://103.182.170.32:8888/play/a03r
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Star%20Plus.png" group-title="Indian",Star Plus
-http://103.229.254.25:7001/play/a09z/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Star%20Plus.png" group-title="Indian",Star Plus HD
 http://103.182.170.32:8888/play/a03z
 #EXTINF:-1 tvg-logo="https://images.toffeelive.com/images/program/18836/logo/240x240/mobile_logo_010398001681373944.png" group-title="Indian",Star Bharat HD
@@ -246,20 +246,14 @@ http://103.182.170.32:8888/play/a02n
 http://103.175.73.12:8080/live/9/9_0.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Colors.png" group-title="Indian",Colors
 http://103.182.170.32:8888/play/a041
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Colors.png" group-title="Indian",Colors HD
-http://103.229.254.25:7001/play/a0a1/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Colors%20Rishtey.png" group-title="Indian",Colors Rishtey
 http://103.175.73.12:8080/live/12/12_0.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Zee%20TV.png" group-title="Indian",Zee TV HD
 http://103.182.170.32:8888/play/a04r
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Zee%20TV.png" group-title="Indian",Zee TV HD
-http://103.229.254.25:7001/play/a0cs/index.m3u8
 #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/b/b4/Zee_Anmol_Cinema_logo.png" group-title="Indian",Zee Anmol TV
 http://103.175.73.12:8080/live/256/256_0.m3u8
 #EXTINF:-1 tvg-logo="https://images.toffeelive.com/images/program/801/logo/240x240/mobile_logo_974516001655891652.png" group-title="Indian",And TV
 http://103.182.170.32:8888/play/a03v
-#EXTINF:-1 tvg-logo="https://images.toffeelive.com/images/program/801/logo/240x240/mobile_logo_974516001655891652.png" group-title="Indian",And TV HD
-http://103.229.254.25:7001/play/a034/index.m3u8
 #EXTINF:-1 tvg-logo="" group-title="Indian",Big Magic
 http://103.175.73.12:8080/live/13/13_0.m3u8
 #EXTINF:-1 tvg-logo="" group-title="Indian",Hinde Movies
@@ -274,34 +268,22 @@ https://cc-r5hupcym5oehh.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da6
 http://xtv.ooo:8080/danyear12/am8091danyear98
 #EXTINF:-1 tvg-logo="" group-title="Indian",South Station 3
 http://xtv.ooo:8080/danyear12/am809100/263386
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Sony%20Max.png" group-title="Indian",Sony Max
-http://103.99.249.139/sonymax/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Sony%20Max.png" group-title="Indian",Sony Max HD
 http://103.182.170.32:8888/play/a04f
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/56e54462053b1b278b80b532c89c01f17e360fd5/Set%20Max%202.jpeg" group-title="Indian",Sony Max 2
 http://103.182.170.32:8888/play/a02l
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Zee%20Cinema.png" group-title="Indian",Zee Cinema HD
-http://103.99.249.139/zeecinema/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Zee%20Action.png" group-title="Indian",Zee Action
 http://103.175.73.12:8080/live/270/270_0.m3u8
 #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/b/b4/Zee_Anmol_Cinema_logo.png" group-title="Indian",Zee Anmol Cinema
 http://103.175.73.12:8080/live/271/271_0.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Zee%20Classic.jpeg" group-title="Indian",Zee Bollywood
 http://103.182.170.32:8888/play/a02r
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Star%20Gold.png" group-title="Indian",Star Gold
-http://103.99.249.139/stargold/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Star%20Gold.png" group-title="Indian",Star Gold HD
-http://103.229.254.25:7001/play/a0dd/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Star%20Gold.png" group-title="Indian",Star Gold HD
 http://103.182.170.32:8888/play/a02j
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Star%20Glod%202.png" group-title="Indian",Star Gold 2
 http://103.182.170.32:8888/play/a01z
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Star%20Gold%20Select%20HD.jpg" group-title="Indian",Star Gold Select HD
-http://103.229.254.25:7001/play/a032/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Colors%20Cineplax.png" group-title="Indian",Colors Cineplex Bollywood
 http://103.182.170.32:8888/play/a01o
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/And%20Pictures%20.png" group-title="Indian",And Pictures
-http://103.229.254.25:7001/play/a033/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/B4U%20Movies.png" group-title="Indian",B4U Movies
 https://cdnb4u.wiseplayout.com/B4U_Movies/HD1080/HD1080.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/B4U%20Movies.png" group-title="Indian",B4U Kadak
@@ -327,8 +309,6 @@ http://103.175.73.12:8080/live/19/19_0.m3u8
 #EXTINF:-1 tvg-logo="" group-title="Indian",Bollywood HD
 https://d35j504z0x2vu2.cloudfront.net/v1/manifest/0bc8e8376bd8417a1b6761138aa41c26c7309312/bollywood-hd/d3227daf-ea13-48c9-95a4-1619862d136e/0.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Star%20Sports%201%40.jpeg" group-title="Sports",Star Sports 1 HD
-http://tvn1.chowdhury-shaheb.com/starsport1/index.m3u8
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Star%20Sports%201%40.jpeg" group-title="Sports",Star Sports 1 HD
 http://103.182.170.32:8888/play/a040
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Star%20Sports%201%40.jpeg" group-title="Sports",Star Sports Hindi HD
 http://103.182.170.32:8888/play/a04e
@@ -342,10 +322,10 @@ http://103.182.170.32:8888/play/a045
 http://103.182.170.32:8888/play/a047
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Sony%20Sports%20Ten%201.png" group-title="Sports",Sony Sports Ten 1 HD
 http://103.182.170.32:8888/play/a04j
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/56e54462053b1b278b80b532c89c01f17e360fd5/Sony%20Sports%20Ten%202.png" group-title="Sports",Sony Sports Ten 2 HD
-http://103.229.254.25:7001/play/a0ef/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/56e54462053b1b278b80b532c89c01f17e360fd5/Sony%20Sports%20Ten%203.png" group-title="Sports",Sony Sports Ten 3 HD
 http://103.182.170.32:8888/play/a03p
+#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/56e54462053b1b278b80b532c89c01f17e360fd5/Sony%20Sports%20Ten%205.png" group-title="Sports",Sony Sports Ten 5
+http://103.99.249.139/sonyten3/index.m3u8
 #EXTINF:-1 tvg-logo="" group-title="Sports",DD Sports 2.0
 https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/b17adfe543354fdd8d189b110617cddd/index.m3u8
 #EXTINF:-1 tvg-logo="" group-title="Sports",RTA Sports
@@ -355,17 +335,11 @@ http://202.70.146.135:8000/play/a05z/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/TLC.png" group-title="Documentary",TLC HD
 http://103.182.170.32:8888/play/a01q
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/National%20Geographic%20Channel.png" group-title="Documentary",Nat Geo HD
-http://103.229.254.25:7001/play/a038/index.m3u8
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/National%20Geographic%20Channel.png" group-title="Documentary",Nat Geo HD
 http://202.70.146.135:8000/play/a05o/index.m3u8
 #EXTINF:-1 tvg-logo="" group-title="Documentary",BBC Earth
 https://d3u3pfhhvuad9k.cloudfront.net/playlist/amg00793-bbcstudios-bbcearta-lgus/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="Documentary",BBC Earth
 https://amg00793-bbcstudios-amg00793c3-lg-us-2528.playouts.now.amagi.tv/playlist/amg00793-bbcstudios-bbcearta-lgus/playlist.m3u8
-#EXTINF:-1 tvg-logo="https://gd.mdsharifulislamnayon.workers.dev/1:/TV%20LOGO/colors%20infinity.jpeg" group-title="Documentary",Colors Infinity HD
-http://103.229.254.25:7001/play/a0du/index.m3u8
-#EXTINF:-1 tvg-logo="https://images.toffeelive.com/images/program/2429/logo/240x240/mobile_logo_009938001674474908.png" group-title="Documentary",History TV 18
-http://103.229.254.25:7001/play/a02z/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Travel%20XP.png" group-title="Documentary",Travel XP HD Bangla
 http://103.182.170.32:8888/play/a01x
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Travel%20XP.png" group-title="Documentary",Travel XP English EU
@@ -408,8 +382,6 @@ http://103.182.170.32:8888/play/a01n
 http://103.182.170.32:8888/play/a02a
 #EXTINF:-1 tvg-logo="" group-title="Movies",And Prive
 http://202.70.146.135:8000/play/a05y/index.m3u8
-#EXTINF:-1 tvg-logo="" group-title="Movies",And Prive HD
-http://103.229.254.25:7001/play/a03f/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/English%20Movies.jpeg" group-title="Movies",Action Hollywood Movies
 https://amg01076-lightningintern-actionhollywood-samsungnz-82rry.amagi.tv/playlist/amg01076-lightningintern-actionhollywood-samsungnz/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="Live",YRF Music HD
