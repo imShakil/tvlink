@@ -167,7 +167,7 @@
       "name": "TNT Sports 4",
       "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6b/TNT_Sports_4_logo.png/250px-TNT_Sports_4_logo.png",
       "type": "m3u8",
-      "source": "http://103.89.248.14:8082/Uk-TNT-4/index.fmp4.m3u8?token=20f0f8fcf081ecf397275ebe4f8f76d4e1c6d92a-e9a3072495d5f0845dea31238c7c5d32-1773415714-1773404914",
+      "source": "http://103.89.248.22:8082/Uk-TNT-4/index.fmp4.m3u8?token=ef3d6e5531675e561c67fe8858270234d4e8a389-174d7335d723d3af124665dc67bc2001-1773422921-1773412121",
       "category": "Sports",
       "language": "en"
     },
@@ -176,7 +176,7 @@
       "name": "TNT Sports 3",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/TNT_Sports_%282023%29.svg/250px-TNT_Sports_%282023%29.svg.png",
       "type": "m3u8",
-      "source": "http://103.89.248.10:8082/TNT-Sports-3/index.fmp4.m3u8?token=ec7eee945e3b31fadb4d763cce88d7ac478582fa-5dcd44b67c0f0e8a1efeb61dafe15c10-1773416329-1773405529",
+      "source": "http://103.89.248.14:8082/TNT-Sports-3/index.fmp4.m3u8?token=dc614be5bd58b0cfce733e4c3b3d0fe95b3e7965-097f7f9a21963009c7e67fdf76c3fb49-1773423794-1773412994",
       "category": "Sports",
       "language": "en"
     },
@@ -185,7 +185,7 @@
       "name": "TNT Sports 2",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/TNT_Sports_%282023%29.svg/250px-TNT_Sports_%282023%29.svg.png",
       "type": "m3u8",
-      "source": "http://103.89.248.14:8082/TNT-Sports-2/index.fmp4.m3u8?token=f8d30fbb1afb78f6aa8f015fbf2825c70475e9d5-0f8ddb3a98edd22844122be534ded843-1773415714-1773404914",
+      "source": "http://103.89.248.10:8082/TNT-Sports-2/index.fmp4.m3u8?token=f3ae986c0b5a6e0d393e84220f4ba2d5829a8144-9bf8a542662aab9e5ceef154609eb034-1773424409-1773413609",
       "category": "Sports",
       "language": "en"
     }
