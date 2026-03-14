@@ -25,8 +25,7 @@ The easiest way to watch these channels is using the **Dekho Prime Android App**
 
 Download and install:
 
-* App Download: [https://linkly.link/2cdzv](https://linkly.link/2cdzv)
-* APKPure: [https://linkly.link/2cdzv](https://linkly.link/2cdzv)
+* APKPure: [Dekho Prime IPTV](https://linkly.link/2cdzv)
 
 Once installed:
 
@@ -49,7 +48,7 @@ You can also watch Bangladeshi TV channels directly in your browser.
 
 Website:
 
-[https://dekhoprime.live](https://dekhoprime.live)
+[https://dekhoprime.live](https://linkly.link/2dspA)
 
 ### Web Player Preview
 
