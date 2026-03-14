@@ -109,6 +109,12 @@ Use this playlist **at your own responsibility**.
 
 ---
 
+## ❤️ Community & Support
+
+Join our Telegram community for updates, new IPTV links, and discussions:
+
+📢 Telegram Group: [https://t.me/+DBjA_AdCuoY1MTQ9](https://t.me/+DBjA_AdCuoY1MTQ9)
+
 ## ❤️ Support
 
 If you like this project:
