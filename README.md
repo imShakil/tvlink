@@ -26,6 +26,7 @@ The easiest way to watch these channels is using the **Dekho Prime Android App**
 Download and install:
 
 * APKPure: [Dekho Prime IPTV](https://linkly.link/2cdzv)
+* APK File: [Direct Download Link](https://github.com/imShakil/tvlink/releases/latest/download/dekho-prime.apk)
 
 Once installed:
 
