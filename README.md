@@ -113,7 +113,7 @@ Use this playlist **at your own responsibility**.
 
 Join our Telegram community for updates, new IPTV links, and discussions:
 
-📢 Telegram Group: [https://t.me/+DBjA_AdCuoY1MTQ9](https://t.me/+DBjA_AdCuoY1MTQ9)
+📢 Telegram Group: [https://t.me/+DBjA_AdCuoY1MTQ9](https://linkly.link/2dz9x)
 
 ## ❤️ Support
 
