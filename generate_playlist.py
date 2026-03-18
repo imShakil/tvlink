@@ -183,33 +183,23 @@ def parse_legacy_dotenv_sources(dotenv_path=".env"):
     return lines
 
 
-def is_url_live(session, url, timeout_seconds=6, retries=2):
+def is_url_live(session, url, timeout_seconds=10, retries=3):
     headers = {
         "User-Agent": "Mozilla/5.0 (compatible; tvlink-liveness/1.0)",
         "Accept": "*/*",
     }
+    allowed_status = {200, 206, 302, 401, 403}
     for attempt in range(retries + 1):
         response = None
         try:
             response = session.get(
                 url,
                 stream=True,
-                timeout=(5, timeout_seconds),
+                timeout=(8, timeout_seconds),
                 headers=headers,
+                allow_redirects=True,
             )
-            if response.status_code not in (200, 206, 403):
-                if attempt < retries:
-                    time.sleep(0.4 * (attempt + 1))
-                    continue
-                return {
-                    "is_live": False,
-                    "status_code": response.status_code,
-                    "reason": "http_status",
-                    "attempts": attempt + 1,
-                    "error": "",
-                }
-            try:
-                next(response.iter_content(1024))
+            if response.status_code in allowed_status:
                 return {
                     "is_live": True,
                     "status_code": response.status_code,
@@ -217,17 +207,19 @@ def is_url_live(session, url, timeout_seconds=6, retries=2):
                     "attempts": attempt + 1,
                     "error": "",
                 }
-            except StopIteration:
-                return {
-                    "is_live": False,
-                    "status_code": response.status_code,
-                    "reason": "empty_body",
-                    "attempts": attempt + 1,
-                    "error": "",
-                }
+            if attempt < retries:
+                time.sleep(0.5 * (attempt + 1))
+                continue
+            return {
+                "is_live": False,
+                "status_code": response.status_code,
+                "reason": "http_status",
+                "attempts": attempt + 1,
+                "error": "",
+            }
         except requests.RequestException as err:
             if attempt < retries:
-                time.sleep(0.4 * (attempt + 1))
+                time.sleep(0.5 * (attempt + 1))
                 continue
             return {
                 "is_live": False,
@@ -239,7 +231,6 @@ def is_url_live(session, url, timeout_seconds=6, retries=2):
         finally:
             if response is not None:
                 response.close()
-
     return {
         "is_live": False,
         "status_code": None,
