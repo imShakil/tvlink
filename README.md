@@ -1,4 +1,13 @@
+
 # Bangladesh IPTV (BD IPTV) – Free Bangladeshi TV Channels Playlist
+
+[![Stars](https://img.shields.io/github/stars/imshakil/tvlink.svg?style=social)](https://github.com/imShakil/tvlink/stargazers)
+[![Forks](https://img.shields.io/github/forks/imshakil/tvlink.svg?style=social)](https://github.com/imShakil/tvlink/network/members)
+[![Release](https://img.shields.io/github/v/release/imshakil/tvlink.svg)](https://github.com/imShakil/tvlink/releases/latest)
+[![Download APK](https://img.shields.io/github/downloads/imshakil/tvlink/total.svg)](https://github.com/imShakil/tvlink/releases/latest/download/dekho-prime.apk)
+[![Last Updated](https://img.shields.io/github/last-commit/imshakil/tvlink.svg)](https://github.com/imShakil/tvlink/commits/main)
+[![Issues](https://img.shields.io/github/issues/imshakil/tvlink.svg)](https://github.com/imShakil/tvlink/issues)
+[![License](https://img.shields.io/github/license/imshakil/tvlink.svg)](https://github.com/imShakil/tvlink/blob/main/LICENSE)
 
 A curated collection of **Bangladeshi TV channel IPTV streams** that can be played using any **M3U / M3U8 compatible IPTV player**. This repository helps users watch **Bangladesh live TV channels online** using mobile apps, smart TVs, IPTV apps, or web browsers.
 
@@ -25,8 +34,8 @@ The easiest way to watch these channels is using the **Dekho Prime Android App**
 
 Download and install:
 
-* APKPure: [Dekho Prime IPTV](https://linkly.link/2cdzv)
-* APK File: [Direct Download Link](https://github.com/imShakil/tvlink/releases/latest/download/dekho-prime.apk)
+* APKPure Link: [Dekho Prime IPTV](https://linkly.link/2cdzv)
+* Download APK File: [Direct Download Link](https://github.com/imShakil/tvlink/releases/latest/download/dekho-prime.apk)
 
 Once installed:
 
@@ -63,7 +72,7 @@ Website:
 
 Use this playlist URL in **any IPTV player** such as VLC, IPTV Smarters, Kodi, or Smart TV IPTV apps.
 
-```
+```m3u8
 https://raw.githubusercontent.com/imShakil/tvlink/refs/heads/main/iptv.m3u8
 ```
 
