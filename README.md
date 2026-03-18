@@ -36,10 +36,12 @@ Once installed:
 
 ### App Screenshots
 
-<img src="https://github.com/user-attachments/assets/b2ba148a-64ac-46dd-95cd-13d33d6e9142" width="150" height="250" />
-<img src="https://github.com/user-attachments/assets/d10524c0-90aa-4404-91d9-734ac7c9abf4" width="150" height="250" />
-<img src="https://github.com/user-attachments/assets/28fba32e-6244-4c6c-9e21-f45c1121d7db" width="150" height="250" />
-
+<img src="https://github.com/user-attachments/assets/b2ba148a-64ac-46dd-95cd-13d33d6e9142" width="360" height="720" />
+<img src="https://github.com/user-attachments/assets/d10524c0-90aa-4404-91d9-734ac7c9abf4" width="360" height="720" />
+<img src="https://github.com/user-attachments/assets/28fba32e-6244-4c6c-9e21-f45c1121d7db" width="360" height="720" />
+<img width="360" height="720" alt="IMG_2923" src="https://github.com/user-attachments/assets/df39e96d-8041-4cef-ae62-3862caf3186c" />
+<img width="360" height="720" alt="IMG_2921" src="https://github.com/user-attachments/assets/bb65e7d3-5f2a-4a36-943b-74d1cb3f0ac4" />
+<img width="360" height="720" alt="IMG_2922" src="https://github.com/user-attachments/assets/b6702a3a-ddb2-46ce-980f-69ae0f3e49a1" />
 
 ---
 
