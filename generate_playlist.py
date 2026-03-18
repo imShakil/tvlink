@@ -253,11 +253,17 @@ def validate_candidates(candidates, max_workers, timeout_seconds, log_file=""):
 
     accepted = []
     logs = []
+    potentially_live = []
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         results = executor.map(check, candidates)
         for candidate, result in zip(candidates, results):
             if result["is_live"]:
                 accepted.append(candidate)
+            elif result["reason"] == "request_exception":
+                # Mark as potentially live, add a special group marker
+                new_candidate = candidate.copy()
+                new_candidate["group"] = (candidate.get("group", "") + "|potentially_live").strip("|")
+                potentially_live.append(new_candidate)
             if log_file:
                 status_code = result["status_code"] if result["status_code"] is not None else "-"
                 logs.append(
@@ -272,7 +278,8 @@ def validate_candidates(candidates, max_workers, timeout_seconds, log_file=""):
         with open(log_file, "a", encoding="utf-8") as f:
             f.writelines(logs)
 
-    return accepted
+    # Combine accepted and potentially_live channels
+    return accepted + potentially_live
 
 
 def load_source_content(session, source):
