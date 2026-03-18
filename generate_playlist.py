@@ -188,7 +188,7 @@ def is_url_live(session, url, timeout_seconds=10, retries=3):
         "User-Agent": "Mozilla/5.0 (compatible; tvlink-liveness/1.0)",
         "Accept": "*/*",
     }
-    allowed_status = {200, 206, 302, 401, 403}
+    not_allowed_status = {404, 500, 501, 502, 503, 504, 505, 506, 507, 508, 510, 511}
     for attempt in range(retries + 1):
         response = None
         try:
@@ -199,7 +199,7 @@ def is_url_live(session, url, timeout_seconds=10, retries=3):
                 headers=headers,
                 allow_redirects=True,
             )
-            if response.status_code in allowed_status:
+            if response.status_code not in not_allowed_status:
                 return {
                     "is_live": True,
                     "status_code": response.status_code,
