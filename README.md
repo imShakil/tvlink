@@ -56,21 +56,24 @@ Once installed:
 
 ## 🌐 Watch Bangladeshi TV Online
 
-You can also watch Bangladeshi TV channels directly in your browser.
+You can also watch Bangladeshi TV channels directly in your browser Website:
 
-Website:
-
-[https://dekhoprime.live](https://linkly.link/2dspA)
+* Visits [https://dekhoprime.live](https://linkly.link/2dspA)
+* Sign in with google
+* Enjoy streaming.
 
 ### Web Player Preview
 
-<img src="https://github.com/user-attachments/assets/364a409e-4e87-4779-867d-49be5ba9584b" width="600" height="400" />
+<img width="1720" height="916" alt="Screenshot 2026-03-18 at 12 33 16" src="https://github.com/user-attachments/assets/3b73695d-c07e-46f8-adf6-20953f56238c" />
+
 
 ---
 
-## 🔗 IPTV Playlist URL
+## 🔗 IPTV Playlist URL (Android TV)
 
-Use this playlist URL in **any IPTV player** such as VLC, IPTV Smarters, Kodi, or Smart TV IPTV apps.
+Use this playlist URL in **any IPTV player** in your android TV.
+* IPTV Smarters, Kodi, or Smart TV IPTV apps.
+* You can try our [Dekho Prime IPTV](https://linkly.link/2cdzv) in your Android TV (Not tested yet). 
 
 ```m3u8
 https://raw.githubusercontent.com/imShakil/tvlink/refs/heads/main/iptv.m3u8
@@ -82,7 +85,6 @@ https://raw.githubusercontent.com/imShakil/tvlink/refs/heads/main/iptv.m3u8
 
 This playlist works with most IPTV players including:
 
-* VLC Media Player
 * Kodi
 * IPTV Smarters
 * TiviMate
