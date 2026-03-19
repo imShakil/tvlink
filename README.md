@@ -70,7 +70,8 @@ You can also watch Bangladeshi TV channels directly in your browser Website:
 
 ---
 
-## 🔗 IPTV Playlist URL (Android TV)
+## 🔗 IPTV Playlist URL ![Badge](https://hitscounter.dev/api/hit?url=https%3A%2F%2Fraw.githubusercontent.com%2FimShakil%2Ftvlink%2Frefs%2Fheads%2Fmain%2Fiptv.m3u8&label=&icon=github&color=%23198754&message=&style=flat&tz=UTC)
+
 
 Use this playlist URL in **any IPTV player** in your android TV.
 * IPTV Smarters, Kodi, or Smart TV IPTV apps.
