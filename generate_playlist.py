@@ -48,6 +48,36 @@ def dedupe_url_key(raw_url):
     return urlunsplit((parts.scheme, parts.netloc, parts.path, "", ""))
 
 
+def is_channel_stream_url(raw_url):
+    """
+    Keep live-stream style URLs and skip direct video-file links.
+    """
+    cleaned = clean_channel_url(raw_url)
+    try:
+        parts = urlsplit(cleaned)
+    except ValueError:
+        return False
+
+    if parts.scheme not in {"http", "https"}:
+        return False
+
+    path = (parts.path or "").lower()
+    blocked_video_ext = (
+        ".mp4",
+        ".mkv",
+        ".avi",
+        ".mov",
+        ".wmv",
+        ".flv",
+        ".webm",
+        ".m4v",
+        ".mpg",
+        ".mpeg",
+        ".3gp",
+    )
+    return not path.endswith(blocked_video_ext)
+
+
 def _clean_group_text(value):
     lowered = value.strip().lower()
     lowered = lowered.replace("&", " and ")
@@ -474,7 +504,7 @@ def parse_m3u(
         if 'tvg-logo="' in current_extinf:
             logo = current_extinf.split('tvg-logo="', 1)[1].split('"', 1)[0]
 
-        if channel_url.startswith("http"):
+        if is_channel_stream_url(channel_url):
             candidates.append(
                 {
                     "logo": logo,
@@ -520,7 +550,7 @@ def parse_existing_all_m3u(content):
         if 'tvg-logo="' in current_extinf:
             logo = current_extinf.split('tvg-logo="', 1)[1].split('"', 1)[0]
 
-        if channel_url.startswith("http"):
+        if is_channel_stream_url(channel_url):
             candidates.append(
                 {
                     "logo": logo,
