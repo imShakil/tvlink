@@ -34,6 +34,24 @@ def clean_channel_url(raw_url):
     return value
 
 
+def split_extinf_metadata_and_name(extinf_line):
+    """
+    Split an EXTINF line into metadata and channel name by the first comma
+    that is outside quoted segments.
+    """
+    in_quotes = False
+    for idx, ch in enumerate(extinf_line):
+        if ch == '"':
+            in_quotes = not in_quotes
+            continue
+        if ch == "," and not in_quotes:
+            metadata = extinf_line[:idx]
+            channel_name = extinf_line[idx + 1 :].strip()
+            return metadata, channel_name
+
+    return extinf_line, "Unknown"
+
+
 def dedupe_url_key(raw_url):
     """
     Build a stable dedupe key for stream URLs.
@@ -495,14 +513,14 @@ def parse_m3u(
             continue
 
         channel_url = clean_channel_url(line)
-        channel_name = current_extinf.split(",", 1)[-1].strip() if "," in current_extinf else "Unknown"
+        metadata, channel_name = split_extinf_metadata_and_name(current_extinf)
         group = ""
         logo = ""
 
-        if 'group-title="' in current_extinf:
-            group = current_extinf.split('group-title="', 1)[1].split('"', 1)[0]
-        if 'tvg-logo="' in current_extinf:
-            logo = current_extinf.split('tvg-logo="', 1)[1].split('"', 1)[0]
+        if 'group-title="' in metadata:
+            group = metadata.split('group-title="', 1)[1].split('"', 1)[0]
+        if 'tvg-logo="' in metadata:
+            logo = metadata.split('tvg-logo="', 1)[1].split('"', 1)[0]
 
         if is_channel_stream_url(channel_url):
             candidates.append(
@@ -541,14 +559,14 @@ def parse_existing_all_m3u(content):
             continue
 
         channel_url = clean_channel_url(line)
-        channel_name = current_extinf.split(",", 1)[-1].strip() if "," in current_extinf else "Unknown"
+        metadata, channel_name = split_extinf_metadata_and_name(current_extinf)
         group = ""
         logo = ""
 
-        if 'group-title="' in current_extinf:
-            group = current_extinf.split('group-title="', 1)[1].split('"', 1)[0]
-        if 'tvg-logo="' in current_extinf:
-            logo = current_extinf.split('tvg-logo="', 1)[1].split('"', 1)[0]
+        if 'group-title="' in metadata:
+            group = metadata.split('group-title="', 1)[1].split('"', 1)[0]
+        if 'tvg-logo="' in metadata:
+            logo = metadata.split('tvg-logo="', 1)[1].split('"', 1)[0]
 
         if is_channel_stream_url(channel_url):
             candidates.append(
