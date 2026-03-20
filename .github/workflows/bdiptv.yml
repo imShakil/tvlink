@@ -21,23 +21,76 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
 
-      - name: Build IPTV Playlist
+      - name: Restore Validation Cache
+        uses: actions/cache/restore@v4
+        with:
+          path: validation_cache.json
+          key: validation-cache-${{ github.ref_name }}-${{ github.run_id }}
+          restore-keys: |
+            validation-cache-${{ github.ref_name }}-
+            validation-cache-
+
+      - name: Build Prevalidation Playlist
         run: |
           python generate_playlist.py
         env:
           PLAYLIST_SOURCES: ${{ secrets.PLAYLIST_SOURCES }}
-          VALIDATE_STREAMS: ${{ vars.VALIDATE_STREAMS || 'true' }}
+          VALIDATE_STREAMS: "false"
           LIVENESS_WORKERS: ${{ vars.LIVENESS_WORKERS || '40' }}
           LIVENESS_TIMEOUT_SECONDS: ${{ vars.LIVENESS_TIMEOUT_SECONDS || '6' }}
+          LIVENESS_RETRIES: ${{ vars.LIVENESS_RETRIES || '1' }}
+          ENABLE_VALIDATION_CACHE: ${{ vars.ENABLE_VALIDATION_CACHE || 'true' }}
+          VALIDATION_CACHE_FILE: "validation_cache.json"
+          LIVE_TTL_HOURS: ${{ vars.LIVE_TTL_HOURS || '24' }}
+          DEAD_TTL_HOURS: ${{ vars.DEAD_TTL_HOURS || '6' }}
+          LIVENESS_LOG_FILE: "logs.txt"
+          SOURCE_PASSPHRASE: ${{ secrets.SOURCE_PASSPHRASE }}
+          OUTPUT_FILE: "prevalidation.m3u8"
+          ALL_OUTPUT_FILE: "all.m3u"
+
+      - name: Detect all.m3u Changes
+        id: all_changes
+        run: |
+          git add all.m3u
+          if git diff --cached --quiet -- all.m3u; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "all.m3u unchanged; skipping validation."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "all.m3u changed; validation will run."
+          fi
+
+      - name: Build Validated IPTV Playlist
+        if: steps.all_changes.outputs.changed == 'true' && (vars.VALIDATE_STREAMS || 'true') == 'true'
+        run: |
+          python generate_playlist.py
+        env:
+          VALIDATE_STREAMS: ${{ vars.VALIDATE_STREAMS || 'true' }}
+          VALIDATE_FROM_ALL_FILE: "all.m3u"
+          LIVENESS_WORKERS: ${{ vars.LIVENESS_WORKERS || '40' }}
+          LIVENESS_TIMEOUT_SECONDS: ${{ vars.LIVENESS_TIMEOUT_SECONDS || '6' }}
+          LIVENESS_RETRIES: ${{ vars.LIVENESS_RETRIES || '1' }}
+          ENABLE_VALIDATION_CACHE: ${{ vars.ENABLE_VALIDATION_CACHE || 'true' }}
+          VALIDATION_CACHE_FILE: "validation_cache.json"
+          LIVE_TTL_HOURS: ${{ vars.LIVE_TTL_HOURS || '48' }}
+          DEAD_TTL_HOURS: ${{ vars.DEAD_TTL_HOURS || '24' }}
           LIVENESS_LOG_FILE: "logs.txt"
           SOURCE_PASSPHRASE: ${{ secrets.SOURCE_PASSPHRASE }}
           OUTPUT_FILE: "iptv.m3u8"
-      
+
+      - name: Save Validation Cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: validation_cache.json
+          key: validation-cache-${{ github.ref_name }}-${{ github.run_id }}
+
       - name: Show Channels
+        if: steps.all_changes.outputs.changed == 'true' && (vars.VALIDATE_STREAMS || 'true') == 'true'
         run: cat iptv.m3u8
 
       - name: Show Liveness Logs
-        if: always()
+        if: always() && steps.all_changes.outputs.changed == 'true' && (vars.VALIDATE_STREAMS || 'true') == 'true'
         run: |
           if [ -f logs.txt ]; then
             echo "Liveness log entries: $(($(wc -l < logs.txt) - 1))"
@@ -47,7 +100,7 @@ jobs:
           fi
 
       - name: Upload Liveness Logs
-        if: always()
+        if: always() && steps.all_changes.outputs.changed == 'true' && (vars.VALIDATE_STREAMS || 'true') == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: liveness-logs
@@ -55,12 +108,13 @@ jobs:
           if-no-files-found: warn
       
       - name: Push Changes
+        if: steps.all_changes.outputs.changed == 'true'
         run: |
           set -x
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add iptv.m3u8
           git add all.m3u
+          git add iptv.m3u8
           
           if ! git diff --cached --quiet; then
             git commit -m "chore: iptv.m3u8 channels updated at [$(date -u '+%Y-%m-%d %H:%M UTC')]"

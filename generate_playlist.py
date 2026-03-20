@@ -240,14 +240,19 @@ def is_url_live(session, url, timeout_seconds=10, retries=3):
     }
 
 
-def validate_candidates(candidates, max_workers, timeout_seconds, log_file=""):
+def validate_candidates(candidates, max_workers, timeout_seconds, retries, log_file=""):
     if not candidates:
         return []
 
     def check(candidate):
         session = requests.Session()
         try:
-            return is_url_live(session, candidate["url"], timeout_seconds=timeout_seconds)
+            return is_url_live(
+                session,
+                candidate["url"],
+                timeout_seconds=timeout_seconds,
+                retries=retries,
+            )
         finally:
             session.close()
 
@@ -280,6 +285,144 @@ def validate_candidates(candidates, max_workers, timeout_seconds, log_file=""):
 
     # Combine accepted and potentially_live channels
     return accepted + potentially_live
+
+
+def load_validation_cache(cache_file):
+    if not cache_file:
+        return {}
+    if not os.path.exists(cache_file):
+        return {}
+    try:
+        with open(cache_file, "r", encoding="utf-8") as f:
+            raw = json.load(f)
+        if isinstance(raw, dict):
+            return raw
+    except (OSError, json.JSONDecodeError):
+        pass
+    return {}
+
+
+def save_validation_cache(cache_file, cache):
+    if not cache_file:
+        return
+    try:
+        with open(cache_file, "w", encoding="utf-8") as f:
+            json.dump(cache, f, separators=(",", ":"), sort_keys=True)
+    except OSError as err:
+        print(f"Failed to write validation cache {cache_file}: {err}")
+
+
+def _cache_is_fresh(entry, now_ts, live_ttl_seconds, dead_ttl_seconds):
+    checked_at = int(entry.get("checked_at", 0))
+    if checked_at <= 0:
+        return False
+    age = now_ts - checked_at
+    if age < 0:
+        return False
+    is_live = bool(entry.get("is_live", False))
+    ttl = live_ttl_seconds if is_live else dead_ttl_seconds
+    return age <= ttl
+
+
+def _candidate_from_cache(candidate, entry):
+    if entry.get("is_live", False):
+        return candidate
+    if entry.get("reason") == "request_exception":
+        new_candidate = candidate.copy()
+        new_candidate["group"] = (candidate.get("group", "") + "|potentially_live").strip("|")
+        return new_candidate
+    return None
+
+
+def validate_candidates_with_cache(
+    candidates,
+    max_workers,
+    timeout_seconds,
+    retries,
+    log_file="",
+    cache_file="",
+    enable_cache=False,
+    live_ttl_hours=24,
+    dead_ttl_hours=6,
+):
+    if not candidates:
+        return []
+
+    if not enable_cache:
+        return validate_candidates(candidates, max_workers, timeout_seconds, retries, log_file=log_file)
+
+    cache = load_validation_cache(cache_file)
+    now_ts = int(time.time())
+    live_ttl_seconds = max(0, int(live_ttl_hours)) * 3600
+    dead_ttl_seconds = max(0, int(dead_ttl_hours)) * 3600
+
+    accepted_from_cache = []
+    to_validate = []
+    for candidate in candidates:
+        key = dedupe_url_key(candidate["url"])
+        entry = cache.get(key)
+        if entry and _cache_is_fresh(entry, now_ts, live_ttl_seconds, dead_ttl_seconds):
+            cached_candidate = _candidate_from_cache(candidate, entry)
+            if cached_candidate is not None:
+                accepted_from_cache.append(cached_candidate)
+            continue
+        to_validate.append(candidate)
+
+    if log_file and to_validate:
+        with open(log_file, "w", encoding="utf-8") as f:
+            f.write("source_id\tchannel_name\turl\tresult\tstatus_code\treason\tattempts\terror\n")
+
+    validated = []
+    logs = []
+    if to_validate:
+        def check(candidate):
+            session = requests.Session()
+            try:
+                return is_url_live(
+                    session,
+                    candidate["url"],
+                    timeout_seconds=timeout_seconds,
+                    retries=retries,
+                )
+            finally:
+                session.close()
+
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            results = executor.map(check, to_validate)
+            for candidate, result in zip(to_validate, results):
+                key = dedupe_url_key(candidate["url"])
+                cache[key] = {
+                    "is_live": bool(result["is_live"]),
+                    "checked_at": now_ts,
+                    "reason": result.get("reason", ""),
+                }
+
+                if result["is_live"]:
+                    validated.append(candidate)
+                elif result["reason"] == "request_exception":
+                    new_candidate = candidate.copy()
+                    new_candidate["group"] = (candidate.get("group", "") + "|potentially_live").strip("|")
+                    validated.append(new_candidate)
+
+                if log_file:
+                    status_code = result["status_code"] if result["status_code"] is not None else "-"
+                    logs.append(
+                        (
+                            f'{candidate["source_label"]}\t{candidate["channel_name"]}\t{candidate["url"]}\t'
+                            f'{"LIVE" if result["is_live"] else "DEAD"}\t{status_code}\t{result["reason"]}\t'
+                            f'{result["attempts"]}\t{result["error"]}\n'
+                        )
+                    )
+
+    if log_file and logs:
+        with open(log_file, "a", encoding="utf-8") as f:
+            f.writelines(logs)
+
+    save_validation_cache(cache_file, cache)
+    print(
+        f"Validation cache reused {len(accepted_from_cache)} channels, checked {len(to_validate)} channels."
+    )
+    return accepted_from_cache + validated
 
 
 def load_source_content(session, source):
@@ -347,14 +490,65 @@ def parse_m3u(
     return candidates
 
 
+def parse_existing_all_m3u(content):
+    candidates = []
+    lines = [line.strip() for line in content.splitlines()]
+    current_extinf = None
+    current_source_label = "SRC-ID:UNKNOWN"
+
+    for line in lines:
+        if not line:
+            continue
+        if line.startswith("# Source:"):
+            current_source_label = line.replace("# Source:", "", 1).strip() or "SRC-ID:UNKNOWN"
+            continue
+        if line.startswith("#EXTINF:"):
+            current_extinf = line
+            continue
+        if line.startswith("#"):
+            continue
+        if current_extinf is None:
+            continue
+
+        channel_url = clean_channel_url(line)
+        channel_name = current_extinf.split(",", 1)[-1].strip() if "," in current_extinf else "Unknown"
+        group = ""
+        logo = ""
+
+        if 'group-title="' in current_extinf:
+            group = current_extinf.split('group-title="', 1)[1].split('"', 1)[0]
+        if 'tvg-logo="' in current_extinf:
+            logo = current_extinf.split('tvg-logo="', 1)[1].split('"', 1)[0]
+
+        if channel_url.startswith("http"):
+            candidates.append(
+                {
+                    "logo": logo,
+                    "group": group,
+                    "channel_name": channel_name,
+                    "url": channel_url,
+                    "source": "",
+                    "source_label": current_source_label,
+                }
+            )
+        current_extinf = None
+
+    return candidates
+
+
 def combine_playlists(
     sources,
     validate_streams=True,
     source_cipher_key="",
     liveness_workers=24,
     liveness_timeout_seconds=6,
+    liveness_retries=3,
     liveness_log_file="",
     prevalidation_output_file="all.m3u",
+    enable_validation_cache=False,
+    validation_cache_file="validation_cache.json",
+    live_ttl_hours=24,
+    dead_ttl_hours=6,
 ):
     combined = []
     seen = set()
@@ -390,15 +584,16 @@ def combine_playlists(
     if not validate_streams:
         return combined
 
-    if liveness_log_file:
-        with open(liveness_log_file, "w", encoding="utf-8") as f:
-            f.write("source_id\tchannel_name\turl\tresult\tstatus_code\treason\tattempts\terror\n")
-
-    validated = validate_candidates(
+    validated = validate_candidates_with_cache(
         combined,
         liveness_workers,
         liveness_timeout_seconds,
+        liveness_retries,
         log_file=liveness_log_file,
+        cache_file=validation_cache_file,
+        enable_cache=enable_validation_cache,
+        live_ttl_hours=live_ttl_hours,
+        dead_ttl_hours=dead_ttl_hours,
     )
     print(f"Validation accepted {len(validated)} / {len(combined)} channels.")
     return validated
@@ -491,26 +686,64 @@ if __name__ == "__main__":
     output_file = os.getenv("OUTPUT_FILE", "iptv.m3u8")
     liveness_workers = int(os.getenv("LIVENESS_WORKERS", "24"))
     liveness_timeout_seconds = int(os.getenv("LIVENESS_TIMEOUT_SECONDS", "6"))
+    liveness_retries = int(os.getenv("LIVENESS_RETRIES", "3"))
     liveness_log_file = os.getenv("LIVENESS_LOG_FILE", "liveness.log").strip()
+    enable_validation_cache = os.getenv("ENABLE_VALIDATION_CACHE", "true").lower() == "true"
+    validation_cache_file = os.getenv("VALIDATION_CACHE_FILE", "validation_cache.json").strip()
+    live_ttl_hours = int(os.getenv("LIVE_TTL_HOURS", "24"))
+    dead_ttl_hours = int(os.getenv("DEAD_TTL_HOURS", "6"))
     prevalidation_output_file = os.getenv("ALL_OUTPUT_FILE", "all.m3u").strip()
+    validate_from_all_file = os.getenv("VALIDATE_FROM_ALL_FILE", "").strip()
     group_normalization_file = os.getenv("GROUP_NORMALIZATION_FILE", "group_normalization.json").strip()
     group_rules = load_group_normalization_rules(group_normalization_file)
 
-    sources = parse_sources(raw_sources)
-    if not sources:
-        raise SystemExit("No playlist sources found in PLAYLIST_SOURCES.")
     if not source_cipher_key:
         raise SystemExit("SOURCE_PASSPHRASE is required.")
 
-    combined_playlist = combine_playlists(
-        sources,
-        validate_streams=validate_streams,
-        source_cipher_key=source_cipher_key,
-        liveness_workers=liveness_workers,
-        liveness_timeout_seconds=liveness_timeout_seconds,
-        liveness_log_file=liveness_log_file,
-        prevalidation_output_file=prevalidation_output_file,
-    )
+    if validate_from_all_file:
+        try:
+            with open(validate_from_all_file, "r", encoding="utf-8") as f:
+                all_content = f.read()
+        except OSError as err:
+            raise SystemExit(f"Failed to read VALIDATE_FROM_ALL_FILE: {validate_from_all_file} ({err})")
+
+        combined_playlist = parse_existing_all_m3u(all_content)
+        print(
+            f"Loaded {len(combined_playlist)} channels from {validate_from_all_file} for validation-only mode."
+        )
+
+        if validate_streams:
+            combined_playlist = validate_candidates_with_cache(
+                combined_playlist,
+                liveness_workers,
+                liveness_timeout_seconds,
+                liveness_retries,
+                log_file=liveness_log_file,
+                cache_file=validation_cache_file,
+                enable_cache=enable_validation_cache,
+                live_ttl_hours=live_ttl_hours,
+                dead_ttl_hours=dead_ttl_hours,
+            )
+            print(f"Validation accepted {len(combined_playlist)} channels from {validate_from_all_file}.")
+    else:
+        sources = parse_sources(raw_sources)
+        if not sources:
+            raise SystemExit("No playlist sources found in PLAYLIST_SOURCES.")
+        combined_playlist = combine_playlists(
+            sources,
+            validate_streams=validate_streams,
+            source_cipher_key=source_cipher_key,
+            liveness_workers=liveness_workers,
+            liveness_timeout_seconds=liveness_timeout_seconds,
+            liveness_retries=liveness_retries,
+            liveness_log_file=liveness_log_file,
+            prevalidation_output_file=prevalidation_output_file,
+            enable_validation_cache=enable_validation_cache,
+            validation_cache_file=validation_cache_file,
+            live_ttl_hours=live_ttl_hours,
+            dead_ttl_hours=dead_ttl_hours,
+        )
+
     write_to_file(combined_playlist, output_file, normalize_groups=True, group_rules=group_rules)
 
     print(f"Combined playlist written to {output_file} with {len(combined_playlist)} channels.")
