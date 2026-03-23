@@ -2,7 +2,7 @@ name: Update Stream Tokens
 
 on:
   schedule:
-    - cron: '0 */2 * * *'   # Every 2 hours
+    - cron: '0 */3 * * *'   # Every 3 hours
   workflow_dispatch:          # Allow manual trigger
 
 permissions:
@@ -53,3 +53,32 @@ jobs:
           echo "| ❌ Failed  | $FAILED |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "Last run: $(date -u '+%Y-%m-%d %H:%M UTC')" >> $GITHUB_STEP_SUMMARY
+
+  remove_token_channels:
+    runs-on: ubuntu-latest
+    needs: update-tokens
+    if: failure()  # Only run if self-hosted update-tokens job fails
+    env:
+      JSON_FILE: "features.json"
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      - name: Remove token-based channels
+        run: |
+          jq 'if .channels then .channels |= map(select((.source | test("103.89.248|bdiptv") | not)) ) else . end' "$JSON_FILE" > filtered.json
+          mv filtered.json "$JSON_FILE"
+
+      - name: Commit removal of token-based channels
+        run: |
+          set -x
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git config --local commit.gpgsign false
+          git add $JSON_FILE
+          if git diff --cached --quiet; then
+            echo "No token-based channels to remove."
+          else
+            git commit -m "chore: remove token-based channels after update failure [$(date -u '+%Y-%m-%d %H:%M UTC')]"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
