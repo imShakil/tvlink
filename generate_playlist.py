@@ -501,6 +501,25 @@ def parse_m3u(
     current_extinf = None
     source_label = encrypted_label(source_name, source_cipher_key)
 
+    # Map of known sports channel keywords to proper names
+    sports_channel_keywords = {
+        "willow": "Willow",
+        "tsports": "T Sports",
+        "ptv": "PTV Sports",
+        "nagorik": "Nagorik TV",
+        "sharq": "Sharq Game TV",
+        "premierleagpl": "Premier League",
+        # Add more as needed
+    }
+    generic_sports_groups = {"sports", "live sports", "sport", "live sport"}
+
+    def extract_sports_channel_name_from_url(url):
+        url_lower = url.lower()
+        for keyword, proper_name in sports_channel_keywords.items():
+            if keyword in url_lower:
+                return proper_name
+        return None
+
     for line in lines:
         if not line:
             continue
@@ -521,6 +540,14 @@ def parse_m3u(
             group = metadata.split('group-title="', 1)[1].split('"', 1)[0]
         if 'tvg-logo="' in metadata:
             logo = metadata.split('tvg-logo="', 1)[1].split('"', 1)[0]
+
+        # If group is generic sports and channel name is generic, try to extract from URL
+        if group.strip().lower() in generic_sports_groups:
+            # If channel_name is generic (e.g., contains 'live', 'sports', etc.)
+            if channel_name.strip().lower() in generic_sports_groups or channel_name.strip().lower() == "live sports":
+                detected = extract_sports_channel_name_from_url(channel_url)
+                if detected:
+                    channel_name = detected
 
         if is_channel_stream_url(channel_url):
             candidates.append(
