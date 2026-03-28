@@ -134,6 +134,7 @@ Join our Telegram community for updates, new IPTV links, and discussions:
 
 If you like this project:
 
+* ❤️ [SmartLink Support](https://spreadpreferencetelevision.com/wd2ty9hdks?key=3e4233c2961536215d9a80e154be33b9)
 * ⭐ Star the repository
 * 🔄 Share it with others
 * 🐞 Report broken links
