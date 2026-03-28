@@ -1,24 +1,6 @@
 {
     "channels": [
         {
-            "id": "custom-channel-1",
-            "name": "Sample Sports HD",
-            "logo": "https://dummyimage.com/256x256/1f5f7a/ffffff.png&text=Sports",
-            "type": "m3u8",
-            "source": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
-            "category": "Sports",
-            "language": "en"
-        },
-        {
-            "id": "custom-channel-2",
-            "name": "Sample News Embed",
-            "logo": "https://dummyimage.com/256x256/1f7a54/ffffff.png&text=News",
-            "type": "iframe",
-            "source": "https://www.youtube.com/embed/21X5lGlDOfg",
-            "category": "News",
-            "language": "en"
-        },
-        {
             "id": "psl-2026",
             "name": "PSL 2026",
             "logo": "https://upload.wikimedia.org/wikipedia/en/3/39/PSL_11_Logo.jpg",
@@ -39,9 +21,18 @@
         {
             "id": "ipl-2026",
             "name": "IPL 2026",
-            "logo": "https://1000logos.net/wp-content/uploads/2022/08/IPL-sponsorship-Logo-2022.png",
+            "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/8/84/Indian_Premier_League_Official_Logo.svg/500px-Indian_Premier_League_Official_Logo.svg.png",
             "type": "m3u8",
             "source": "http://198.195.239.50:8095/WiLLow/index.m3u8",
+            "category": "featured",
+            "language": "en"
+        },
+        {
+            "id": "custom-channel-1",
+            "name": "Sample Sports",
+            "logo": "https://dummyimage.com/256x256/1f5f7a/ffffff.png&text=Sports",
+            "type": "m3u8",
+            "source": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
             "category": "featured",
             "language": "en"
         }
