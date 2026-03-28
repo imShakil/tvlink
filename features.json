@@ -26,6 +26,15 @@
             "source": "http://198.195.239.50:8095/Tsports/tracks-v1a1/mono.m3u8",
             "category": "featured",
             "language": "en"
+        },
+        {
+            "id": "psl-2026-2",
+            "name": "PSL 2026",
+            "logo": "https://upload.wikimedia.org/wikipedia/en/3/39/PSL_11_Logo.jpg",
+            "type": "m3u8",
+            "source": "http://198.195.239.50:8095/PTV-kutta/video.m3u8",
+            "category": "featured",
+            "language": "en"
         }
     ]
 }
