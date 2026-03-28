@@ -35,6 +35,15 @@
             "source": "http://198.195.239.50:8095/PTV-kutta/video.m3u8",
             "category": "featured",
             "language": "en"
+        },
+        {
+            "id": "ipl-2026",
+            "name": "IPL 2026",
+            "logo": "https://1000logos.net/wp-content/uploads/2022/08/IPL-sponsorship-Logo-2022.png",
+            "type": "m3u8",
+            "source": "http://198.195.239.50:8095/WiLLow/index.m3u8",
+            "category": "featured",
+            "language": "en"
         }
     ]
 }
