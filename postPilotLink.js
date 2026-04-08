@@ -29,6 +29,21 @@
     return result;
   }
 
+  function normalizeUrl(value) {
+    var raw = (value || '').trim();
+    if (!raw) return '';
+
+    if (/^https?:\/\//i.test(raw)) return raw;
+    if (/^\/\//.test(raw)) return 'https:' + raw;
+
+    // Accept protocol-less domains like "example.com/path".
+    if (/^[a-z0-9.-]+\.[a-z]{2,}(?::\d+)?(?:\/|$)/i.test(raw)) {
+      return 'https://' + raw;
+    }
+
+    return '';
+  }
+
   function injectStyles() {
     if (document.getElementById('locker-styles')) return;
     var style = document.createElement('style');
@@ -238,12 +253,11 @@ function scanAndInit() {
 
     var decrypted = '';
     try {
-      if (/^https?:\/\//i.test(encrypted)) {
-        decrypted = encrypted;
+      if (/^https?:\/\//i.test(encrypted) || /^\/\//.test(encrypted) || /^[a-z0-9.-]+\.[a-z]{2,}(?::\d+)?(?:\/|$)/i.test(encrypted)) {
+        decrypted = normalizeUrl(encrypted);
       } else {
-        decrypted = xorDecrypt(encrypted, SECRET_KEY);
+        decrypted = normalizeUrl(xorDecrypt(encrypted, SECRET_KEY));
       }
-      if (!decrypted.startsWith('http')) decrypted = '';
     } catch(e) { decrypted = ''; }
 
     if (!decrypted) {
