@@ -44,6 +44,8 @@
       '.locker-btn:disabled{background:#b2bec3;cursor:not-allowed;}',
       '.locker-btn-success{background:#00b894;}',
       '.locker-warning{display:none;background:#fff9db;color:#e67e22;padding:8px;border-radius:6px;font-size:11px;font-weight:bold;border:1px solid #ffe066;margin-top:10px;}',
+      '.locker-inline-msg{display:none;background:#fff4f4;color:#d63031;padding:8px;border-radius:6px;font-size:11px;font-weight:700;border:1px solid #ffcccc;margin-top:10px;}',
+      '.locker-placeholder{color:#636e72;font-size:13px;}',
     ].join('');
     document.head.appendChild(style);
   }
@@ -59,6 +61,7 @@
           '<h3>Link Encrypted</h3>' +
           '<p>Unlock with Premium Ad Verification.</p>' +
           '<button class="locker-btn lk-btn-start">UNLOCK NOW</button>' +
+          '<div class="locker-inline-msg lk-inline-msg"></div>' +
         '</div>' +
 
         // Step 2: Progress
@@ -90,6 +93,7 @@
     var percentText = target.querySelector('.lk-percent');
     var statusMsg   = target.querySelector('.lk-status');
     var warningBox  = target.querySelector('.lk-warning');
+    var inlineMsg   = target.querySelector('.lk-inline-msg');
     var btnStart    = target.querySelector('.lk-btn-start');
     var btnCopy     = target.querySelector('.lk-btn-copy');
 
@@ -101,12 +105,19 @@
     btnStart.addEventListener('click', function() {
       if (started) return;
       started = true;
+      if (inlineMsg) {
+        inlineMsg.style.display = 'none';
+        inlineMsg.textContent = '';
+      }
 
       var randomLink = adList[Math.floor(Math.random() * adList.length)];
       adWindow = window.open(randomLink, '_blank');
 
       if (!adWindow) {
-        alert("Please allow popups to proceed!");
+        if (inlineMsg) {
+          inlineMsg.style.display = 'block';
+          inlineMsg.textContent = 'Popup blocked. Please allow popups and click unlock again.';
+        }
         started = false;
         return;
       }
@@ -176,25 +187,46 @@
 
   // ── Scan for locker divs and init ──
 function scanAndInit() {
-  var nodes = document.querySelectorAll('#unlock-link');
-  nodes.forEach(function(node) {
+  var list = Array.prototype.slice.call(
+    document.querySelectorAll('#unlock-link, .unlock-link, [data-unlock-link]')
+  );
+
+  list.forEach(function(node) {
     // Skip only if already fully rendered
     if (node.getAttribute('data-locker-init') === 'true') return;
 
-    var encrypted = node.textContent.trim();
-    if (!encrypted) return; // empty — do NOT stamp, let observer retry
+    var encrypted = (
+      node.getAttribute('data-encrypted') ||
+      node.getAttribute('data-token') ||
+      node.getAttribute('data-url') ||
+      node.textContent ||
+      ''
+    ).trim();
+    if (!encrypted) {
+      // Show placeholder while waiting for payload injection.
+      if (!node.querySelector('.locker-box')) {
+        node.style.display = 'block';
+        node.innerHTML = '<div class="locker-box"><div class="locker-placeholder">Preparing secure link...</div></div>';
+      }
+      return;
+    }
 
     // Only stamp here, after we confirmed content exists
     node.setAttribute('data-locker-init', 'true');
 
     var decrypted = '';
     try {
-      decrypted = xorDecrypt(encrypted, SECRET_KEY);
+      if (/^https?:\/\//i.test(encrypted)) {
+        decrypted = encrypted;
+      } else {
+        decrypted = xorDecrypt(encrypted, SECRET_KEY);
+      }
       if (!decrypted.startsWith('http')) decrypted = '';
     } catch(e) { decrypted = ''; }
 
     if (!decrypted) {
-      node.style.display = 'none';
+      node.style.display = 'block';
+      node.innerHTML = '<div class="locker-box"><h3>Link Unavailable</h3><p>Unlock payload is missing or invalid. Please refresh the page.</p></div>';
       return;
     }
 
