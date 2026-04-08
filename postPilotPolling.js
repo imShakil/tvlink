@@ -814,13 +814,14 @@
 function scanAndInit() {
   var nodes = document.querySelectorAll('#unlock-link');
   nodes.forEach(function(node) {
-    // Skip only if already initialized AND has been rendered (not empty)
-    if (node.getAttribute('data-locker-init') === 'true' && node.children.length > 0) return;
-    
-    node.setAttribute('data-locker-init', 'true');
+    // Skip only if already fully rendered
+    if (node.getAttribute('data-locker-init') === 'true') return;
 
     var encrypted = node.textContent.trim();
-    if (!encrypted) return;  // still empty, wait for MutationObserver
+    if (!encrypted) return; // empty — do NOT stamp, let observer retry
+
+    // Only stamp here, after we confirmed content exists
+    node.setAttribute('data-locker-init', 'true');
 
     var decrypted = '';
     try {
@@ -838,19 +839,17 @@ function scanAndInit() {
   });
 }
 
-  function init() {
-    injectStyles();
+function init() {
+  injectStyles();
+  scanAndInit();
+  
+  new MutationObserver(function() {
     scanAndInit();
-    // Watch for dynamically loaded posts
-    new MutationObserver(function() {
-      scanAndInit();
-    }).observe(document.body, { childList: true, subtree: true });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  }).observe(document.body, { 
+    childList: true, 
+    subtree: true,
+    characterData: true  // ← ADD THIS — catches text content changes
+  });
+}
 
 })();
