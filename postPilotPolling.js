@@ -811,30 +811,32 @@
   }
 
   // ── Scan for locker divs and init ──
-  function scanAndInit() {
-    var nodes = document.querySelectorAll('#unlock-link');
-    nodes.forEach(function(node) {
-      if (node.getAttribute('data-locker-init') === 'true') return;
-      node.setAttribute('data-locker-init', 'true');
+function scanAndInit() {
+  var nodes = document.querySelectorAll('#unlock-link');
+  nodes.forEach(function(node) {
+    // Skip only if already initialized AND has been rendered (not empty)
+    if (node.getAttribute('data-locker-init') === 'true' && node.children.length > 0) return;
+    
+    node.setAttribute('data-locker-init', 'true');
 
-      var encrypted = node.textContent.trim();
-      if (!encrypted) return;
+    var encrypted = node.textContent.trim();
+    if (!encrypted) return;  // still empty, wait for MutationObserver
 
-      var decrypted = '';
-      try {
-        decrypted = xorDecrypt(encrypted, SECRET_KEY);
-        if (!decrypted.startsWith('http')) decrypted = '';
-      } catch(e) { decrypted = ''; }
+    var decrypted = '';
+    try {
+      decrypted = xorDecrypt(encrypted, SECRET_KEY);
+      if (!decrypted.startsWith('http')) decrypted = '';
+    } catch(e) { decrypted = ''; }
 
-      if (!decrypted) {
-        node.style.display = 'none';
-        return;
-      }
+    if (!decrypted) {
+      node.style.display = 'none';
+      return;
+    }
 
-      node.textContent = '';
-      renderLocker(node, decrypted);
-    });
-  }
+    node.textContent = '';
+    renderLocker(node, decrypted);
+  });
+}
 
   function init() {
     injectStyles();
