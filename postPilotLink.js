@@ -44,6 +44,33 @@
     return '';
   }
 
+  function extractUrlLike(value) {
+    var raw = (value || '').trim();
+    if (!raw) return '';
+
+    var m = raw.match(/https?:\/\/[^\s"'<>]+|\/\/[^\s"'<>]+|[a-z0-9.-]+\.[a-z]{2,}(?::\d+)?\/[^\s"'<>]+/i);
+    return m ? m[0] : '';
+  }
+
+  function extractHexPayload(value) {
+    var raw = (value || '').trim();
+    if (!raw) return '';
+
+    var compact = raw.replace(/\s+/g, '');
+    if (/^[0-9a-f]+$/i.test(compact) && compact.length >= 16 && compact.length % 2 === 0) {
+      return compact;
+    }
+
+    var m = compact.match(/[0-9a-f]{16,}/ig);
+    if (!m) return '';
+
+    for (var i = 0; i < m.length; i++) {
+      if (m[i].length % 2 === 0) return m[i];
+    }
+
+    return '';
+  }
+
   function injectStyles() {
     if (document.getElementById('locker-styles')) return;
     var style = document.createElement('style');
@@ -207,9 +234,6 @@
       if (existingHost) return existingHost;
     }
 
-    var tag = (node.tagName || '').toUpperCase();
-    if (tag === 'DIV') return node;
-
     var host = document.createElement('div');
     var hostId = 'unlock-link-host-' + Math.random().toString(36).slice(2, 10);
     host.id = hostId;
@@ -231,6 +255,9 @@ function scanAndInit() {
 
   list.forEach(function(node) {
     var host = getOrCreateRenderHost(node);
+    if (host !== node) {
+      node.style.display = 'none';
+    }
 
     // Skip only if already fully rendered
     if (host.getAttribute('data-locker-init') === 'true') return;
@@ -253,17 +280,21 @@ function scanAndInit() {
 
     var decrypted = '';
     try {
-      if (/^https?:\/\//i.test(encrypted) || /^\/\//.test(encrypted) || /^[a-z0-9.-]+\.[a-z]{2,}(?::\d+)?(?:\/|$)/i.test(encrypted)) {
-        decrypted = normalizeUrl(encrypted);
+      var directUrl = normalizeUrl(encrypted) || normalizeUrl(extractUrlLike(encrypted));
+      if (directUrl) {
+        decrypted = directUrl;
       } else {
-        decrypted = normalizeUrl(xorDecrypt(encrypted, SECRET_KEY));
+        var hexPayload = extractHexPayload(encrypted);
+        if (hexPayload) {
+          decrypted = normalizeUrl(xorDecrypt(hexPayload, SECRET_KEY));
+        }
       }
     } catch(e) { decrypted = ''; }
 
     if (!decrypted) {
       host.style.display = 'block';
       host.innerHTML = '<div class="locker-box"><h3>Link Unavailable</h3><p>Unlock payload is missing or invalid. Please refresh the page.</p></div>';
-      host.setAttribute('data-locker-init', 'true');
+      host.removeAttribute('data-locker-init');
       return;
     }
 
