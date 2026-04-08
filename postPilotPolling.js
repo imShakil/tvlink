@@ -5,7 +5,7 @@
  *
  * Marker div formats:
  *   Movie/Series: <div id="poll-tmdb-12345" data-type="rating" data-title="Movie Name"></div>
- *   Sports Event: <div id="poll-event-2337375" data-type="vote" data-team-a="Liverpool" data-team-b="Man City" data-league="FA Cup"></div>
+ *   Sports Event: <div id="poll-event-2337375" data-type="vote" data-team-a="Liverpool" data-team-b="Man City" data-league="FA Cup" data-event-time="2026-04-08T17:30:00Z"></div>
  *
  * Drop this script anywhere in your Blogspot theme (before </body>).
  */
@@ -15,6 +15,7 @@
 
   const API = "https://daily-sports-events.mhshakil555.workers.dev";
   const STORAGE_KEY = "dp_poll_votes"; // localStorage key for voted poll IDs
+  const VOTE_WINDOW_MS = 24 * 60 * 60 * 1000; // sports vote polls are open for 24h
 
   // ── Styles ────────────────────────────────────────────────────────────────
 
@@ -196,6 +197,11 @@
   margin-top: 12px;
   text-align: center;
 }
+.dp-closed-note {
+  font-size: 12px;
+  color: #a5a5a5;
+  margin-bottom: 12px;
+}
 
 /* ── States ── */
 .dp-poll-loading {
@@ -300,6 +306,53 @@
   function pct(count, total) {
     if (!total) return 0;
     return Math.round((count / total) * 100);
+  }
+
+  function parseTimestamp(value) {
+    if (!value) return null;
+    const t = Date.parse(String(value));
+    return Number.isFinite(t) ? t : null;
+  }
+
+  function getPagePublishedTs() {
+    const selectors = [
+      'meta[property="article:published_time"]',
+      'meta[name="pubdate"]',
+      'meta[itemprop="datePublished"]',
+      'time[datetime]'
+    ];
+
+    for (const selector of selectors) {
+      const el = document.querySelector(selector);
+      if (!el) continue;
+      const raw = el.getAttribute("content") || el.getAttribute("datetime") || "";
+      const ts = parseTimestamp(raw);
+      if (ts) return ts;
+    }
+
+    return null;
+  }
+
+  function getVotePollStartTs(el) {
+    const candidates = [
+      el.dataset.pollTs,
+      el.dataset.ts,
+      el.dataset.eventTime,
+      el.dataset.date,
+      el.dataset.publishedAt
+    ];
+
+    for (const raw of candidates) {
+      const ts = parseTimestamp(raw);
+      if (ts) return ts;
+    }
+
+    return getPagePublishedTs();
+  }
+
+  function isVotePollExpired(startTs) {
+    if (!startTs) return false;
+    return Date.now() - startTs >= VOTE_WINDOW_MS;
   }
 
   // ── Rating widget ─────────────────────────────────────────────────────────
@@ -454,23 +507,26 @@
 
   // ── Vote widget ───────────────────────────────────────────────────────────
 
-  function buildVoteWidget(container, pollId, teamA, teamB, league) {
+  function buildVoteWidget(container, pollId, teamA, teamB, league, options = {}) {
+    const expired = Boolean(options.expired);
     const voted = hasVoted(pollId);
     const userVote = getUserVote(pollId);
+    const interactive = !expired && !voted;
 
     container.innerHTML = `
       <div class="dp-poll-badge">
         <svg viewBox="0 0 24 24" style="fill:#ff6b35"><path d="M18 3a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m-6 4L6.62 9.28A2 2 0 0 0 6 11v5h2v6h4v-6h2l-1-5m-1-2a2 2 0 0 0-2 2 2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2Z"/></svg>
-        Who wins?
+        ${expired ? "Voting Closed" : "Who wins?"}
       </div>
       <div class="dp-poll-title">Match Prediction</div>
       ${league ? `<div class="dp-league-tag">🏆 ${escHtml(league)}</div>` : ""}
+      ${expired ? `<div class="dp-closed-note">This poll is closed after 24 hours.</div>` : ""}
       <div class="dp-teams">
-        <button class="dp-team-btn${userVote === "a" ? " selected-a" : ""}" id="${pollId}-btn-a" ${voted ? "disabled" : ""}>
+        <button class="dp-team-btn${userVote === "a" ? " selected-a" : ""}" id="${pollId}-btn-a" ${interactive ? "" : "disabled"}>
           ${escHtml(teamA)}
         </button>
         <div class="dp-vs">VS</div>
-        <button class="dp-team-btn${userVote === "b" ? " selected-b" : ""}" id="${pollId}-btn-b" ${voted ? "disabled" : ""}>
+        <button class="dp-team-btn${userVote === "b" ? " selected-b" : ""}" id="${pollId}-btn-b" ${interactive ? "" : "disabled"}>
           ${escHtml(teamB)}
         </button>
       </div>
@@ -492,13 +548,13 @@
         renderVoteResults(barsEl, totalEl, poll, teamA, teamB, value);
         showVotedCheck(container, `Voted for ${value === "a" ? teamA : teamB}`);
       } catch {
-        btnA.disabled = voted;
-        btnB.disabled = voted;
+        btnA.disabled = !interactive;
+        btnB.disabled = !interactive;
         showError(container, "Failed to submit — please try again.");
       }
     }
 
-    if (!voted) {
+    if (interactive) {
       btnA.addEventListener("click", () => castVote("a"));
       btnB.addEventListener("click", () => castVote("b"));
     }
@@ -577,7 +633,7 @@
   function scan() {
     // Rating polls: <div id="poll-tmdb-{id}" data-type="rating" data-title="..."></div>
     //               <div id="poll-series-{id}" data-type="rating" data-title="..."></div>
-    // Vote polls:   <div id="poll-event-{id}" data-type="vote" data-team-a="..." data-team-b="..." data-league="..."></div>
+    // Vote polls:   <div id="poll-event-{id}" data-type="vote" data-team-a="..." data-team-b="..." data-league="..." data-event-time="..."></div>
 
     const markers = document.querySelectorAll('[id^="poll-"]');
     if (!markers.length) return;
@@ -604,7 +660,9 @@
         const teamA = el.dataset.teamA || "Team A";
         const teamB = el.dataset.teamB || "Team B";
         const league = el.dataset.league || "";
-        buildVoteWidget(el, pollId, teamA, teamB, league);
+        const startTs = getVotePollStartTs(el);
+        const expired = isVotePollExpired(startTs);
+        buildVoteWidget(el, pollId, teamA, teamB, league, { expired });
 
       } else {
         // Unknown type — hide silently
