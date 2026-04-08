@@ -185,15 +185,40 @@
     });
   }
 
+  function getOrCreateRenderHost(node) {
+    var existingHostId = node.getAttribute('data-locker-host-id');
+    if (existingHostId) {
+      var existingHost = document.getElementById(existingHostId);
+      if (existingHost) return existingHost;
+    }
+
+    var tag = (node.tagName || '').toUpperCase();
+    if (tag === 'DIV') return node;
+
+    var host = document.createElement('div');
+    var hostId = 'unlock-link-host-' + Math.random().toString(36).slice(2, 10);
+    host.id = hostId;
+    host.className = 'unlock-link-host';
+
+    if (node.parentNode) {
+      node.parentNode.insertBefore(host, node.nextSibling);
+    }
+
+    node.setAttribute('data-locker-host-id', hostId);
+    return host;
+  }
+
   // ── Scan for locker divs and init ──
 function scanAndInit() {
   var list = Array.prototype.slice.call(
-    document.querySelectorAll('#unlock-link, .unlock-link, [data-unlock-link]')
+    document.querySelectorAll('#unlock-link, [id*="unlock-link"], .unlock-link, [data-unlock-link]')
   );
 
   list.forEach(function(node) {
+    var host = getOrCreateRenderHost(node);
+
     // Skip only if already fully rendered
-    if (node.getAttribute('data-locker-init') === 'true') return;
+    if (host.getAttribute('data-locker-init') === 'true') return;
 
     var encrypted = (
       node.getAttribute('data-encrypted') ||
@@ -203,16 +228,13 @@ function scanAndInit() {
       ''
     ).trim();
     if (!encrypted) {
-      // Show placeholder while waiting for payload injection.
-      if (!node.querySelector('.locker-box')) {
-        node.style.display = 'block';
-        node.innerHTML = '<div class="locker-box"><div class="locker-placeholder">Preparing secure link...</div></div>';
+      // Show placeholder while waiting for payload injection without mutating marker content.
+      if (!host.querySelector('.locker-box')) {
+        host.style.display = 'block';
+        host.innerHTML = '<div class="locker-box"><div class="locker-placeholder">Preparing secure link...</div></div>';
       }
       return;
     }
-
-    // Only stamp here, after we confirmed content exists
-    node.setAttribute('data-locker-init', 'true');
 
     var decrypted = '';
     try {
@@ -225,13 +247,20 @@ function scanAndInit() {
     } catch(e) { decrypted = ''; }
 
     if (!decrypted) {
-      node.style.display = 'block';
-      node.innerHTML = '<div class="locker-box"><h3>Link Unavailable</h3><p>Unlock payload is missing or invalid. Please refresh the page.</p></div>';
+      host.style.display = 'block';
+      host.innerHTML = '<div class="locker-box"><h3>Link Unavailable</h3><p>Unlock payload is missing or invalid. Please refresh the page.</p></div>';
+      host.setAttribute('data-locker-init', 'true');
       return;
     }
 
-    node.textContent = '';
-    renderLocker(node, decrypted);
+    try {
+      renderLocker(host, decrypted);
+      host.setAttribute('data-locker-init', 'true');
+    } catch (e) {
+      host.style.display = 'block';
+      host.innerHTML = '<div class="locker-box"><h3>Link Unavailable</h3><p>Failed to render unlock layout. Please refresh the page.</p></div>';
+      host.setAttribute('data-locker-init', 'true');
+    }
   });
 }
 
