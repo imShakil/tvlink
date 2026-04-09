@@ -9,7 +9,7 @@
 
   var SECRET_KEY = "XP_DekhoPrimeBlog2027";
 
-  var WAIT_TIME = 20;
+  var WAIT_TIME = 15;
 
   var statusTexts = [
     "Syncing Node...",
