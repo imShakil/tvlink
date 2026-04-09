@@ -2,10 +2,9 @@
 
 (function() {
   var adList = [
-    "https://spreadpreferencetelevision.com/wd2ty9hdks?key=3e4233c2961536215d9a80e154be33b9",
     "https://spreadpreferencetelevision.com/tba2ybi8y?key=e9181f1e0055b64f2438c9cf18ca8880",
-    "https://spreadpreferencetelevision.com/varcnk2z?key=25e685626a3523b38c951f6afb1341e6",
     "https://spreadpreferencetelevision.com/x2fusvgn?key=2531ef9b0b688c0f6205ee45da3c50de",
+    "https://spreadpreferencetelevision.com/tba2ybi8y?key=e9181f1e0055b64f2438c9cf18ca8880"
   ];
 
   var SECRET_KEY = "XP_DekhoPrimeBlog2027";
