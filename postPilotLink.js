@@ -8,7 +8,7 @@
   ];
 
   var SECRET_KEY = "XP_DekhoPrimeBlog2027";
-  var WAIT_TIME = 20;
+  var WAIT_TIME = 15;
   var MARKER_SELECTOR = '#unlock-link, .unlock-link, [data-unlock-link], [id*="unlock-link"]:not([id^="unlock-link-host-"])';
   var scanScheduled = false;
   var initialized = false;
@@ -91,7 +91,7 @@
         '<div class="lk-start">' +
           '<div style="font-size:32px;margin-bottom:8px;">&#128274;</div>' +
           '<h3>Link Encrypted</h3>' +
-          '<p>Unlock with Premium Ad Verification.</p>' +
+          '<p>Unlock with 15-second ad verification.</p>' +
           '<button class="locker-btn lk-btn-start">UNLOCK NOW</button>' +
           '<div class="locker-inline-msg lk-inline-msg"></div>' +
         '</div>' +
