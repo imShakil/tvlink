@@ -1,35 +1,48 @@
 /**
- * PostPilot Poll Widget
- * Renders rating polls (movies/series) and vote polls (sports events)
- * from marker divs injected by PostPilot autopilot.
+ * PostPilot Poll Widget — fixed
  *
- * Marker div formats:
+ * Fixes applied:
+ *  1. Vote poll 24h expiry now works correctly:
+ *     - Uses data-event-time (match kickoff) as the clock start
+ *     - Falls back to data-poll-ts / data-ts / data-date attributes
+ *     - No longer falls back to page publish date (caused instant expiry on new posts)
+ *     - When no timestamp is present the poll stays open (safe default)
+ *  2. Full mobile-responsive redesign:
+ *     - Fluid widths, rem-based spacing, clamp() font sizes
+ *     - Team button grid stacks on very narrow screens
+ *     - Bar labels truncate cleanly instead of overflowing
+ *     - Touch target sizes meet 44px minimum
+ *
+ * Marker div formats (unchanged):
  *   Movie/Series: <div id="poll-tmdb-12345" data-type="rating" data-title="Movie Name"></div>
- *   Sports Event: <div id="poll-event-2337375" data-type="vote" data-team-a="Liverpool" data-team-b="Man City" data-league="FA Cup" data-event-time="2026-04-08T17:30:00Z"></div>
- *
- * Drop this script anywhere in your Blogspot theme (before </body>).
+ *   Sports Event: <div id="poll-event-2337375" data-type="vote"
+ *                      data-team-a="Liverpool" data-team-b="Man City"
+ *                      data-league="FA Cup"
+ *                      data-event-time="2026-04-08T17:30:00Z"></div>
  */
 
 (function () {
   "use strict";
 
   const API = "https://daily-sports-events.mhshakil555.workers.dev";
-  const STORAGE_KEY = "dp_poll_votes"; // localStorage key for voted poll IDs
-  const VOTE_WINDOW_MS = 24 * 60 * 60 * 1000; // sports vote polls are open for 24h
+  const STORAGE_KEY = "dp_poll_votes";
+  const VOTE_WINDOW_MS = 24 * 60 * 60 * 1000; // 24 hours in ms
 
   // ── Styles ────────────────────────────────────────────────────────────────
 
   const CSS = `
+/* Container */
 .dp-poll {
   font-family: inherit;
   background: #1a1a2e;
   border: 1px solid #2d2d4e;
   border-radius: 14px;
-  padding: 22px 24px 20px;
-  margin: 28px 0;
+  padding: clamp(14px, 4vw, 22px) clamp(14px, 4vw, 24px) clamp(12px, 3vw, 20px);
+  margin: clamp(16px, 4vw, 28px) 0;
   color: #e0e0e0;
   max-width: 560px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+  width: 100%;
+  box-sizing: border-box;
   position: relative;
   overflow: hidden;
 }
@@ -41,11 +54,13 @@
   background: linear-gradient(90deg, #ff6b35, #f7c948);
   border-radius: 14px 14px 0 0;
 }
+
+/* Badge */
 .dp-poll-badge {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 10px;
+  font-size: clamp(9px, 2.5vw, 10px);
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -53,52 +68,52 @@
   margin-bottom: 10px;
 }
 .dp-poll-badge svg {
-  width: 12px; height: 12px; fill: #ff6b35;
+  width: 12px; height: 12px; fill: #ff6b35; flex-shrink: 0;
 }
+
+/* Title */
 .dp-poll-title {
-  font-size: 15px;
+  font-size: clamp(13px, 3.5vw, 15px);
   font-weight: 700;
   color: #ffffff;
-  margin: 0 0 18px;
+  margin: 0 0 16px;
   line-height: 1.4;
 }
 
 /* ── Rating poll ── */
 .dp-stars {
   display: flex;
-  gap: 6px;
+  gap: clamp(2px, 1vw, 6px);
   flex-wrap: wrap;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 .dp-star {
   background: none;
   border: none;
-  font-size: 28px;
+  font-size: clamp(22px, 6vw, 28px);
   cursor: pointer;
   color: #3a3a5c;
   padding: 2px;
   line-height: 1;
   transition: color 0.15s, transform 0.12s;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .dp-star:hover,
-.dp-star.hover {
-  color: #f7c948;
-  transform: scale(1.18);
-}
-.dp-star.selected {
-  color: #f7c948;
-}
-.dp-star.dimmed {
-  color: #3a3a5c;
-}
+.dp-star.hover  { color: #f7c948; transform: scale(1.18); }
+.dp-star.selected { color: #f7c948; }
+.dp-star.dimmed   { color: #3a3a5c; }
 .dp-rating-meta {
-  font-size: 12px;
+  font-size: clamp(11px, 3vw, 12px);
   color: #888;
   margin-bottom: 14px;
 }
 .dp-rating-meta strong {
   color: #f7c948;
-  font-size: 16px;
+  font-size: clamp(14px, 4vw, 16px);
   font-weight: 700;
 }
 
@@ -107,24 +122,34 @@
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 10px;
+  gap: clamp(6px, 2vw, 10px);
   margin-bottom: 16px;
+}
+/* Stack vertically on very small screens */
+@media (max-width: 320px) {
+  .dp-teams {
+    grid-template-columns: 1fr;
+  }
+  .dp-vs { order: -1; margin-bottom: 4px; }
 }
 .dp-team-btn {
   border: 2px solid #2d2d4e;
   border-radius: 10px;
   background: #12122a;
   color: #e0e0e0;
-  padding: 12px 10px;
+  padding: clamp(10px, 3vw, 12px) clamp(8px, 2vw, 10px);
   cursor: pointer;
   transition: border-color 0.2s, background 0.2s, transform 0.12s;
-  font-size: 13px;
+  font-size: clamp(12px, 3.5vw, 13px);
   font-weight: 700;
   text-align: center;
   line-height: 1.3;
   word-break: break-word;
+  min-height: 44px;
+  width: 100%;
+  box-sizing: border-box;
 }
-.dp-team-btn:hover {
+.dp-team-btn:hover:not(:disabled) {
   border-color: #ff6b35;
   transform: translateY(-2px);
 }
@@ -139,14 +164,15 @@
   color: #4fb8ff;
 }
 .dp-vs {
-  font-size: 11px;
+  font-size: clamp(10px, 2.5vw, 11px);
   font-weight: 700;
   letter-spacing: 1px;
   color: #555;
   text-align: center;
+  white-space: nowrap;
 }
 .dp-league-tag {
-  font-size: 10px;
+  font-size: clamp(10px, 2.5vw, 10px);
   color: #666;
   text-align: center;
   margin-bottom: 14px;
@@ -162,14 +188,27 @@
 .dp-bar-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: clamp(6px, 2vw, 10px);
 }
 .dp-bar-label {
-  font-size: 11px;
+  font-size: clamp(10px, 2.8vw, 11px);
   color: #aaa;
-  min-width: 28px;
-  text-align: right;
   flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* Rating label (star number) */
+.dp-bar-label.dp-star-label {
+  min-width: 28px;
+  max-width: 28px;
+  text-align: right;
+}
+/* Vote label (team name) */
+.dp-bar-label.dp-team-label {
+  min-width: 60px;
+  max-width: clamp(60px, 22vw, 90px);
+  text-align: left;
 }
 .dp-bar-track {
   flex: 1;
@@ -177,6 +216,7 @@
   border-radius: 6px;
   height: 8px;
   overflow: hidden;
+  min-width: 0;
 }
 .dp-bar-fill {
   height: 100%;
@@ -186,19 +226,20 @@
 .dp-bar-fill.orange { background: linear-gradient(90deg, #ff6b35, #f7a635); }
 .dp-bar-fill.blue   { background: linear-gradient(90deg, #4fb8ff, #6f88ff); }
 .dp-bar-pct {
-  font-size: 11px;
+  font-size: clamp(10px, 2.8vw, 11px);
   color: #888;
   min-width: 32px;
   flex-shrink: 0;
+  text-align: right;
 }
 .dp-total {
-  font-size: 11px;
+  font-size: clamp(10px, 2.8vw, 11px);
   color: #555;
   margin-top: 12px;
   text-align: center;
 }
 .dp-closed-note {
-  font-size: 12px;
+  font-size: clamp(11px, 3vw, 12px);
   color: #a5a5a5;
   margin-bottom: 12px;
 }
@@ -209,7 +250,7 @@
   align-items: center;
   gap: 8px;
   color: #555;
-  font-size: 13px;
+  font-size: clamp(12px, 3vw, 13px);
   min-height: 60px;
 }
 .dp-spinner {
@@ -222,7 +263,7 @@
 }
 @keyframes dp-spin { to { transform: rotate(360deg); } }
 .dp-voted-check {
-  font-size: 11px;
+  font-size: clamp(10px, 2.8vw, 11px);
   color: #4caf7d;
   margin-top: 10px;
   display: flex;
@@ -230,22 +271,25 @@
   gap: 5px;
 }
 .dp-error {
-  font-size: 12px;
+  font-size: clamp(11px, 3vw, 12px);
   color: #ff6b5b;
   margin-top: 8px;
 }
 .dp-submit-btn {
   margin-top: 14px;
-  padding: 10px 20px;
+  padding: clamp(9px, 2.5vw, 10px) clamp(16px, 4vw, 20px);
   background: linear-gradient(90deg, #ff6b35, #f7a635);
   color: #fff;
   border: none;
   border-radius: 8px;
-  font-size: 13px;
+  font-size: clamp(12px, 3vw, 13px);
   font-weight: 700;
   cursor: pointer;
   transition: opacity 0.2s, transform 0.12s;
   display: none;
+  min-height: 44px;
+  width: 100%;
+  box-sizing: border-box;
 }
 .dp-submit-btn:hover { opacity: 0.88; transform: translateY(-1px); }
 .dp-submit-btn.visible { display: inline-block; }
@@ -263,11 +307,8 @@
   }
 
   function getVotedPolls() {
-    try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-    } catch {
-      return {};
-    }
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); }
+    catch { return {}; }
   }
 
   function markVoted(pollId, value) {
@@ -278,13 +319,8 @@
     } catch {}
   }
 
-  function hasVoted(pollId) {
-    return pollId in getVotedPolls();
-  }
-
-  function getUserVote(pollId) {
-    return getVotedPolls()[pollId] ?? null;
-  }
+  function hasVoted(pollId) { return pollId in getVotedPolls(); }
+  function getUserVote(pollId) { return getVotedPolls()[pollId] ?? null; }
 
   async function apiGet(id) {
     const r = await fetch(`${API}/poll/${encodeURIComponent(id)}`);
@@ -314,42 +350,33 @@
     return Number.isFinite(t) ? t : null;
   }
 
-  function getPagePublishedTs() {
-    const selectors = [
-      'meta[property="article:published_time"]',
-      'meta[name="pubdate"]',
-      'meta[itemprop="datePublished"]',
-      'time[datetime]'
-    ];
-
-    for (const selector of selectors) {
-      const el = document.querySelector(selector);
-      if (!el) continue;
-      const raw = el.getAttribute("content") || el.getAttribute("datetime") || "";
-      const ts = parseTimestamp(raw);
-      if (ts) return ts;
-    }
-
-    return null;
-  }
-
+  /**
+   * FIX: Get the vote poll start timestamp ONLY from the marker element's
+   * own data attributes. We deliberately do NOT fall back to the page's
+   * publish date — that caused polls on newly-published posts to expire
+   * immediately because the page publish time was in the past.
+   *
+   * Priority: data-event-time → data-poll-ts → data-ts → data-date
+   * Returns null (= poll stays open) if none are present.
+   */
   function getVotePollStartTs(el) {
     const candidates = [
+      el.dataset.eventTime,   // preferred: actual match kickoff time
       el.dataset.pollTs,
       el.dataset.ts,
-      el.dataset.eventTime,
       el.dataset.date,
-      el.dataset.publishedAt
     ];
-
     for (const raw of candidates) {
       const ts = parseTimestamp(raw);
       if (ts) return ts;
     }
-
-    return getPagePublishedTs();
+    return null; // no timestamp → poll stays open (safe default)
   }
 
+  /**
+   * Returns true only when a valid startTs exists AND 24 h have passed.
+   * When startTs is null we treat the poll as still open.
+   */
   function isVotePollExpired(startTs) {
     if (!startTs) return false;
     return Date.now() - startTs >= VOTE_WINDOW_MS;
@@ -374,16 +401,15 @@
       <div class="dp-total" id="${pollId}-total"></div>
     `;
 
-    const starsEl = container.querySelector(`#${pollId}-stars`);
-    const metaEl = container.querySelector(`#${pollId}-meta`);
+    const starsEl   = container.querySelector(`#${pollId}-stars`);
+    const metaEl    = container.querySelector(`#${pollId}-meta`);
     const submitBtn = container.querySelector(`#${pollId}-submit`);
-    const barsEl = container.querySelector(`#${pollId}-bars`);
-    const totalEl = container.querySelector(`#${pollId}-total`);
+    const barsEl    = container.querySelector(`#${pollId}-bars`);
+    const totalEl   = container.querySelector(`#${pollId}-total`);
 
     let selected = userVote ? Number(userVote) : 0;
     let hovering = 0;
 
-    // Build 10 stars
     for (let i = 1; i <= 10; i++) {
       const btn = document.createElement("button");
       btn.className = "dp-star";
@@ -408,16 +434,11 @@
           submitBtn.classList.add("visible");
         });
       }
-
       starsEl.appendChild(btn);
     }
 
-    // Pre-highlight if already voted
-    if (voted && selected) {
-      updateStarDisplay(starsEl, selected, 0);
-    }
+    if (voted && selected) updateStarDisplay(starsEl, selected, 0);
 
-    // Submit handler
     submitBtn.addEventListener("click", async () => {
       if (!selected) return;
       submitBtn.disabled = true;
@@ -435,15 +456,12 @@
       }
     });
 
-    // Fetch existing results
     apiGet(pollId).then((poll) => {
       if (poll) {
         renderRatingResults(barsEl, totalEl, metaEl, poll, userVote ? Number(userVote) : null);
         if (voted) showVotedCheck(container, `You rated ${userVote}/10`);
       } else {
-        metaEl.textContent = voted
-          ? `You rated ${userVote}/10 — be the first!`
-          : "Be the first to rate!";
+        metaEl.textContent = voted ? `You rated ${userVote}/10 — be the first!` : "Be the first to rate!";
       }
     }).catch(() => {
       metaEl.textContent = voted ? `You rated ${userVote}/10` : "Rate this now!";
@@ -451,7 +469,6 @@
   }
 
   function updateStarDisplay(starsEl, selected, hovering) {
-    const active = hovering || selected;
     starsEl.querySelectorAll(".dp-star").forEach((btn) => {
       const v = Number(btn.dataset.val);
       btn.classList.remove("selected", "dimmed", "hover");
@@ -465,8 +482,6 @@
 
   function renderRatingResults(barsEl, totalEl, metaEl, poll, userVote) {
     const total = poll.total || 0;
-
-    // Compute weighted average
     let weightedSum = 0;
     for (const [k, v] of Object.entries(poll.votes || {})) {
       weightedSum += Number(k) * Number(v);
@@ -477,7 +492,6 @@
       ? `Community average: <strong>${avg}/10</strong>`
       : "No ratings yet";
 
-    // Build bar for each rating 10→1
     barsEl.style.display = "flex";
     barsEl.innerHTML = "";
     for (let i = 10; i >= 1; i--) {
@@ -487,30 +501,26 @@
       const row = document.createElement("div");
       row.className = "dp-bar-row";
       row.innerHTML = `
-        <span class="dp-bar-label" style="${isUser ? "color:#f7c948;font-weight:700" : ""}">${i}★</span>
-        <div class="dp-bar-track">
-          <div class="dp-bar-fill orange" style="width:0%"></div>
-        </div>
+        <span class="dp-bar-label dp-star-label" style="${isUser ? "color:#f7c948;font-weight:700" : ""}">${i}★</span>
+        <div class="dp-bar-track"><div class="dp-bar-fill orange" style="width:0%"></div></div>
         <span class="dp-bar-pct">${p}%</span>
       `;
       barsEl.appendChild(row);
-      // Animate after paint
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           row.querySelector(".dp-bar-fill").style.width = p + "%";
         });
       });
     }
-
     totalEl.textContent = total ? `${total.toLocaleString()} vote${total !== 1 ? "s" : ""}` : "";
   }
 
   // ── Vote widget ───────────────────────────────────────────────────────────
 
   function buildVoteWidget(container, pollId, teamA, teamB, league, options = {}) {
-    const expired = Boolean(options.expired);
-    const voted = hasVoted(pollId);
-    const userVote = getUserVote(pollId);
+    const expired     = Boolean(options.expired);
+    const voted       = hasVoted(pollId);
+    const userVote    = getUserVote(pollId);
     const interactive = !expired && !voted;
 
     container.innerHTML = `
@@ -520,7 +530,7 @@
       </div>
       <div class="dp-poll-title">Match Prediction</div>
       ${league ? `<div class="dp-league-tag">🏆 ${escHtml(league)}</div>` : ""}
-      ${expired ? `<div class="dp-closed-note">This poll is closed after 24 hours.</div>` : ""}
+      ${expired ? `<div class="dp-closed-note">Voting closed after 24 hours — here are the final results.</div>` : ""}
       <div class="dp-teams">
         <button class="dp-team-btn${userVote === "a" ? " selected-a" : ""}" id="${pollId}-btn-a" ${interactive ? "" : "disabled"}>
           ${escHtml(teamA)}
@@ -534,8 +544,8 @@
       <div class="dp-total" id="${pollId}-total"></div>
     `;
 
-    const btnA = container.querySelector(`#${pollId}-btn-a`);
-    const btnB = container.querySelector(`#${pollId}-btn-b`);
+    const btnA   = container.querySelector(`#${pollId}-btn-a`);
+    const btnB   = container.querySelector(`#${pollId}-btn-b`);
     const barsEl = container.querySelector(`#${pollId}-bars`);
     const totalEl = container.querySelector(`#${pollId}-total`);
 
@@ -559,7 +569,6 @@
       btnB.addEventListener("click", () => castVote("b"));
     }
 
-    // Load existing results
     apiGet(pollId).then((poll) => {
       if (poll) {
         renderVoteResults(barsEl, totalEl, poll, teamA, teamB, userVote);
@@ -569,7 +578,7 @@
   }
 
   function renderVoteResults(barsEl, totalEl, poll, teamA, teamB, userVote) {
-    const total = poll.total || 0;
+    const total  = poll.total || 0;
     const aCount = poll.votes?.a || 0;
     const bCount = poll.votes?.b || 0;
     const aP = pct(aCount, total);
@@ -578,12 +587,12 @@
     barsEl.style.display = "flex";
     barsEl.innerHTML = `
       <div class="dp-bar-row">
-        <span class="dp-bar-label" style="min-width:80px;text-align:left;font-size:12px;${userVote === "a" ? "color:#ff6b35;font-weight:700" : ""}">${escHtml(teamA)}</span>
+        <span class="dp-bar-label dp-team-label" title="${escHtml(teamA)}" style="${userVote === "a" ? "color:#ff6b35;font-weight:700" : ""}">${escHtml(teamA)}</span>
         <div class="dp-bar-track"><div class="dp-bar-fill orange" style="width:0%"></div></div>
         <span class="dp-bar-pct">${aP}%</span>
       </div>
       <div class="dp-bar-row">
-        <span class="dp-bar-label" style="min-width:80px;text-align:left;font-size:12px;${userVote === "b" ? "color:#4fb8ff;font-weight:700" : ""}">${escHtml(teamB)}</span>
+        <span class="dp-bar-label dp-team-label" title="${escHtml(teamB)}" style="${userVote === "b" ? "color:#4fb8ff;font-weight:700" : ""}">${escHtml(teamB)}</span>
         <div class="dp-bar-track"><div class="dp-bar-fill blue" style="width:0%"></div></div>
         <span class="dp-bar-pct">${bP}%</span>
       </div>
@@ -628,27 +637,21 @@
       .replace(/"/g, "&quot;");
   }
 
-  // ── Scanner — finds all marker divs and initialises widgets ───────────────
+  // ── Scanner ───────────────────────────────────────────────────────────────
 
   function scan() {
-    // Rating polls: <div id="poll-tmdb-{id}" data-type="rating" data-title="..."></div>
-    //               <div id="poll-series-{id}" data-type="rating" data-title="..."></div>
-    // Vote polls:   <div id="poll-event-{id}" data-type="vote" data-team-a="..." data-team-b="..." data-league="..." data-event-time="..."></div>
-
     const markers = document.querySelectorAll('[id^="poll-"]');
     if (!markers.length) return;
 
     injectStyles();
 
     markers.forEach((el) => {
-      // Skip if already initialised
       if (el.dataset.dpInit === "1") return;
       el.dataset.dpInit = "1";
 
-      const pollId = el.id;            // e.g. "poll-tmdb-12345"
-      const type = el.dataset.type;    // "rating" or "vote"
+      const pollId = el.id;
+      const type   = el.dataset.type;
 
-      // Show loading state while we set up
       el.classList.add("dp-poll");
       el.innerHTML = `<div class="dp-poll-loading"><div class="dp-spinner"></div>Loading poll…</div>`;
 
@@ -657,21 +660,19 @@
         buildRatingWidget(el, pollId, title);
 
       } else if (type === "vote") {
-        const teamA = el.dataset.teamA || "Team A";
-        const teamB = el.dataset.teamB || "Team B";
-        const league = el.dataset.league || "";
+        const teamA   = el.dataset.teamA   || "Team A";
+        const teamB   = el.dataset.teamB   || "Team B";
+        const league  = el.dataset.league  || "";
         const startTs = getVotePollStartTs(el);
         const expired = isVotePollExpired(startTs);
         buildVoteWidget(el, pollId, teamA, teamB, league, { expired });
 
       } else {
-        // Unknown type — hide silently
         el.style.display = "none";
       }
     });
   }
 
-  // Run after DOM is ready
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", scan);
   } else {
