@@ -8,7 +8,6 @@
   ];
 
   var SECRET_KEY = "XP_DekhoPrimeBlog2027";
-  var DEFAULT_FALLBACK_UNLOCK_COUNT = 34;
 
   var WAIT_TIME = 20;
 
@@ -88,55 +87,8 @@
       '.locker-warning{display:none;background:#fff9db;color:#e67e22;padding:8px;border-radius:6px;font-size:11px;font-weight:bold;border:1px solid #ffe066;margin-top:10px;}',
       '.locker-inline-msg{display:none;background:#fff4f4;color:#d63031;padding:8px;border-radius:6px;font-size:11px;font-weight:700;border:1px solid #ffcccc;margin-top:10px;}',
       '.locker-placeholder{color:#636e72;font-size:13px;}',
-      '.locker-social-proof{margin:8px 0 0;color:#00a37a;font-size:12px;font-weight:700;line-height:1.4;}',
     ].join('');
     document.head.appendChild(style);
-  }
-
-  function formatCount(value) {
-    var n = Number(value);
-    if (!isFinite(n) || n < 0) return '';
-    return Math.floor(n).toLocaleString();
-  }
-
-  function extractGatewayOrigin(urlValue) {
-    try {
-      return new URL(urlValue).origin;
-    } catch (e) {
-      return '';
-    }
-  }
-
-  function fetchPublicUnlockCount(destinationURL) {
-    var gatewayOrigin = extractGatewayOrigin(destinationURL);
-    if (!gatewayOrigin) {
-      return Promise.resolve(null);
-    }
-
-    return fetch(gatewayOrigin + '/stats/unlocks/public', {
-      method: 'GET',
-      credentials: 'omit',
-      cache: 'no-store'
-    }).then(function(resp) {
-      if (!resp.ok) return null;
-      return resp.json().then(function(data) {
-        if (!data || !data.ok) return null;
-        var count = Number(data.totalSuccessfulUnlocks);
-        return isFinite(count) && count >= 0 ? count : null;
-      }).catch(function() { return null; });
-    }).catch(function() {
-      return null;
-    });
-  }
-
-  function getFallbackUnlockCount() {
-    var override = typeof window.POST_UNLOCK_FALLBACK_COUNT !== 'undefined'
-      ? Number(window.POST_UNLOCK_FALLBACK_COUNT)
-      : NaN;
-    if (isFinite(override) && override >= 0) {
-      return Math.floor(override);
-    }
-    return DEFAULT_FALLBACK_UNLOCK_COUNT;
   }
 
   function renderLocker(target, destinationURL) {
@@ -149,7 +101,6 @@
           '<div style="font-size:32px;margin-bottom:8px;">🔒</div>' +
           '<h3>Link Encrypted</h3>' +
           '<p>Unlock with Premium Ad Verification.</p>' +
-          '<p class="locker-social-proof lk-proof">Checking recent unlocks...</p>' +
           '<button class="locker-btn lk-btn-start">UNLOCK NOW</button>' +
           '<div class="locker-inline-msg lk-inline-msg"></div>' +
         '</div>' +
@@ -184,7 +135,6 @@
     var statusMsg   = target.querySelector('.lk-status');
     var warningBox  = target.querySelector('.lk-warning');
     var inlineMsg   = target.querySelector('.lk-inline-msg');
-    var proofMsg    = target.querySelector('.lk-proof');
     var btnStart    = target.querySelector('.lk-btn-start');
     var btnCopy     = target.querySelector('.lk-btn-copy');
 
@@ -192,23 +142,6 @@
     var timeLeft = WAIT_TIME;
     var timerInterval = null;
     var started = false;
-
-    fetchPublicUnlockCount(destinationURL).then(function(count) {
-      if (!proofMsg) return;
-      if (count === null) {
-        var fallbackText = formatCount(getFallbackUnlockCount());
-        proofMsg.textContent = fallbackText + ' people unlocked/downloaded this playlist.';
-        return;
-      }
-
-      var readable = formatCount(count);
-      if (!readable) {
-        proofMsg.textContent = 'Secure unlock is active.';
-        return;
-      }
-
-      proofMsg.textContent = readable + ' people unlocked/downloaded this playlist.';
-    });
 
     btnStart.addEventListener('click', function() {
       if (started) return;
