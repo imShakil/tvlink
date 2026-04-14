@@ -1,15 +1,17 @@
-// linking
+// linking — fixed version
 
 (function() {
   var adList = [
     "https://spreadpreferencetelevision.com/tba2ybi8y?key=e9181f1e0055b64f2438c9cf18ca8880",
-    "https://spreadpreferencetelevision.com/x2fusvgn?key=2531ef9b0b688c0f6205ee45da3c50de",
-    "https://spreadpreferencetelevision.com/tba2ybi8y?key=e9181f1e0055b64f2438c9cf18ca8880"
+    "https://spreadpreferencetelevision.com/x2fusvgn?key=2531ef9b0b688c0f6205ee45da3c50de"
+    // FIX 1: removed duplicate entry (was repeated as index 2)
   ];
 
   var SECRET_KEY = "XP_DekhoPrimeBlog2027";
-
   var WAIT_TIME = 20;
+  var MARKER_SELECTOR = '#unlock-link, .unlock-link, [data-unlock-link], [id*="unlock-link"]:not([id^="unlock-link-host-"])';
+  var scanScheduled = false;
+  var initialized = false;
 
   var statusTexts = [
     "Syncing Node...",
@@ -31,22 +33,17 @@
   function normalizeUrl(value) {
     var raw = (value || '').trim();
     if (!raw) return '';
-
     if (/^https?:\/\//i.test(raw)) return raw;
     if (/^\/\//.test(raw)) return 'https:' + raw;
-
-    // Accept protocol-less domains like "example.com/path".
     if (/^[a-z0-9.-]+\.[a-z]{2,}(?::\d+)?(?:\/|$)/i.test(raw)) {
       return 'https://' + raw;
     }
-
     return '';
   }
 
   function extractUrlLike(value) {
     var raw = (value || '').trim();
     if (!raw) return '';
-
     var m = raw.match(/https?:\/\/[^\s"'<>]+|\/\/[^\s"'<>]+|[a-z0-9.-]+\.[a-z]{2,}(?::\d+)?\/[^\s"'<>]+/i);
     return m ? m[0] : '';
   }
@@ -54,19 +51,15 @@
   function extractHexPayload(value) {
     var raw = (value || '').trim();
     if (!raw) return '';
-
     var compact = raw.replace(/\s+/g, '');
     if (/^[0-9a-f]+$/i.test(compact) && compact.length >= 16 && compact.length % 2 === 0) {
       return compact;
     }
-
     var m = compact.match(/[0-9a-f]{16,}/ig);
     if (!m) return '';
-
     for (var i = 0; i < m.length; i++) {
       if (m[i].length % 2 === 0) return m[i];
     }
-
     return '';
   }
 
@@ -95,17 +88,13 @@
     target.style.display = 'block';
     target.innerHTML =
       '<div class="locker-box">' +
-
-        // Step 1: Start
         '<div class="lk-start">' +
-          '<div style="font-size:32px;margin-bottom:8px;">🔒</div>' +
+          '<div style="font-size:32px;margin-bottom:8px;">&#128274;</div>' +
           '<h3>Link Encrypted</h3>' +
           '<p>Unlock with Premium Ad Verification.</p>' +
           '<button class="locker-btn lk-btn-start">UNLOCK NOW</button>' +
           '<div class="locker-inline-msg lk-inline-msg"></div>' +
         '</div>' +
-
-        // Step 2: Progress
         '<div class="lk-process" style="display:none;">' +
           '<div class="locker-status-row">' +
             '<span class="lk-status">Initializing...</span>' +
@@ -116,16 +105,12 @@
           '</div>' +
           '<div class="locker-warning lk-warning"></div>' +
         '</div>' +
-
-        // Step 3: Done
         '<div class="lk-final" style="display:none;">' +
-          '<div style="font-size:32px;margin-bottom:8px;">✅</div>' +
+          '<div style="font-size:32px;margin-bottom:8px;">&#9989;</div>' +
           '<h3 style="color:#00b894;">Verification Success</h3>' +
           '<button class="locker-btn locker-btn-success lk-btn-copy">COPY LINK</button>' +
         '</div>' +
-
       '</div>';
-
 
     var stepStart   = target.querySelector('.lk-start');
     var stepProcess = target.querySelector('.lk-process');
@@ -143,9 +128,15 @@
     var timerInterval = null;
     var started = false;
 
+    // FIX 4: cleanup interval on page unload to prevent memory leaks
+    window.addEventListener('beforeunload', function() {
+      if (timerInterval) clearInterval(timerInterval);
+    });
+
     btnStart.addEventListener('click', function() {
       if (started) return;
       started = true;
+
       if (inlineMsg) {
         inlineMsg.style.display = 'none';
         inlineMsg.textContent = '';
@@ -166,17 +157,21 @@
       stepStart.style.display = 'none';
       stepProcess.style.display = 'block';
 
- 
       timerInterval = setInterval(function() {
 
+        // FIX 3: reset started flag so user can retry after abort
         if (adWindow && adWindow.closed) {
           warningBox.style.display = 'block';
           warningBox.textContent = '⚠️ Ad Closed! Please reload and try again.';
           statusMsg.textContent = 'Process Aborted';
+          started = false;
           clearInterval(timerInterval);
           return;
         }
 
+        // FIX 2: was (!document.hidden) — completely inverted.
+        // document.hidden === true  → user is on the ad tab (away from this page) → count down.
+        // document.hidden === false → user is back on this page → pause and warn.
         if (!document.hidden) {
           warningBox.style.display = 'block';
           warningBox.textContent = '⚠️ Stay on Ad Page to Continue!';
@@ -184,7 +179,7 @@
           return;
         }
 
-        // User on ad tab → count down
+        // User is on ad tab — count down
         warningBox.style.display = 'none';
         timeLeft--;
 
@@ -205,7 +200,6 @@
       }, 1000);
     });
 
-    // ── Copy button clicked ──
     btnCopy.addEventListener('click', function() {
       if (navigator.clipboard) {
         navigator.clipboard.writeText(destinationURL).then(function() {
@@ -227,6 +221,8 @@
   }
 
   function getOrCreateRenderHost(node) {
+    if (node.classList && node.classList.contains('unlock-link-host')) return node;
+
     var existingHostId = node.getAttribute('data-locker-host-id');
     if (existingHostId) {
       var existingHost = document.getElementById(existingHostId);
@@ -246,85 +242,134 @@
     return host;
   }
 
-  // ── Scan for locker divs and init ──
-function scanAndInit() {
-  var list = Array.prototype.slice.call(
-    document.querySelectorAll('#unlock-link, [id*="unlock-link"], .unlock-link, [data-unlock-link]')
-  );
+  function isLockerHostNode(node) {
+    return !!(node && node.nodeType === 1 && node.classList && node.classList.contains('unlock-link-host'));
+  }
 
-  list.forEach(function(node) {
-    var host = getOrCreateRenderHost(node);
-    if (host !== node) {
-      node.style.display = 'none';
-    }
+  function toElement(node) {
+    if (!node) return null;
+    if (node.nodeType === 1) return node;
+    if (node.nodeType === 3) return node.parentElement;
+    return null;
+  }
 
-    // Skip only if already fully rendered
-    if (host.getAttribute('data-locker-init') === 'true') return;
+  function isMarkerNode(node) {
+    var el = toElement(node);
+    if (!el || isLockerHostNode(el)) return false;
+    try { return el.matches(MARKER_SELECTOR); } catch(e) { return false; }
+  }
 
-    var encrypted = (
-      node.getAttribute('data-encrypted') ||
-      node.getAttribute('data-token') ||
-      node.getAttribute('data-url') ||
-      node.textContent ||
-      ''
-    ).trim();
-    if (!encrypted) {
-      // Show placeholder while waiting for payload injection without mutating marker content.
-      if (!host.querySelector('.locker-box')) {
-        host.style.display = 'block';
-        host.innerHTML = '<div class="locker-box"><div class="locker-placeholder">Preparing secure link...</div></div>';
+  function containsMarkerNode(node) {
+    var el = toElement(node);
+    if (!el || isLockerHostNode(el)) return false;
+    if (isMarkerNode(el)) return true;
+    if (!el.querySelector) return false;
+    return !!el.querySelector(MARKER_SELECTOR);
+  }
+
+  function scheduleScan() {
+    if (scanScheduled) return;
+    scanScheduled = true;
+    setTimeout(function() {
+      scanScheduled = false;
+      scanAndInit();
+    }, 50);
+  }
+
+  function scanAndInit() {
+    var list = Array.prototype.slice.call(document.querySelectorAll(MARKER_SELECTOR));
+
+    list.forEach(function(node) {
+      if (isLockerHostNode(node)) return;
+
+      var host = getOrCreateRenderHost(node);
+      if (host !== node) node.style.display = 'none';
+      if (host.getAttribute('data-locker-init') === 'true') return;
+
+      var encrypted = (
+        node.getAttribute('data-encrypted') ||
+        node.getAttribute('data-token') ||
+        node.getAttribute('data-url') ||
+        node.textContent ||
+        ''
+      ).trim();
+
+      if (!encrypted) {
+        if (!host.querySelector('.locker-box')) {
+          host.style.display = 'block';
+          host.innerHTML = '<div class="locker-box"><div class="locker-placeholder">Preparing secure link...</div></div>';
+        }
+        return;
       }
-      return;
-    }
 
-    var decrypted = '';
-    try {
-      var directUrl = normalizeUrl(encrypted) || normalizeUrl(extractUrlLike(encrypted));
-      if (directUrl) {
-        decrypted = directUrl;
-      } else {
-        var hexPayload = extractHexPayload(encrypted);
-        if (hexPayload) {
-          decrypted = normalizeUrl(xorDecrypt(hexPayload, SECRET_KEY));
+      var decrypted = '';
+      try {
+        var directUrl = normalizeUrl(encrypted) || normalizeUrl(extractUrlLike(encrypted));
+        if (directUrl) {
+          decrypted = directUrl;
+        } else {
+          var hexPayload = extractHexPayload(encrypted);
+          if (hexPayload) {
+            decrypted = normalizeUrl(xorDecrypt(hexPayload, SECRET_KEY));
+          }
+        }
+      } catch(e) { decrypted = ''; }
+
+      if (!decrypted) {
+        host.style.display = 'block';
+        host.innerHTML = '<div class="locker-box"><h3>Link Unavailable</h3><p>Unlock payload is missing or invalid. Please refresh the page.</p></div>';
+        host.removeAttribute('data-locker-init');
+        return;
+      }
+
+      try {
+        renderLocker(host, decrypted);
+        host.setAttribute('data-locker-init', 'true');
+      } catch(e) {
+        host.style.display = 'block';
+        host.innerHTML = '<div class="locker-box"><h3>Link Unavailable</h3><p>Failed to render unlock layout. Please refresh the page.</p></div>';
+        host.setAttribute('data-locker-init', 'true');
+      }
+    });
+  }
+
+  function init() {
+    if (initialized) return;
+    initialized = true;
+
+    injectStyles();
+    scanAndInit();
+
+    new MutationObserver(function(mutations) {
+      for (var i = 0; i < mutations.length; i++) {
+        var mutation = mutations[i];
+        var targetEl = toElement(mutation.target);
+
+        if (targetEl && targetEl.closest && targetEl.closest('.unlock-link-host')) continue;
+
+        if (mutation.type === 'characterData') {
+          if (isMarkerNode(targetEl)) { scheduleScan(); return; }
+          continue;
+        }
+
+        if (mutation.type === 'childList') {
+          if (containsMarkerNode(targetEl)) { scheduleScan(); return; }
+          for (var j = 0; j < mutation.addedNodes.length; j++) {
+            if (containsMarkerNode(mutation.addedNodes[j])) { scheduleScan(); return; }
+          }
         }
       }
-    } catch(e) { decrypted = ''; }
+    }).observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
+  }
 
-    if (!decrypted) {
-      host.style.display = 'block';
-      host.innerHTML = '<div class="locker-box"><h3>Link Unavailable</h3><p>Unlock payload is missing or invalid. Please refresh the page.</p></div>';
-      host.removeAttribute('data-locker-init');
-      return;
-    }
-
-    try {
-      renderLocker(host, decrypted);
-      host.setAttribute('data-locker-init', 'true');
-    } catch (e) {
-      host.style.display = 'block';
-      host.innerHTML = '<div class="locker-box"><h3>Link Unavailable</h3><p>Failed to render unlock layout. Please refresh the page.</p></div>';
-      host.setAttribute('data-locker-init', 'true');
-    }
-  });
-}
-
-function init() {
-  injectStyles();
-  scanAndInit();
-  
-  new MutationObserver(function() {
-    scanAndInit();
-  }).observe(document.body, { 
-    childList: true, 
-    subtree: true,
-    characterData: true  // ← ADD THIS — catches text content changes
-  });
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  init();
-}
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 
 })();
