@@ -147,6 +147,8 @@ https://nmxlive.akamaized.net/hls/live/529965/Live_1/index.m3u8
 
 # Source: SRC-ID:eb25061146813829500ee806
 #EXTINF:-1 tvg-logo="" group-title="BD Vs NZ",BD VS NZ
+http://premimum.online/live/jen12345/jen54321/113069.ts
+#EXTINF:-1 tvg-logo="" group-title="BD Vs NZ",BD VS NZ
 http://198.195.239.50:8095/Tsports/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-logo="" group-title="BD Vs NZ",BD VS NZ
 http://27.124.71.27/T-Sports/index.m3u8
