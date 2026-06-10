@@ -1,37 +1,5 @@
 #EXTM3U
 # Source: SRC-ID:8a0a955eed047000f93213bc
-#EXTINF:-1 tvg-logo="https://i.postimg.cc/FFwSjdzS/Pogo.jpg" group-title="Kids",ZB Cartoon
-https://server.zillarbarta.com/zbcatun/video.m3u8
-
-# Source: SRC-ID:eb25061146813829500ee806
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
-https://tvsen7.aynaott.com/tsports-hd/index.m3u8?e=1779283784&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=3b4c5a2cfa872fa7f91ffbfb4aa0f658
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
-https://tvsen5.aynaott.com/PtvSports/index.m3u8
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
-https://amg26268-amg26268c14-freelivesports-emea-10267.playouts.now.amagi.tv/ts-us-e2-n2/playlist/amg26268-sportsstudio-tycsports-freelivesportsemea/playlist.m3u8
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
-http://cdn.tv-rds.workers.dev/TYCSPT.m3u8
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
-http://66.102.126.10:8000/play/a076/index.m3u8
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
-http://ua.online24.pm/play/1101/350B326FB34F4B8/video.m3u8
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
-http://ua.online24.pm/play/1102/350B326FB34F4B8/video.m3u8
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
-https://a62dad94.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0ZJRkFQbHVzRW5nbGlzaF9ITFM/playlist.m3u8
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
-https://37b4c228.wurl.com/manifest/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWZyX0ZJRkFQbHVzRnJlbmNoX0hMUw/6f5437c5-e015-4754-8476-c8c6d27d3a55/1.m3u8
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
-https://tvsen7.aynaott.com/foxsports2/index.m3u8?e=1779283790&amp;u=78be6644-0a65-48ec-81a4-089ac65a2619&amp;token=cbb7f40b4af7be51a91e0629a5ac7238
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
-http://145.239.5.177/559/mpegts
-#EXTINF:-1 tvg-logo="" group-title="Bangla",ZB Cinema
-https://server.zillarbarta.com/ZBCINEMA/tracks-v1a1/mono.ts.m3u8
-#EXTINF:-1 tvg-logo="" group-title="Bangla",Dhoom Music
-http://103.175.73.12:8080/live/378/378_0.m3u8
-
-# Source: SRC-ID:8a0a955eed047000f93213bc
 #EXTINF:-1 tvg-logo="https://ssl.com.bd/sites/default/files/BTV%20Logo%20Gallery.png" group-title="Bangla",BTV
 https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8
 #EXTINF:-1 tvg-logo="https://dl.dropbox.com/s/leielj83em5kg7h/somoy_news.png" group-title="Bangla",Somoy TV
@@ -206,14 +174,6 @@ https://stream.snexus.co/live/SHARQ_GAME_TV/main_stream.m3u8
 https://live.tsports.com/mobile_hls/tsports_live_1/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPCvTmUhiKDs4ehoVpFLh7xwdCNK2-N_gNFqnaOM4YRQ&s=10" group-title="Sports",T Sports
 https://live.tsports.com/mobile_hls/tsports_live_3/playlist.m3u8
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/BTV%20National.png" group-title="Bangla",BTV National
-http://103.229.254.25:7001/play/a064/index.m3u8
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/BTV%20National.png" group-title="Bangla",BTV Chattogram
-https://www.btvlive.gov.bd/live/37f2df30-3edf-42f3-a2ee-6185002c841c/BD/a707f2dc-9704-413a-a67c-17c64a77c350/index.m3u8
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/BTV%20National.png" group-title="Bangla",BTV Sangsad
-https://www.btvlive.gov.bd/live/37f2df30-3edf-42f3-a2ee-6185002c841c/BD/9ee3b4f9-fd0a-47c5-a135-2575c5691613/index.m3u8
-#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4GdTIOJgWg5_BCr3ZDvEzBOMt6gt0QoybcQ&usqp=CAU" group-title="Bangla",BTV News
-https://www.btvlive.gov.bd/live/37f2df30-3edf-42f3-a2ee-6185002c841c/BD/d96eb7f4-83c2-4472-9597-3568390a8ebf/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/T%20Sports.png" group-title="Bangla",T Sports
 https://live.tsports.com/mobile_hls/tsports_live_2/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Gazi%20TV.jpg" group-title="Bangla",Gazi TV
@@ -224,8 +184,6 @@ https://owrcovcrpy.gpcdn.net/bpk-tv/1722/output/1722.m3u8
 https://owrcovcrpy.gpcdn.net/bpk-tv/1716/output/1716.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/NTV.png" group-title="Bangla",NTV UK
 https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/ntvuk00332211.stream/playlist.m3u8
-#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/RTV.png" group-title="Bangla",RTV
-http://tvn3.chowdhury-shaheb.com/rtv/index.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/SATV.png" group-title="Bangla",SATV
 https://owrcovcrpy.gpcdn.net/bpk-tv/1720/output/1720.m3u8
 #EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Deepto%20TV.jpeg" group-title="Bangla",Deepto TV
@@ -590,3 +548,69 @@ https://nomawnoijl.gpcdn.net/akash/crazy_ex/playlist.m3u8
 https://nomawnoijl.gpcdn.net/akash/delicious/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://tstatic.akash-go.com/cms-ui/images/custom-content/1778087459461.png" group-title="Live",Program Promo
 https://owrcovcrpy.gpcdn.net/bpk-tv/1720/output/index.m3u8
+
+# Source: SRC-ID:8a0a955eed047000f93213bc
+#EXTINF:-1 tvg-logo="https://i.postimg.cc/FFwSjdzS/Pogo.jpg" group-title="Kids",ZB Cartoon
+https://server.zillarbarta.com/zbcatun/video.m3u8
+
+# Source: SRC-ID:eb25061146813829500ee806
+#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
+https://streams.btvlive.gov.bd/live/37f2df30-3edf-42f3-a2ee-6185002c841c/BD/355ba051-9a60-48aa-adcf-5a6c64da8c5c/index.m3u8
+#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
+https://tvsen7.aynaott.com/tsports-hd/index.m3u8?e=1779283784&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=3b4c5a2cfa872fa7f91ffbfb4aa0f658
+#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
+https://tvsen5.aynaott.com/PtvSports/index.m3u8
+#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
+https://amg26268-amg26268c14-freelivesports-emea-10267.playouts.now.amagi.tv/ts-us-e2-n2/playlist/amg26268-sportsstudio-tycsports-freelivesportsemea/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
+http://cdn.tv-rds.workers.dev/TYCSPT.m3u8
+#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
+https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/1080p-vtt/index.m3u8
+#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Live",Football World Cup 2026
+http://66.102.126.10:8000/play/a076/index.m3u8
+#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
+http://ua.online24.pm/play/1101/350B326FB34F4B8/video.m3u8
+#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
+http://ua.online24.pm/play/1102/350B326FB34F4B8/video.m3u8
+#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
+http://ua.online24.pm/play/1103/350B326FB34F4B8/video.m3u8
+#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
+http://ua.online24.pm/play/1104/350B326FB34F4B8/video.m3u8
+#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
+https://a62dad94.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0ZJRkFQbHVzRW5nbGlzaF9ITFM/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
+https://37b4c228.wurl.com/manifest/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWZyX0ZJRkFQbHVzRnJlbmNoX0hMUw/6f5437c5-e015-4754-8476-c8c6d27d3a55/1.m3u8
+#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
+https://tvsen7.aynaott.com/foxsports2/index.m3u8?e=1779283790&amp;u=78be6644-0a65-48ec-81a4-089ac65a2619&amp;token=cbb7f40b4af7be51a91e0629a5ac7238
+#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Sports",Football World Cup 2026
+http://145.239.5.177/559/mpegts
+#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/BTV%20National.png" group-title="Bangla",BTV Chattogram
+https://streams.btvlive.gov.bd/live/37f2df30-3edf-42f3-a2ee-6185002c841c/BD/a707f2dc-9704-413a-a67c-17c64a77c350/index.m3u8
+#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/BTV%20National.png" group-title="Bangla",BTV Sangsad
+https://streams.btvlive.gov.bd/live/37f2df30-3edf-42f3-a2ee-6185002c841c/BD/9ee3b4f9-fd0a-47c5-a135-2575c5691613/index.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4GdTIOJgWg5_BCr3ZDvEzBOMt6gt0QoybcQ&usqp=CAU" group-title="Bangla",BTV News
+https://streams.btvlive.gov.bd/live/37f2df30-3edf-42f3-a2ee-6185002c841c/BD/d96eb7f4-83c2-4472-9597-3568390a8ebf/index.m3u8
+#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/RTV.png" group-title="Bangla",RTV
+https://tvsen6.aynaott.com/rtv/tracks-v1a1/mono.ts.m3u8
+#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Asian%20Tv.png" group-title="Bangla",Asian TV
+https://mtlivestream.com/hls/asian/ytlive/index.m3u8
+#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Bangla%20TV.png" group-title="Bangla",Bangla TV
+https://tvsen6.aynaott.com/banglatv/index.m3u8?e=1779283758&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=f3e9e2737e35147900c0f4add619ead6
+#EXTINF:-1 tvg-logo="" group-title="Movies",ZB Cinema
+https://server.zillarbarta.com/ZBCINEMA/tracks-v1a1/mono.ts.m3u8
+#EXTINF:-1 tvg-logo="" group-title="Live",Gopal Bhar TV
+https://live20.bozztv.com/giatvplayout7/giatv-209611/tracks-v1a1/mono.ts.m3u8
+#EXTINF:-1 tvg-logo="" group-title="Live",Motu Patlu
+https://live20.bozztv.com/giatvplayout7/giatv-209622/tracks-v1a1/mono.ts.m3u8
+#EXTINF:-1 tvg-logo="" group-title="Live",Tom & Jerry TV
+https://live20.bozztv.com/giatvplayout7/giatv-208314/tracks-v1a1/mono.ts.m3u8
+#EXTINF:-1 tvg-logo="" group-title="Live",Bantul The Great
+https://live20.bozztv.com/giatvplayout7/giatv-209869/tracks-v1a1/mono.ts.m3u8
+#EXTINF:-1 tvg-logo="" group-title="Live",Doraemon TV
+https://live20.bozztv.com/giatvplayout7/giatv-209902/tracks-v1a1/mono.ts.m3u8
+#EXTINF:-1 tvg-logo="" group-title="Live",Oggy and the Cockroaches
+https://live20.bozztv.com/giatvplayout7/giatv-210728/tracks-v1a1/mono.ts.m3u8
+#EXTINF:-1 tvg-logo="" group-title="Live",Mr Bean Animated
+https://amg00627-amg00627c29-rakuten-it-3989.playouts.now.amagi.tv/playlist/amg00627-banijayfast-mrbeanitcc-rakutenit/playlist.m3u8
+#EXTINF:-1 tvg-logo="" group-title="Indian",Hinde Movies 3
+https://vods2.aynaott.com/hindimovies/index.m3u8
