@@ -59,9 +59,12 @@ Once installed:
 
 You can also watch Bangladeshi TV channels directly in your browser Website:
 
-* Visits [http://dekhoprime.live](http://dekhoprime.live)
+* Visits [http://dekhoprime.live](http://dekhoprime.live) 
 * Sign in with google
 * Enjoy streaming.
+
+- [dekhoprime.live](http://dekhoprime.live) movies/tv-series/livetv(less channels)
+- [play.dekhoprime.live](http://play.dekhoprime.live) Only Livetv (more channels supported)
 
 ### Web Player Preview
 
