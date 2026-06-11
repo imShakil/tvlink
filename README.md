@@ -59,7 +59,7 @@ Once installed:
 
 You can also watch Bangladeshi TV channels directly in your browser Website:
 
-* Visits [https://dekhoprime.live](http://dekhoprime.live)
+* Visits [http://dekhoprime.live](http://dekhoprime.live)
 * Sign in with google
 * Enjoy streaming.
 
