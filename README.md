@@ -27,6 +27,17 @@ Keywords: Bangladesh IPTV, BD IPTV, Bangladeshi TV live, watch Bangladesh TV onl
 * 🔄 World IPTV channels
 * 🔄 Custom featured Channels (During sports event)
 
+## 🌐 Watch Bangladeshi TV Online
+
+You can also watch Bangladeshi TV channels directly in your browser Website:
+
+* Visits [http://dekhoprime.live](http://dekhoprime.live) 
+* Sign in with google
+* Enjoy streaming.
+
+- [dekhoprime.live](http://dekhoprime.live) movies/tv-series/livetv(less channels)
+- [play.dekhoprime.live](http://play.dekhoprime.live) Only Livetv (more channels supported)
+
 ---
 
 ## 📱 Watch on Android
@@ -54,17 +65,6 @@ Once installed:
 <img width="360" height="720" alt="IMG_2922" src="https://github.com/user-attachments/assets/b6702a3a-ddb2-46ce-980f-69ae0f3e49a1" />
 
 ---
-
-## 🌐 Watch Bangladeshi TV Online
-
-You can also watch Bangladeshi TV channels directly in your browser Website:
-
-* Visits [http://dekhoprime.live](http://dekhoprime.live) 
-* Sign in with google
-* Enjoy streaming.
-
-- [dekhoprime.live](http://dekhoprime.live) movies/tv-series/livetv(less channels)
-- [play.dekhoprime.live](http://play.dekhoprime.live) Only Livetv (more channels supported)
 
 ### Web Player Preview
 
