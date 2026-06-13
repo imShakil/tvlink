@@ -17,6 +17,21 @@ from cryptography.fernet import Fernet, InvalidToken
 from dotenv import load_dotenv
 
 
+PREMIUM_CHANNELS = [
+    {
+        "name": "DekhoPrime PremiumTV",
+        "group": "Sports",
+        "logo": "https://raw.githubusercontent.com/imShakil/tvlink/refs/heads/main/dekho-prime-icon-192.webp",
+        "pin": True,
+        "streams": {
+            "server_1" : {
+                "url": "https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/Caze_TV.m3u8",
+                "headers": {},
+            },
+        },
+    },
+]
+
 def normalize_source(source):
     source = source.strip()
     return source
@@ -674,6 +689,46 @@ def combine_playlists(
     return validated
 
 
+def premium_candidates(source_cipher_key=""):
+    """
+    Build candidate dicts from the static PREMIUM_CHANNELS list so they can be
+    prepended to the final playlist (and survive the same dedupe/validation
+    pipeline as source-derived channels).
+    """
+    candidates = []
+    source_label = encrypted_label("PREMIUM", source_cipher_key) if source_cipher_key else "SRC-ID:PREMIUM"
+    for entry in PREMIUM_CHANNELS:
+        for stream in (entry.get("streams") or {}).values():
+            url = (stream or {}).get("url", "").strip()
+            if not url:
+                continue
+            candidates.append(
+                {
+                    "logo": entry.get("logo", ""),
+                    "group": entry.get("group", ""),
+                    "channel_name": entry.get("name", "Unknown"),
+                    "url": url,
+                    "source": "PREMIUM",
+                    "source_label": source_label,
+                }
+            )
+    return candidates
+
+
+def prepend_premium(playlist, source_cipher_key=""):
+    """
+    Ensure premium channels always appear at the very top of the playlist.
+    Existing premium entries (matched by URL) are removed to avoid duplicates.
+    """
+    premium = premium_candidates(source_cipher_key=source_cipher_key)
+    if not premium:
+        return list(playlist)
+
+    premium_keys = {dedupe_url_key(p["url"]) for p in premium}
+    rest = [c for c in playlist if dedupe_url_key(c["url"]) not in premium_keys]
+    return premium + rest
+
+
 def write_to_file(playlist, output_file, normalize_groups=False, group_rules=None):
     with open(output_file, "w", encoding="utf-8") as f:
         f.write("#EXTM3U\n")
@@ -818,6 +873,8 @@ if __name__ == "__main__":
             live_ttl_hours=live_ttl_hours,
             dead_ttl_hours=dead_ttl_hours,
         )
+
+    combined_playlist = prepend_premium(combined_playlist, source_cipher_key=source_cipher_key)
 
     write_to_file(combined_playlist, output_file, normalize_groups=True, group_rules=group_rules)
 
