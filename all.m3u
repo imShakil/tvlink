@@ -1,4 +1,92 @@
 #EXTM3U
+# Source: SRC-ID:ba849b3bc304a717f89a7bb3
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- ENG CH1
+http://193.47.62.48/hls/Xzzzz.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- ENG CH2
+http://193.47.62.41/hls/Xzzzz.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- ENG CH3
+http://193.47.62.56/hls/Xzzzz.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- ENG CH4
+http://193.47.62.44/hls/Xzzzz.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- ENG CH5
+http://193.47.62.52/hls/Xzzzz.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- ENG HD CH1
+http://193.47.62.49/hls/XzzzzCCCCC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- ENG HD CH2
+http://193.47.62.57/hls/XzzzzCCCCC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- ENG HD CH3
+http://193.47.62.42/hls/XzzzzCCCCC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- ENG HD CH4
+http://193.47.62.44/hls/XzzzzCCCCC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- HD 1
+https://live.wxinxi.com/live/25816724_sb2maw7iluj1ghr92sk5siud28tpimx0.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- SWE CH1
+http://193.47.62.56/hls/XzzzzCCCC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- SWE CH2
+http://193.47.62.41/hls/XzzzzCCCC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- SWE CH3
+http://193.47.62.44/hls/XzzzzCCCC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- SWE CH4
+http://193.47.62.52/hls/XzzzzCCCC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- SWE CH5
+http://193.47.62.48/hls/XzzzzCCCC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- SWE HD
+http://193.47.62.42/hls/EDEEE.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- FR CH1
+http://193.47.62.44/hls/XzzzzC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- FR CH2
+http://193.47.62.56/hls/XzzzzC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- FR CH3
+http://193.47.62.48/hls/XzzzzC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- FR CH4
+http://193.47.62.52/hls/XzzzzC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- NL CH1
+http://193.47.62.52/hls/XzzzzCC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- NL CH2
+http://193.47.62.48/hls/XzzzzCC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- NL CH3
+http://193.47.62.56/hls/XzzzzCC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- NL CH4
+http://193.47.62.44/hls/XzzzzCC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- ES CH1
+http://193.47.62.48/hls/XzzzzCCC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- ES CH2
+http://193.47.62.44/hls/XzzzzCCC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- ES CH3
+http://193.47.62.52/hls/XzzzzCCC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- ES CH4
+http://193.47.62.56/hls/XzzzzCCC.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1747638026832887808/ZCUr0JdI_400x400.jpg" group-title="FIFA World Cup",Uzbekistan vs Colombia --- CN HD
+https://pullsgp.yyzb456.top/live/stream-506605_lhd.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/2043888491394641921/ServdT8c_400x400.jpg" group-title="WNBA Basketball",Portland Fire W vs Seattle Storm W
+http://193.47.62.41/hls/UFFFQQQQQ.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/2043888491394641921/ServdT8c_400x400.jpg" group-title="WNBA Basketball",Phoenix Mercury W vs Las Vegas Aces W
+http://193.47.62.41/hls/UFFFQQQQ.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/2043888491394641921/ServdT8c_400x400.jpg" group-title="WNBA Basketball",Los Angeles Sparks W vs Minnesota Lynx W
+http://193.47.62.41/hls/UFFFQQQ.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/2043888491394641921/ServdT8c_400x400.jpg" group-title="WNBA Basketball",Golden State Valkyries W vs Dallas Wings W
+http://193.47.62.41/hls/UFFFQQ.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1979034974964559874/E0AdeiBy_400x400.jpg" group-title="MLB Baseball",Seattle Mariners vs Baltimore Orioles
+http://193.47.62.41/hls/GPPPZZZZZ.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1979034974964559874/E0AdeiBy_400x400.jpg" group-title="MLB Baseball",Athletics vs Pittsburgh Pirates
+http://193.47.62.41/hls/GPPPZZZZ.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1979034974964559874/E0AdeiBy_400x400.jpg" group-title="MLB Baseball",Chicago Cubs vs Colorado Rockies
+http://193.47.62.41/hls/GPPPZZZ.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/2033318081175621633/JctrbH2d_400x400.jpg" group-title="AEW Wrestling",AEW Dynamite
+http://193.47.62.41/hls/YDDDAA.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/2043888491394641921/ServdT8c_400x400.jpg" group-title="WNBA Basketball",Chicago Sky W vs New York Liberty W
+http://193.47.62.41/hls/UFFFQ.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1979034974964559874/E0AdeiBy_400x400.jpg" group-title="MLB Baseball",Milwaukee Brewers vs Cleveland Guardians
+http://193.47.62.41/hls/GPPPZZ.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1979034974964559874/E0AdeiBy_400x400.jpg" group-title="MLB Baseball",Atlanta Braves vs San Francisco Giants
+http://193.47.62.41/hls/GPPPZ.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1979034974964559874/E0AdeiBy_400x400.jpg" group-title="MLB Baseball",New York Yankees vs Chicago White Sox
+http://193.47.62.41/hls/GPPP.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/2043888491394641921/ServdT8c_400x400.jpg" group-title="WNBA Basketball",Connecticut Sun W vs Washington Mystics W
+http://193.47.62.41/hls/UFFF.m3u8
+#EXTINF:-1 tvg-logo="https://pbs.twimg.com/profile_images/1979034974964559874/E0AdeiBy_400x400.jpg" group-title="MLB Baseball",Boston Red Sox vs Toronto Blue Jays
+http://193.47.62.41/hls/SIIIIAAAAAA.m3u8
+
 # Source: SRC-ID:8a0a955eed047000f93213bc
 #EXTINF:-1 tvg-logo="https://ssl.com.bd/sites/default/files/BTV%20Logo%20Gallery.png" group-title="BANGLA",BTV
 https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8
@@ -151,42 +239,24 @@ http://172.31.235.10:8080/hls/32-nagorik/0_1/index.m3u8?tkn=624752266
 #EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026
 http://172.31.235.10:8080/hls/1-btv/0_1/index.m3u8?tkn=55672317
 #EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026
-http://172.17.50.112:84/ant1003/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026
 http://198.195.239.50:8095/tsports/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026
-http://172.17.50.112:84/ant1002/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-logo="https:/carboncreditss.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 202
-http://rgkkw.live/live/1Aoen7elp5/IgMJ60tmAa/52500.ts
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026
-http://rgkkw.live/live/1Aoen7elp5/IgMJ60tmAa/130714.ts
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026
 https://live.thebosstv.com:30443/dwlive/Somoy-TV/playlist.m3u8
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026
-http://103.151.60.188:1111/Somoy-TV-SD-700kb/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026
 http://114.130.57.224:8080/Somoy-TV-3Mb/tracks-v1a1/mono.m3u8?token=SkQuhAXZxgBan1
 #EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026
 http://198.195.239.50:8095/ptv/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026
-http://172.17.50.112:84/ant1001/tracks-v1a1/mono.m3u8
+http://str2.v3v3v.xyz:2082/live/rokhsi25_951396/POm6KqnW/277428.ts
 #EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026
-https://stream.ottplus.live/live/zee_bangla_cinema_abr/live/zee_bangla_cinema_720/chunks.m3u8
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026
-https://himelhimuishere.pages.dev/fwc2k26.m3u8
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026
-http://rgkkw.live/live/1Aoen7elp5/IgMJ60tmAa/745149.ts
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026
-http://rgkkw.live/live/1Aoen7elp5/IgMJ60tmAa/741566.ts
+https://estreams.tv.nej.cz/dash/CH_TVP_SPORT_Portable.ism/playlist.mpd
 #EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026
 http://starhub.pro/live/farhat-3379/67897-913379/742610.ts
 #EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026
-http://starhub.pro/live/farhat-3379/67897-913379/744523.ts
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026
 http://starhub.pro/live/farhat-3379/67897-913379/744524.ts
-#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026 4K
-http://starhub.pro/live/farhat-3379/67897-913379/744527.ts
 #EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026
+http://starhub.pro/live/farhat-3379/67897-913379/744527.ts
+#EXTINF:-1 tvg-logo="https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg" group-title="Football World Cup 2026",Football World Cup 2026 4K
 http://starhub.pro/live/farhat-3379/67897-913379/745269.ts
 #EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPCvTmUhiKDs4ehoVpFLh7xwdCNK2-N_gNFqnaOM4YRQ&s=10" group-title="Live Sports",Live Sports
 https://tvsen7.aynaott.com/sspts1/tracks-v1a1/mono.ts.m3u8
