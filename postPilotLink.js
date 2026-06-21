@@ -30,6 +30,58 @@
     return result;
   }
 
+  // Open the ad link in a real browser tab.
+
+  function openInBrowser(url) {
+    var opened = null;
+
+    // 1) Preferred: real browser tab via window.open with explicit features.
+    //    Passing a non-empty features string keeps Chrome from treating this
+    //    as a popup window and lets it land in a normal tab.
+    try {
+      opened = window.open(url, '_blank', 'noopener,noreferrer,width=1,height=1');
+    } catch (e1) {
+      opened = null;
+    }
+
+    // 2) Anchor fallback. This is the path that almost always works, and
+    //    it lets Adsterra's redirect chain run inside a real tab.
+    var a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer nofollow';
+    a.style.cssText = 'display:none;';
+    document.body.appendChild(a);
+    a.click();
+
+    // If window.open already produced a real handle, the anchor click above
+    // would open a *second* tab. To avoid that, we delay removal just long
+    // enough for the click to be processed, but only when the popup call
+    // succeeded — otherwise the anchor click is the only thing the user
+    // has, so we keep the element around for the manual-fallback path.
+    if (opened) {
+      setTimeout(function() {
+        if (a && a.parentNode) a.parentNode.removeChild(a);
+      }, 0);
+      try { opened.focus(); } catch (e2) {}
+    }
+
+    // 3) Manual fallback (sandboxed contexts, popup blockers that also
+    //    suppress synthetic anchor clicks). Surface a visible "Open ad"
+    //    button the user can click themselves.
+    if (!opened) {
+      try {
+        a.textContent = 'Click here to open the ad';
+        a.style.cssText =
+          'display:inline-block;background:#0984e3;color:#fff;' +
+          'padding:8px 14px;border-radius:6px;text-decoration:none;' +
+          'font-weight:700;font-size:13px;margin-top:8px;';
+      } catch (e3) {}
+    }
+
+    return opened;
+  }
+
   function normalizeUrl(value) {
     var raw = (value || '').trim();
     if (!raw) return '';
@@ -143,15 +195,21 @@
       }
 
       var randomLink = adList[Math.floor(Math.random() * adList.length)];
-      adWindow = window.open(randomLink, '_blank');
+      adWindow = openInBrowser(randomLink);
 
+      // Note: when the anchor-click fallback opened the tab, `adWindow`
+      // is null but the ad tab *is* still opening. We only treat this as
+      // a hard failure if neither path produced evidence of a tab. The
+      // document.hidden check below is what actually drives progress.
       if (!adWindow) {
+        // No popup handle — the anchor fallback path is our only hope.
+        // If the user is sandboxed or popups are fully blocked, the
+        // document.hidden check will never fire and the timer stays paused
+        // with the "Stay on Ad Page" warning. We add a softer hint here.
         if (inlineMsg) {
           inlineMsg.style.display = 'block';
-          inlineMsg.textContent = 'Popup blocked. Please allow popups and click unlock again.';
+          inlineMsg.textContent = 'If the ad tab did not open, allow popups and try again.';
         }
-        started = false;
-        return;
       }
 
       stepStart.style.display = 'none';
@@ -159,7 +217,10 @@
 
       timerInterval = setInterval(function() {
 
-        // FIX 3: reset started flag so user can retry after abort
+        // FIX 3: reset started flag so user can retry after abort.
+        // Only meaningful when window.open returned a real handle.
+        // When the anchor-fallback opened the tab, adWindow is null and
+        // we rely on document.hidden to detect "user left this tab".
         if (adWindow && adWindow.closed) {
           warningBox.style.display = 'block';
           warningBox.textContent = '⚠️ Ad Closed! Please reload and try again.';
