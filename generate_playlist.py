@@ -18,8 +18,18 @@ from dotenv import load_dotenv
 
 
 PREMIUM_CHANNELS = [
-    {
-        "name": "DekhoPrime PremiumTV",
+    {        
+        "name": "DekhoPrime TSports",
+        "group": "Sports",
+        "logo": "https://raw.githubusercontent.com/imShakil/tvlink/refs/heads/main/dekho-prime-icon-192.webp",
+        "pin": True,
+        "streams": {
+            "server_1" : {
+                "url": "https://trs1.aynaott.com/tsports/index.m3u8",
+                "headers": {},
+            },
+        },
+        "name": "DekhoPrime CrazeTV",
         "group": "Sports",
         "logo": "https://raw.githubusercontent.com/imShakil/tvlink/refs/heads/main/dekho-prime-icon-192.webp",
         "pin": True,
@@ -29,6 +39,7 @@ PREMIUM_CHANNELS = [
                 "headers": {},
             },
         },
+
     },
 ]
 
