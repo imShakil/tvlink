@@ -759,6 +759,83 @@ def write_to_file(playlist, output_file, normalize_groups=False, group_rules=Non
             f.write(f'{item["url"]}\n')
 
 
+# Default keywords used to flag a channel as a Football World Cup stream.
+# Tokens are matched case-insensitively against the channel name, group,
+# and (where helpful) the logo URL.
+DEFAULT_WORLD_CUP_KEYWORDS = (
+    "world cup",
+    "fifawc",
+    "fifa wc",
+    "fifa world",
+    "fifa",
+    "wc 2026",
+    "wc2026",
+    "wc",
+)
+
+
+def is_world_cup_channel(channel, keywords=None):
+    """
+    Return True when a parsed channel entry looks like a Football World Cup
+    stream. A channel qualifies if:
+      - its logo URL references the FIFA World Cup branding, OR
+      - any of the configured keywords appear in its name or group.
+    """
+    if not isinstance(channel, dict):
+        return False
+
+    tokens = tuple(k.strip().lower() for k in (keywords or DEFAULT_WORLD_CUP_KEYWORDS) if k and k.strip())
+    if not tokens:
+        tokens = tuple(k.lower() for k in DEFAULT_WORLD_CUP_KEYWORDS)
+
+    logo = (channel.get("logo") or "").lower()
+    name = (channel.get("channel_name") or "").lower()
+    group = (channel.get("group") or "").lower()
+
+    if "fifa-world-cup" in logo or "fifa_world_cup" in logo:
+        return True
+
+    haystack = f"{name} {group}"
+    for token in tokens:
+        if token and token in haystack:
+            return True
+
+    return False
+
+
+def filter_world_cup_channels(playlist, keywords=None):
+    """Return only the channels from `playlist` that look like World Cup streams."""
+    if not playlist:
+        return []
+    return [c for c in playlist if is_world_cup_channel(c, keywords=keywords)]
+
+
+def write_private_playlist(
+    playlist,
+    output_file="private.m3u",
+    keywords=None,
+    normalize_groups=True,
+    group_rules=None,
+):
+    """
+    Write a curated `private.m3u` containing only Football World Cup channels.
+    Uses the same M3U format as the main playlist and preserves the existing
+    group normalization pipeline.
+    """
+    world_cup = filter_world_cup_channels(playlist, keywords=keywords)
+    print(
+        f"World Cup filter matched {len(world_cup)} / {len(playlist)} channels "
+        f"for {output_file}."
+    )
+    write_to_file(
+        world_cup,
+        output_file,
+        normalize_groups=normalize_groups,
+        group_rules=group_rules,
+    )
+    return world_cup
+
+
 def decode_labels_from_file(input_file, cipher_key):
     with open(input_file, "r", encoding="utf-8") as f:
         lines = [line.strip() for line in f.readlines()]
@@ -837,6 +914,13 @@ if __name__ == "__main__":
     validate_from_all_file = os.getenv("VALIDATE_FROM_ALL_FILE", "").strip()
     group_normalization_file = os.getenv("GROUP_NORMALIZATION_FILE", "group_normalization.json").strip()
     group_rules = load_group_normalization_rules(group_normalization_file)
+    private_output_file = os.getenv("PRIVATE_OUTPUT_FILE", "private.m3u").strip()
+    private_filter_keywords_raw = os.getenv("PRIVATE_FILTER_KEYWORDS", "").strip()
+    private_filter_keywords = (
+        [k.strip() for k in private_filter_keywords_raw.split(",") if k.strip()]
+        if private_filter_keywords_raw
+        else None
+    )
 
     if not source_cipher_key:
         raise SystemExit("SOURCE_PASSPHRASE is required.")
@@ -890,3 +974,13 @@ if __name__ == "__main__":
     write_to_file(combined_playlist, output_file, normalize_groups=True, group_rules=group_rules)
 
     print(f"Combined playlist written to {output_file} with {len(combined_playlist)} channels.")
+
+    if private_output_file:
+        write_private_playlist(
+            combined_playlist,
+            output_file=private_output_file,
+            keywords=private_filter_keywords,
+            normalize_groups=True,
+            group_rules=group_rules,
+        )
+        print(f"Private World Cup playlist written to {private_output_file}.")
