@@ -106,20 +106,7 @@ def is_channel_stream_url(raw_url):
         return False
 
     path = (parts.path or "").lower()
-    blocked_video_ext = (
-        ".mp4",
-        ".mkv",
-        ".avi",
-        ".mov",
-        ".wmv",
-        ".flv",
-        ".webm",
-        ".m4v",
-        ".mpg",
-        ".mpeg",
-        ".3gp",
-    )
-    return not path.endswith(blocked_video_ext)
+    return path.endswith((".m3u8", ".m3u", ".ts", ".mpd"))
 
 
 def _clean_group_text(value):
