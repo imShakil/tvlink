@@ -1,0 +1,44 @@
+{
+  "cricket:11595": {
+    "title": "Australia tour of South Africa, 2026",
+    "sport": "cricket",
+    "slug": "watch-australia-tour-of-south-africa-2026-live-stream",
+    "generatedAt": "2026-10-22T04:04:54.948Z"
+  },
+  "cricket:13037": {
+    "title": "Sri Lanka tour of Pakistan, 2026",
+    "sport": "cricket",
+    "slug": "watch-sri-lanka-tour-of-pakistan-2026-live-stream",
+    "generatedAt": "2026-10-22T04:04:56.397Z"
+  },
+  "cricket:13197": {
+    "title": "ODI Tri-Nation Series in UAE, 2026",
+    "sport": "cricket",
+    "slug": "watch-odi-tri-nation-series-in-uae-2026-live-stream",
+    "generatedAt": "2026-10-22T04:05:02.337Z"
+  },
+  "cricket:13047": {
+    "title": "Pakistan ODI Tri-Series, 2026",
+    "sport": "cricket",
+    "slug": "watch-pakistan-odi-tri-series-2026-live-stream",
+    "generatedAt": "2026-10-22T04:05:03.687Z"
+  },
+  "football:eng.1": {
+    "title": "English Premier League",
+    "sport": "football",
+    "slug": "watch-english-premier-league-live-stream",
+    "generatedAt": "2026-10-22T04:16:13.237Z"
+  },
+  "football:uefa.champions": {
+    "title": "UEFA Champions League",
+    "sport": "football",
+    "slug": "watch-uefa-champions-league-live-stream",
+    "generatedAt": "2026-10-22T04:16:14.593Z"
+  },
+  "football:esp.1": {
+    "title": "Spanish LALIGA",
+    "sport": "football",
+    "slug": "watch-spanish-laliga-live-stream",
+    "generatedAt": "2026-10-22T04:16:15.957Z"
+  }
+}

@@ -7,7 +7,8 @@
   "scripts": {
     "build": "node src/build.js",
     "dev": "node src/dev-server.js",
-    "start": "node src/dev-server.js"
+    "start": "node src/dev-server.js",
+    "generate:blogs": "node scripts/generate-sports-blogs.js"
   },
   "keywords": [
     "dekhoprime",
@@ -21,6 +22,7 @@
   "author": "Dekho Prime",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "cheerio": "^1.2.0",
     "front-matter": "^4.0.2",
     "highlight.js": "^11.11.1",
     "marked": "^15.0.7"

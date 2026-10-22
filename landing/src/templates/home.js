@@ -42,7 +42,7 @@ export function renderHome({ articles = [] }) {
         </h1>
 
         <p class="hero-desc">
-          100+ Bangladeshi & International live channels, real-time sports fixtures, movies, series, and anime. Available on Web, Android Mobile, and Android TV / Google TV.
+          1000+ Bangladeshi & International live channels, real-time sports fixtures, movies, series, and anime. Available on Web, Android Mobile, and Android TV / Google TV.
         </p>
 
         <div class="hero-actions">

@@ -2,8 +2,8 @@ export const siteConfig = {
   name: "Dekho Prime",
   tagline: "Free Live TV, Sports, Movies & Shows",
   description: "Official portal for Dekho Prime — stream 100+ Live TV channels, live cricket & sports, movies, and TV shows online in HD. Download Android mobile and Android TV apps.",
-  siteUrl: process.env.SITE_URL || "https://dekhoprime.live",
-  blogBaseUrl: process.env.BLOG_URL || "https://blog.dekhoprime.live",
+  siteUrl: process.env.SITE_URL || "https://dplive.pages.dev",
+  blogBaseUrl: process.env.BLOG_URL || "https://dplive.pages.dev",
   author: "Dekho Prime Team",
   twitterHandle: "@dekhoprime",
   fbAppId: "1636364628119609",
@@ -13,7 +13,7 @@ export const siteConfig = {
   horizontalLogoPng: "/uploads/dekho-prime-horizontal-logo.png",
   icon192: "/uploads/dekho-prime-icon-192.webp",
   icon512: "/uploads/dekho-prime-512x512.webp",
-  
+
   // Minimalist Color Palette (Max 3 Color Types)
   // 1. Accent: Dekho Prime Crimson Red (#ea383e)
   // 2. Dark Background: Obsidian Black (#09090b / #121215)
@@ -93,7 +93,7 @@ export const siteConfig = {
   features: [
     {
       icon: "tv",
-      title: "100+ Free Live Channels",
+      title: "1000+ Free Live Channels",
       description: "Stream Bangladeshi channels, 24/7 news, kids entertainment, music, and international channels with multi-server failover."
     },
     {
