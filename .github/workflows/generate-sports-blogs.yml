@@ -1,0 +1,71 @@
+name: Auto Generate Sports Promo Blogs
+
+on:
+  schedule:
+    # Runs every Monday at 04:00 UTC
+    - cron: '0 4 * * 1'
+  workflow_dispatch:
+    inputs:
+      sport:
+        description: 'Sport to generate blogs for'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - cricket
+          - football
+      limit:
+        description: 'Number of articles to generate in this run'
+        required: true
+        default: '5'
+        type: string
+      force:
+        description: 'Force regenerate articles even if previously published'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  generate-blogs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: 'landing/package-lock.json'
+
+      - name: Install Dependencies
+        run: |
+          cd landing
+          npm install
+
+      - name: Run Sports Blog Generator
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          cd landing
+          SPORT="${{ github.event.inputs.sport || 'all' }}"
+          LIMIT="${{ github.event.inputs.limit || '5' }}"
+          FORCE="${{ github.event.inputs.force == 'true' && '--force' || '' }}"
+          node scripts/generate-sports-blogs.js --sport=$SPORT --limit=$LIMIT $FORCE
+
+      - name: Verify Static Site Build
+        run: |
+          cd landing
+          npm run build
+
+      - name: Commit and Push New Articles
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(blog): auto-generate sports promo articles [skip ci]"
+          file_pattern: "landing/content/articles/*.md landing/content/published-sports.json"
