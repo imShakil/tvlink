@@ -45,7 +45,6 @@ Telegram community (updates & support): [https://t.me/+DBjA_AdCuoY1MTQ9](https:/
 ## Web App
 
 * **Main app**: [https://dekhoprime.live](https://dekhoprime.live)
-* **Live TV player**: [https://play.dekhoprime.live](https://play.dekhoprime.live)
 * **Download page**: [https://dekhoprime.live/download](https://dekhoprime.live/download)
 
 **Getting started:**

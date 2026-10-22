@@ -32,7 +32,6 @@ export const siteConfig = {
   // Key External & Internal Links
   links: {
     webApp: "https://dekhoprime.live",
-    livePlayer: "https://play.dekhoprime.live",
     mobileApk: "https://github.com/imShakil/bdix/releases/latest/download/dekho-prime-mobile.apk",
     tvApk: "https://github.com/imShakil/bdix/releases/latest/download/dekho-prime-tv.apk",
     apkPure: "https://apkpure.com/p/com.imshakil.bdiptv",
@@ -50,7 +49,6 @@ export const siteConfig = {
   nav: [
     { label: "Home", href: "/" },
     { label: "Web App", href: "https://dekhoprime.live", external: true },
-    { label: "Live Player", href: "https://play.dekhoprime.live", external: true },
     { label: "Downloads", href: "/downloads/" },
     { label: "Changelog", href: "/changelog/" },
     { label: "Articles & Blog", href: "/article/" }

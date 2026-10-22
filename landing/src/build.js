@@ -387,6 +387,16 @@ async function build() {
 
   fs.writeFileSync(path.join(DIST_DIR, 'sitemap.xml'), sitemapXml.trim(), 'utf-8');
 
+  // 10b. Generate Robots TXT (/robots.txt)
+  const robotsTxt = `User-agent: *
+Allow: /
+
+Sitemap: ${siteConfig.siteUrl}/sitemap.xml
+Sitemap: https://dekhoprime.live/sitemap.xml
+Sitemap: https://blog.dekhoprime.live/sitemap.xml
+`;
+  fs.writeFileSync(path.join(DIST_DIR, 'robots.txt'), robotsTxt.trim() + '\n', 'utf-8');
+
   // 11. Generate RSS Feed (/feed.xml)
   const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">

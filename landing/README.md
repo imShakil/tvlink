@@ -29,7 +29,6 @@ High-performance, minimalist static website and blog for **Dekho Prime** built f
   - Searchable article directory at `/article/`
 - **Apps Ecosystem**:
   - Direct Dekho Prime Web App link (`https://dekhoprime.live`)
-  - Direct Live TV Player link (`https://play.dekhoprime.live`)
   - Direct Android Mobile APK download link & APKPure badge
   - Direct Android TV Leanback APK download link
   - Interactive installation walkthroughs

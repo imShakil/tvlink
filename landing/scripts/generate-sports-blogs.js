@@ -77,7 +77,7 @@ async function fetchCricketSeries() {
       const title = $(a).find('.text-ellipsis').first().text().trim();
       const dateRange = $(a).find('.text-cbTxtSec').first().text().trim();
       const href = $(a).attr('href') || '';
-      
+
       const idMatch = href.match(/\/cricket-series\/(\d+)\//);
       const seriesId = idMatch ? idMatch[1] : slugify(title);
 
@@ -206,7 +206,7 @@ image: ${isCricket ? '/uploads/cricket-background-picture_50KB.jpg' : '/uploads/
     * Dedicated Android touch mobile app and leanback Android TV / Firestick app with D-pad navigation.
     * Low-buffer, BDIX-optimized 1080p streams with zero subscription fees.
 - Section 5: Step-by-Step: How to Watch on Dekho Prime:
-    * Option A: Stream on Browser via [Dekho Prime Player](https://play.dekhoprime.live) or [Official Website](https://dekhoprime.live).
+    * Option A: Stream on Browser via [Official Web App](https://dekhoprime.live).
     * Option B: Install the Android TV or Mobile APK directly from [Dekho Prime Downloads](https://dekhoprime.live/downloads/).
 - Section 6: FAQ section with 3 common user questions (Is Dekho Prime free? Can I watch on Android TV? How to check live scores?).
 
@@ -373,9 +373,9 @@ Equipped with multi-CDN failover and high-speed local caching, streams start in 
 
 You can enjoy live sports on Dekho Prime in two simple ways:
 
-### Option 1: Direct In-Browser Player
-No app installation required. Visit our web player from any mobile or desktop browser:
-1. Open the [Dekho Prime Live Player](https://play.dekhoprime.live).
+### Option 1: Direct In-Browser Web App
+No app installation required. Visit our web portal from any mobile or desktop browser:
+1. Open the [Dekho Prime Web App](https://dekhoprime.live).
 2. Navigate to the **Sports** category or click the **${eventName}** live banner in the Arena Clash tab.
 3. Select your preferred channel server and enjoy the live match!
 

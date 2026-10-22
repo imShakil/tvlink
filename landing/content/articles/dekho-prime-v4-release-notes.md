@@ -18,7 +18,6 @@ image: /uploads/sports-event.jpg
 We are thrilled to roll out **Dekho Prime v4.3.0** — our biggest release yet. This update is tailored specifically for sports fanatics, live TV streamers, and Android TV / Google TV enthusiasts.
 
 - **Web App:** [https://dekhoprime.live](https://dekhoprime.live)
-- **Live TV Player:** [https://play.dekhoprime.live](https://play.dekhoprime.live)
 - **Download APKs:** [https://dekhoprime.live/download](/downloads/)
 
 ---

@@ -67,9 +67,9 @@ Equipped with multi-CDN failover and high-speed local caching, streams start in 
 
 You can enjoy live sports on Dekho Prime in two simple ways:
 
-### Option 1: Direct In-Browser Player
-No app installation required. Visit our web player from any mobile or desktop browser:
-1. Open the [Dekho Prime Live Player](https://play.dekhoprime.live).
+### Option 1: Direct In-Browser Web App
+No app installation required. Visit our web portal from any mobile or desktop browser:
+1. Open the [Dekho Prime Web App](https://dekhoprime.live).
 2. Navigate to the **Sports** category or click the **Pakistan ODI Tri-Series, 2026** live banner in the Arena Clash tab.
 3. Select your preferred channel server and enjoy the live match!
 

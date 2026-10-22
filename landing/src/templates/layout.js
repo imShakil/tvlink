@@ -125,7 +125,6 @@ export function renderLayout({
           <h4>Apps & Platforms</h4>
           <ul class="footer-links">
             <li><a href="${siteConfig.links.webApp}" target="_blank" rel="noopener" class="footer-link">Web App</a></li>
-            <li><a href="${siteConfig.links.livePlayer}" target="_blank" rel="noopener" class="footer-link">Live TV Player</a></li>
             <li><a href="/downloads/" class="footer-link">Android Mobile APK</a></li>
             <li><a href="/downloads/" class="footer-link">Android TV APK</a></li>
             <li><a href="${siteConfig.links.apkPure}" target="_blank" rel="noopener" class="footer-link">APKPure Store</a></li>
