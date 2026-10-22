@@ -7,6 +7,7 @@ export const siteConfig = {
   author: "Dekho Prime Team",
   twitterHandle: "@dekhoprime",
   fbAppId: "1636364628119609",
+  googleSiteVerification: "j32TdHhf2XF0EB5R6uWoHhQI78YGMhqRsXyEffqX8pw",
   defaultOgImage: "/uploads/dekho-prime-og-1200x630.webp",
   logoUrl: "/uploads/dekho-prime-icon-header-128.webp",
   horizontalLogo: "/uploads/dekho-prime-horizontal-logo.webp",

@@ -41,6 +41,7 @@ export function renderLayout({
   <meta name="description" content="${pageDesc}" />
   <meta name="author" content="${siteConfig.author}" />
   <meta name="robots" content="index, follow" />
+  ${siteConfig.googleSiteVerification ? `<meta name="google-site-verification" content="${siteConfig.googleSiteVerification}" />` : ''}
   <link rel="canonical" href="${canonicalUrl}" />
 
   <!-- Open Graph / Facebook -->
