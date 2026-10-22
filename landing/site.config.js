@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Dekho Prime",
   tagline: "Free Live TV, Sports, Movies & Shows",
-  description: "Official portal for Dekho Prime — stream 100+ Live TV channels, live cricket & sports, movies, and TV shows online in HD. Download Android mobile and Android TV apps.",
+  description: "Official portal for Dekho Prime — stream 1000+ Live TV channels, live cricket & sports, movies, and TV shows online in HD. Download Android mobile and Android TV apps.",
   siteUrl: process.env.SITE_URL || "https://dplive.pages.dev",
   blogBaseUrl: process.env.BLOG_URL || "https://dplive.pages.dev",
   author: "Dekho Prime Team",
