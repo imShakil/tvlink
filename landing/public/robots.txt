@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://blog.dekhoprime.live/sitemap.xml
+Sitemap: https://dekhoprime.live/sitemap.xml

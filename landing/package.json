@@ -1,0 +1,28 @@
+{
+  "name": "dekhoprime-landing",
+  "version": "1.0.0",
+  "description": "Fast, minimalist static landing site and blog for Dekho Prime apps, downloads, changelog, and articles",
+  "main": "src/build.js",
+  "type": "module",
+  "scripts": {
+    "build": "node src/build.js",
+    "dev": "node src/dev-server.js",
+    "start": "node src/dev-server.js"
+  },
+  "keywords": [
+    "dekhoprime",
+    "live-tv",
+    "bangla-tv",
+    "apk-download",
+    "android-tv",
+    "static-site",
+    "cloudflare-pages"
+  ],
+  "author": "Dekho Prime",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "front-matter": "^4.0.2",
+    "highlight.js": "^11.11.1",
+    "marked": "^15.0.7"
+  }
+}

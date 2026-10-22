@@ -1,0 +1,5 @@
+node_modules/
+landing/node_modules/
+landing/dist/
+.DS_Store
+*.log
