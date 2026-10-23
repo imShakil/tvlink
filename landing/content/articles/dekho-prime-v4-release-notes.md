@@ -43,10 +43,19 @@ On Android TV and Google TV, stability is king:
 - Automatic failover to backup servers when stream degradation occurs
 - D-pad responsive channel surfing with numeric channel jumping support
 
-```bash
-# Sideload Android TV build using ADB
-adb install -r dekho-prime-tv.apk
-```
+
+### 4. Activate on TV with a Code
+
+Signing in with Google directly on an Android TV or Google TV can be cumbersome. The new **code activation** flow makes it effortless:
+
+1. Open **Dekho Prime TV** on your TV
+2. A **6-character activation code** will appear on screen (e.g. `DP-A2G4`)
+3. On your phone or PC, visit **[dekhoprime.live/activate](https://dekhoprime.live/activate)**
+4. Sign in with Google (if not already signed in)
+5. Enter the code shown on your TV screen → tap **Activate**
+6. Your TV screen will automatically refresh and complete sign-in ✅
+
+> **Note:** Codes are valid for **5 minutes**. If expired, select "Activate with Code" again to generate a new one.
 
 ---
 
