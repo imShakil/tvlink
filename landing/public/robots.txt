@@ -2,4 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://dplive.pages.dev/sitemap.xml
-Sitemap: https://dekhoprime.live/sitemap.xml
