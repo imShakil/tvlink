@@ -67,5 +67,5 @@ jobs:
       - name: Commit and Push New Articles
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(blog): auto-generate sports promo articles [skip ci]"
+          commit_message: "chore(blog): auto-generate sports promo articles"
           file_pattern: "landing/content/articles/*.md landing/content/published-sports.json"
